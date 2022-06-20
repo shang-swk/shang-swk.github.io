@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="shang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="王道计组笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理">
+<meta property="og:url" content="http://example.com/2022/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="swk">
+<meta property="og:description" content="王道计组笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/00687e0812e00c487bd43af0fbf3ccd417cd23ff.png">
+<meta property="og:image" content="c:/Users/24956/AppData/Roaming/Typora/typora-user-images/image-20220422170339769.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/8b768885accf043844e070143123821492f5579a.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/84ef1ec7bf737a09d238f49912dd23cda58b31f8.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/d8b5daa0a6b92954bdf6a5549bbdf16bf67f0e18.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/e6ec17746a37032d3cb364da0c5f3a1ee4cc7be6.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/9dc9341bd49fc1600c6ec93a0ec09ac3cad600fa.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/59fe549e7aaba53ed6c17101f2f26ae24dd8a2f2.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/a8609fd5030e5e9ea5debd13dda416d0f0d4d127.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/6132964a0aaa83a94c2d0177aec6c038b910fa11.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/c86afa7e6d7dd0d67f8d1944bf82fa828c91941a.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/e3f6bac82ebe1dd339d5cfb757f6cbf385f04e81.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/0ed059e8ef704469ee5fe06a75e37402d89c0f3a.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/04f315990e30d5f9fb70ef44b5c7af243c3b71fb.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/0aa6262eb11a31d2d9500735b5adff0ea06df366.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/8fca1924d917d0f4a10b83ff782ff0114569c09e.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/a4ece89c22198d130e24a6c2052027f0c09d3103.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/1461fac5be0d2da8a14f97834a6aff15e4e3713e.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/7385468588024f58484b336477ebe09303181eb3.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/0419e6aa1bd31d1e7bbca318b83161393bd6573d.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/c2879126b0701ca377880a81a6c384b789dda4ee.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/6865e928c8e704d84047e8e1b8024f598be38b29.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/834a921a3a084f74d7fc07150fa62a39976bcb8b.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/b93c07e6c43f4e6f4fb07618ac70721290c8eb47.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/b5b3b131ff4c7042adc84b4c8d2e53eb15501c89.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/dae8bddbb4466a1d15cca4a89b312e13943da390.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/31ca31f50a375663d74c96c52b3de645b1f63d37.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/adf9fd84975c9d93155d5831a1751720d77e5da5.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/f0efd67abea7eafcb4cb3f975899ea81bee6ee75.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/081f5da86cac9389e3559c66f947980697a25af6.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/5e33436f8ee78b29f70dccc56b023ba646c2820d.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/754fedbe890c4ad30ae5cda11e978e67d70e88fb.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/9f0c01a476cb6db72644b5d0934a903f34c9a340.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/7146650ae8a3eb37757a3213e97d6f32aa7af5f9.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/b9acdbe1fe916460f7b2a589447a27198a713943.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/e22861b3eefcf0388563c898fb179ef3ddfb5450.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/b9acdbe1fe916460f7b2a589447a27198a713943.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/cd4d9a7e1f2429fcc492fea45c11b4104fd5881c.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/dba5452a602b2e0718aa7f1e98812faf2343ef36.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/7e91257473505a87e5fac1448dff5a19b632467d.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/note/5aa367117da914f162ded0673620419bc88ae071.png">
+<meta property="og:image" content="c:/Users/24956/AppData/Roaming/Typora/typora-user-images/image-20220424003531079.png">
+<meta property="article:published_time" content="2022-04-13T02:20:19.644Z">
+<meta property="article:modified_time" content="2022-04-23T16:35:42.814Z">
+<meta property="article:author" content="shang">
+<meta property="article:tag" content="计组笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/note/00687e0812e00c487bd43af0fbf3ccd417cd23ff.png">
+  
+  
+  <title>计算机组成原理 - swk</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="swk" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Shang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/3.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="计算机组成原理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-13 10:20" pubdate>
+        2022年4月13日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机组成原理</h1>
+            
+            <div class="markdown-body">
+              <h2 id="你好计算机"><a href="#你好计算机" class="headerlink" title="你好计算机"></a><strong>你好计算机</strong></h2><p>1、硬件识别是否：0和1可以用低&#x2F;高电平来表示</p>
+<p>2、<strong>低电平</strong>表示<strong>0</strong>，<strong>高电平</strong>表示<strong>1</strong></p>
+<p>3、金属针脚用来接收电信号的。</p>
+<p>4、通过很多条电路，可以传递多个二进制数位；<em>每个二进制数位被称为1bit(比特)</em></p>
+<p><strong>计算机发展</strong></p>
+<p><strong>软件</strong>：分为系统软件和应用软件。</p>
+<p><strong>硬件发展</strong></p>
+<p><strong>★</strong> <strong>逻辑元件发展</strong>：电子管-&gt;晶体管（开始出现操作系统的雏形）-&gt;中小规模集成电路-&gt;大规模、超大规模集成电路（开始出现：CPU  即微处理器、PC  即微信计算机）</p>
+<p>PC随着CPU的发展而发展</p>
+<p><strong>内存发展</strong>：汞延迟线、磁鼓-&gt;磁芯存储器-&gt;半导体存储器</p>
+<p>贝尔实验室发明了晶体管</p>
+<p><strong>摩尔定律</strong>：集成电路上可容纳的晶体管数目，每隔18月会增加一倍</p>
+<p><strong>软件发展</strong></p>
+<p><strong>编程语言的发展</strong>：机器语言、汇编语言-&gt;高级语言（决定了软件是否丰富）</p>
+<p><strong>发展趋势</strong>：两级分化</p>
+<p>更微型化和更巨型化</p>
+<p><strong>计算机硬件的基本组成</strong></p>
+<p><strong>冯诺依曼体系</strong>：刚开始的计算机执行指令需要手动操作，所以冯诺依曼提出了“存储程序”的概念；</p>
+<p><strong>存储程序</strong>：指的是将指令以<strong>二进制代码</strong>的形式事先输入计算机的<strong>主存储器</strong>，然后按其在存储器中的<strong>首地址</strong>执行程序的第一条指令，以后就按该程序的规定顺序执行其他命令，直到程序结束</p>
+<p>冯诺依曼机器的图示</p>
+<p>在计算机系统中，<strong>软件和硬件在逻辑上是等效的。</strong></p>
+<p><strong>冯诺依曼计算机特点：</strong></p>
+<ol>
+<li><p>&#x3D;&#x3D;计算机由五大部分组成&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;指令和数据以同等地位存于存储器，可按地址寻访&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;指令和数据用二进制表示&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;指令由操作码和地址码组成&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;存储程序&#x3D;&#x3D;</p>
+</li>
+<li><p><strong>以运算器为中心</strong>（输入&#x2F;输出设备与存储器之间的数据传送通过运算器完成）</p>
+<p>现代计算机结构图示</p>
+<p><strong>现代计算机以存储器为中心</strong></p>
+<p>CPU&#x3D;运算器+控制器</p>
+<p>主机&#x3D;CPU+主存储器</p>
+<p>  辅存（硬盘）属于I&#x2F;O设备</p>
+<p>  主存（内存）属于主机</p>
+</li>
+</ol>
+<p><strong>认识各个硬件部件</strong></p>
+<p><strong>主存储器</strong>：包括存储体、MAR（存储地址寄存器）、MDR（存储数据寄存器）</p>
+<p><strong>存储体</strong>：数据在存储体内按地址存储</p>
+<p><strong>存储单元</strong>：每个存储单元存放一串二进制代码</p>
+<p>**存储字(word)**：存储单元中二进制代码的组合</p>
+<p><strong>存储字长</strong>：存储单元中二进制代码的位数（8bit的整数倍）</p>
+<p>存储元：即存储二进制的电子元件（电容），每个存储元可存1bit</p>
+<p>MDR位数&#x3D;存储字长</p>
+<p>MAR位数放映存储单元个数</p>
+<p><strong>易混淆</strong>：<code>1B=1个字节 || 1b=1bit</code></p>
+<p><strong>运算器的基本组成</strong>：</p>
+<p><strong>运算器</strong>：用于实现算法运算、逻辑运算</p>
+<p>ACC：累加器，用于存放操作数或预算结果</p>
+<p>MQ：乘商寄存器，在乘除运算时，用于存放操作数或运算结果。</p>
+<p>X：通用的操作数寄存器，用于存放操作数</p>
+<p><strong>ALU</strong>：算数逻辑单元，通过内部复杂的电路实现算法运算、逻辑运算（硬件构造复杂，制造成本四者最高）</p>
+<p><strong>控制器的基本组成</strong> ：</p>
+<p><strong>CU</strong>：控制单元，分析指令，给出控制信号</p>
+<p>IR：指令寄存器，存放当前执行的指令</p>
+<p>PC：程序计数器，存放下一条指令地址，有自动加1功能</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs delphi">Control <span class="hljs-keyword">Unit</span><br>Instruction <span class="hljs-keyword">Register</span>`<br><span class="hljs-keyword">Program</span> Counter<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>完成一条指令的过程</strong>：取指令(PC)-&gt;分析指令(IR)-&gt;执行指令(CU)</p>
+<p><strong>或</strong>：取指-&gt;执行</p>
+<p><strong>计算机的工作过程</strong>：</p>
+<p>高级语言-&gt;编译装入主存</p>
+<p>0:（PC）&#x3D; 0</p>
+<p>1: (PC)-&gt;MAR–&gt;(MAR)&#x3D;0</p>
+<p>3: M(MAR)-&gt;MDR–&gt;(MDR)&#x3D;00001 0000000101</p>
+<p>4: (MDR)-&gt;IR–&gt;(IR)&#x3D;00001 0000000101</p>
+<p>5: OP(IR)-&gt;CU</p>
+<p>6: Ad(IR)-&gt;MAR</p>
+<p>8:M(MAR)-&gt;MDR</p>
+<p>PC-&gt;MAR-&gt;MDR-&gt;IR-&gt;CU</p>
+<p>大致过程：</p>
+<p>取指-&gt;CU-&gt;判断并执行（计算则转向运算器）</p>
+<p><strong>计算机系统的层次结构</strong>：</p>
+<p><strong>虚拟机器 M4</strong>（高级语言机器）</p>
+<p>​        ↓</p>
+<p><strong>虚拟机器 M3</strong>（汇编语言机器）</p>
+<p>​        ↓</p>
+<p><strong>虚拟机器 M2</strong>（操作系统机器）</p>
+<p>​        ↓</p>
+<p><strong>传统机器 M1</strong>（用机器语言的机器）</p>
+<p>​        ↓</p>
+<p><strong>微程序机器 M0</strong>（微指令系统）</p>
+<p>下层是上层的基础，上层是下层的拓展</p>
+<p><strong>编译程序</strong>：一次性编译</p>
+<p><strong>解释程序</strong>：解释每一条语言</p>
+<p><strong>计算机体系结构</strong>：硬件与软件之间的接口如何设计（有无乘法指令）</p>
+<p><strong>计算机组成原理</strong>：如何用硬件实现所定义的接口（如何实现乘法指令）</p>
+<p><strong>计算机的性能指标</strong></p>
+<p>总容量&#x3D;存储单元个数*存储字长  bit</p>
+<p>​        or</p>
+<p>总容量&#x3D;存储单元个数*存储字长&#x2F;8  Byte</p>
+<p>即：<strong>MAR*MDR</strong> <strong>bit</strong>   or   <strong>MAR*MDR&#x2F;8 Byte</strong></p>
+<p>n个二进制位能表示 2^n种状态</p>
+<p><code>2^10:K  2^20:M  2^30:G  2^40:T</code> </p>
+<p><strong>CPU主频</strong>：CPU内数字脉冲信号震荡的频率（单位：微秒、纳秒）</p>
+<p>CPU主频（时钟频率）&#x3D;1&#x2F;CPU时钟周期</p>
+<p>**CPI(Clock cycle Per Instruction)**：执行一条指令所需的时钟周期数(不同的指令，CPI不同。甚至相同的指令，CPI也有可能变化)</p>
+<p>（通常考虑平均情况）</p>
+<p>执行一条指令的耗时 &#x3D; CPI * CPU时钟周期</p>
+<p>CPU执行时间（整个程序的耗时）</p>
+<p>&#x3D;CPU时钟周期数&#x2F;主频</p>
+<p>&#x3D;(指令条数*CPI)&#x2F;主频</p>
+<p>**IPS(Instructions Per Second)**：&#x3D;&#x3D;每秒钟执行多少条指令&#x3D;&#x3D;</p>
+<p>IPS &#x3D; 主频&#x2F;平均CPI</p>
+<p>**FLOPS(Floating-point Operations Per Second)**：每秒执行多少次浮点运算</p>
+<p><strong>数据通路带宽</strong>：数据总线一次所能并行传递信息的位数（各硬件部件通过数据总线传输数据）</p>
+<p><strong>吞吐量</strong>：指系统在单位时间内处理请求的数量。</p>
+<p><strong>响应时间</strong>：指从用户向计算机发送一个请求，到系统对该请求做出相应并获得它所需要的结果的等待时间</p>
+<p>基准程序：用来测量计算机处理速度的一种实用软件</p>
+<p>★★★CPU</p>
+<p>描述存储容量、文件大小：2^n</p>
+<p>描述频率、速率：10^n</p>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p><strong>进位计数制</strong></p>
+<p>权重：符号；符号所在的位置</p>
+<p>十六进制：H  </p>
+<p>十进制：D</p>
+<p>二进制→八进制：3位一组 转换成一个八进制数</p>
+<p>二进制→十六进制：4位一组 转换成一个十六进制数</p>
+<p>十六进制→二进制：一位数转换成4位二进制数</p>
+<p>八进制→二进制：1位数转换成3位二进制数</p>
+<p>十进制→任意进制：除基取余（先取得的余是整数的低位）</p>
+<p><strong>数制与编码</strong></p>
+<p><strong>BCD码</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/00687e0812e00c487bd43af0fbf3ccd417cd23ff.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>当运算结果超过8421的映射关系的时候，需要进行+6进行补正运算（即+0110）</p>
+<p>需要修正的原因：10~16缺失</p>
+<p><strong>字符与字符串</strong></p>
+<p>大端模式：存储单元内先存储高位字节、后存储低位字节的顺序</p>
+<p>小端模式：存储单元内先存储低位字节、后存储高位字节的顺序</p>
+<p><strong>校验原理与奇偶校验码</strong></p>
+<p>码距：两个合法码字对应位上数字的不同位的个数</p>
+<p>奇校验：保证一段数据中出现奇数个1</p>
+<p>偶校验：保证一段数据中出现偶数个1</p>
+<p><strong>海明校验码</strong></p>
+<p>海明码设计思路：分组教研→多个校验位→校验位标注出错位置       </p>
+<p>校验位分布：校验码下标n对应海明码下标m：m&#x3D;2^n </p>
+<p>求校验位的值：找有1的信息位，异或求校验位的值</p>
+<p>纠错：刚刚产生的校验位和刚才的信息位异或</p>
+<p><img src="C:\Users\24956\AppData\Roaming\Typora\typora-user-images\image-20220422170339769.png" srcset="/img/loading.gif" lazyload alt="image-20220422170339769"></p>
+<p><strong>&#x3D;&#x3D;循环冗余校验码：&#x3D;&#x3D;</strong></p>
+<p>即CRC码</p>
+<p>1、确定信息位（k），校验位（R）</p>
+<p>2、移位：信息码左移R位，低位补0（即右面补R个0）</p>
+<p>3、相除：对移位后的信息码，用生成多项式进行模2除法，产生余数（不用借数，看最高位）</p>
+<p><strong>定点数的表示和运算</strong></p>
+<p><strong>无符号数及原码</strong></p>
+<p>定点数的表示：无符号数、有符号数；</p>
+<p>无符号数：整个机器字长的全部二进制均为数值为，没有符号位，相当于数的绝对值</p>
+<p>有符号数：</p>
+<p>​    小数点：隐含存储（定点数：事先约定；浮点数：按规则浮动）</p>
+<p>原码：符号位+绝对值。</p>
+<p><strong>补码、反码以及移码：</strong></p>
+<p>补码：</p>
+<p>​    正数：补码与原码表示相同</p>
+<p>​    负数：原码符号位不变，数值部分按位取反，末位加1</p>
+<p>反码：</p>
+<p>​    正数：与正数相同</p>
+<p>​    负数：原码符号位不变，数值部分按位取反。</p>
+<p>​    <strong>1.加减运算</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/8b768885accf043844e070143123821492f5579a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>2.模运算</strong></p>
+<p>例如在mod12的条件下 10+(-3)、10+9…效果相同</p>
+<p>(这里有点难理解)</p>
+<p><img src="https://i0.hdslb.com/bfs/note/84ef1ec7bf737a09d238f49912dd23cda58b31f8.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>一对补数的绝对值之和等于模(这也是判断是否是补数的标准)</p>
+<p>在(mod m)的条件下，若能找到负数的补数，就可以用正数的加法来等价替代减法。</p>
+<p>模-a的绝对值&#x3D;a的补数</p>
+<p><strong>回到1.加减运算</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/d8b5daa0a6b92954bdf6a5549bbdf16bf67f0e18.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/e6ec17746a37032d3cb364da0c5f3a1ee4cc7be6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>移位运算</strong></p>
+<p><strong>1.算术移位</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/9dc9341bd49fc1600c6ec93a0ec09ac3cad600fa.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>算术移位</strong>：通过改变各个数码位和小数点的相对位置，从而改变个数码位的位权。可用移位运算实现乘法、除法。</p>
+<p><strong>右移：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/59fe549e7aaba53ed6c17101f2f26ae24dd8a2f2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>（注意是<strong>丢失精度</strong>哦）</p>
+<p><img src="https://i0.hdslb.com/bfs/note/a8609fd5030e5e9ea5debd13dda416d0f0d4d127.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>左移：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/6132964a0aaa83a94c2d0177aec6c038b910fa11.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>反码的算术移位：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/c86afa7e6d7dd0d67f8d1944bf82fa828c91941a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>补码的算法移位：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/e3f6bac82ebe1dd339d5cfb757f6cbf385f04e81.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/0ed059e8ef704469ee5fe06a75e37402d89c0f3a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/04f315990e30d5f9fb70ef44b5c7af243c3b71fb.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>总结：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/0aa6262eb11a31d2d9500735b5adff0ea06df366.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>左移&#x3D;x2，右移&#x3D;&#x2F;2</strong></p>
+<p>由于位数有限，大多时候无法用算术移位精确地等效乘除法</p>
+<p><strong>逻辑移位：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/8fca1924d917d0f4a10b83ff782ff0114569c09e.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>往哪移，哪边补0，溢出的舍弃</p>
+<p><strong>逻辑移位的应用举例：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/a4ece89c22198d130e24a6c2052027f0c09d3103.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>循环移位：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/1461fac5be0d2da8a14f97834a6aff15e4e3713e.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/7385468588024f58484b336477ebe09303181eb3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>加减运算和溢出运算</strong></p>
+<p><strong>本节总览：</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/0419e6aa1bd31d1e7bbca318b83161393bd6573d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/c2879126b0701ca377880a81a6c384b789dda4ee.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>确实</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/6865e928c8e704d84047e8e1b8024f598be38b29.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/834a921a3a084f74d7fc07150fa62a39976bcb8b.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/b93c07e6c43f4e6f4fb07618ac70721290c8eb47.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/b5b3b131ff4c7042adc84b4c8d2e53eb15501c89.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>不想算</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/note/dae8bddbb4466a1d15cca4a89b312e13943da390.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>溢出判断：</strong></p>
+<p>这个很好理解，记住机器字长的范围(-128~+127)就行了，大于最大值127是上溢，小于最小值-128是下溢</p>
+<p><img src="https://i0.hdslb.com/bfs/note/31ca31f50a375663d74c96c52b3de645b1f63d37.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/adf9fd84975c9d93155d5831a1751720d77e5da5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/f0efd67abea7eafcb4cb3f975899ea81bee6ee75.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/081f5da86cac9389e3559c66f947980697a25af6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/5e33436f8ee78b29f70dccc56b023ba646c2820d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/754fedbe890c4ad30ae5cda11e978e67d70e88fb.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>** 原码的乘法运算**</p>
+<p><img src="https://i0.hdslb.com/bfs/note/9f0c01a476cb6db72644b5d0934a903f34c9a340.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/7146650ae8a3eb37757a3213e97d6f32aa7af5f9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/b9acdbe1fe916460f7b2a589447a27198a713943.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/e22861b3eefcf0388563c898fb179ef3ddfb5450.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/b9acdbe1fe916460f7b2a589447a27198a713943.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/cd4d9a7e1f2429fcc492fea45c11b4104fd5881c.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/dba5452a602b2e0718aa7f1e98812faf2343ef36.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/7e91257473505a87e5fac1448dff5a19b632467d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i0.hdslb.com/bfs/note/5aa367117da914f162ded0673620419bc88ae071.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="C:\Users\24956\AppData\Roaming\Typora\typora-user-images\image-20220424003531079.png" srcset="/img/loading.gif" lazyload alt="image-20220424003531079"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%BB%84/">计组</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%BB%84%E7%AC%94%E8%AE%B0/">计组笔记</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/13/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%20AES%E7%AE%97%E6%B3%95C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/12/Markdown%20%E5%B9%B3%E6%97%B6%E7%94%A8%E7%9A%84%E5%A4%9A%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95/">
+                        <span class="hidden-mobile">Markdown语法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":300,"height":600},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+</html>

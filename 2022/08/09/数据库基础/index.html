@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据库用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql基础">
+<meta property="og:url" content="http://example.com/2022/08/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="One ball">
+<meta property="og:description" content="数据库用法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-09T03:37:11.894Z">
+<meta property="article:modified_time" content="2022-08-09T03:42:41.320Z">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>mysql基础 - One ball</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ditto</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="mysql基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-09 11:37" pubdate>
+          2022年8月9日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="mysql基础"><a href="#mysql基础" class="headerlink" title="mysql基础"></a>mysql基础</h1><h2 id="1-数据库的基本操作"><a href="#1-数据库的基本操作" class="headerlink" title="1.  数据库的基本操作"></a>1.  数据库的基本操作</h2><p><strong>数据库操作语句一定要加上分号 否则会出现一直不执行的情况    一直出现-&gt;符号</strong></p>
+<h3 id="1-1-MYSQL登录与退出"><a href="#1-1-MYSQL登录与退出" class="headerlink" title="1.1.  MYSQL登录与退出"></a>1.1.  MYSQL登录与退出</h3><p>D:\phpStudy\MySQL\bin</p>
+<p>输入 mysql -uroot -p -P3306 -h127.0.0.1</p>
+<p>退出的三种方法</p>
+<p>mysql &gt; exit;</p>
+<p>mysql &gt; quit;</p>
+<p>mysql &gt; \q;</p>
+<h3 id="1-2-MYSQL数据库的一些解释"><a href="#1-2-MYSQL数据库的一些解释" class="headerlink" title="1.2.  MYSQL数据库的一些解释"></a>1.2.  MYSQL数据库的一些解释</h3><p>注意：数据库就相当于文件夹</p>
+<p>   表就相当于文件</p>
+<p>​     </p>
+<h3 id="1-3-mysql注释符有三种："><a href="#1-3-mysql注释符有三种：" class="headerlink" title="1.3.  mysql注释符有三种："></a>1.3.  mysql注释符有三种：</h3><p>​    1、#…</p>
+<p>​    2、”– …”</p>
+<p>​    3、&#x2F;<em>…</em>&#x2F;</p>
+<p>​     </p>
+<h2 id="2-数据库的一些基本操作"><a href="#2-数据库的一些基本操作" class="headerlink" title="2.  数据库的一些基本操作"></a>2.  数据库的一些基本操作</h2><h3 id="2-1-数据库的增删改查-sql语句"><a href="#2-1-数据库的增删改查-sql语句" class="headerlink" title="2.1.  数据库的增删改查(sql语句)"></a>2.1.  数据库的增删改查(sql语句)</h3><p>增：create database db1;</p>
+<p>删：drop database db1;</p>
+<p>改：alter database db1 charset utf8</p>
+<p>查：show databases;#查看所有的数据库</p>
+<p>show create database db1;</p>
+<p>查看指定的数据库  </p>
+<p>设置默认的utf8,在配置文件中：写上character_set_server &#x3D; utf8</p>
+<p>use db2  </p>
+<p>select database() #查看你当前在哪个文件夹</p>
+<p>重命名数据库 RENAME database olddbname TO newdbname</p>
+<p>show status; – 显示一些系统特定资源的信息，例如，正在运行的线程数量。</p>
+<p>desc tabl_name; 显示表结构，字段类型，主键，是否为空等属性，但不显示外键。</p>
+<p>show databases 查看这个mysql里面有多少个库</p>
+<p>use mysql </p>
+<p>use 选择数据库</p>
+<p>show tables 查看当前库里面所有的表</p>
+<p>mysql&gt; select password from user where user&#x3D;’root’;</p>
+<p>Mysql 5.7 select authentication_string,user from mysql.user;</p>
+<p>查看当前数据库 里面的表user 用户为root的密码</p>
+<p>alter database 数据库名 character set utf8;</p>
+<h2 id="3-table-表的操作"><a href="#3-table-表的操作" class="headerlink" title="3.  table 表的操作"></a>3.  table 表的操作</h2><h3 id="3-1-查看表结构"><a href="#3-1-查看表结构" class="headerlink" title="3.1.  查看表结构"></a>3.1.  查看表结构</h3><p>desc table</p>
+<p>DESCRIBE 表名;</p>
+<h2 id="3-2-查看表的内容"><a href="#3-2-查看表的内容" class="headerlink" title="3.2.  查看表的内容"></a>3.2.  查看表的内容</h2><p>select * from table_name</p>
+<h3 id="3-3-建立表"><a href="#3-3-建立表" class="headerlink" title="3.3.  建立表"></a>3.3.  建立表</h3><p>CREATE TABLE 表名 (</p>
+<p>​        属性名 数据类型 [完整约束条件],</p>
+<p>​        属性名 数据类型 [完整约束条件],</p>
+<p>​        …</p>
+<p>​        …</p>
+<p>​        属性名 数据类型 [完整约束条件]</p>
+<p>​    );</p>
+<p>​    </p>
+<p>字段名就是属性名</p>
+<p>完整的建立表的语句</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php">create table <span class="hljs-title function_ invoke__">users</span>(id <span class="hljs-keyword">int</span>(<span class="hljs-number">7</span>) AUTO_INCREMENT,username <span class="hljs-title function_ invoke__">varchar</span>(<span class="hljs-number">100</span>) not <span class="hljs-literal">null</span>,<br>password <span class="hljs-title function_ invoke__">varchar</span>(<span class="hljs-number">100</span>) not <span class="hljs-literal">null</span>,PRIMARY <span class="hljs-title function_ invoke__">KEY</span>(id))ENGINE=InnoDB DEFAULT CHARSET=utf8;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<p>&#x3D;&#x3D;if not exists表示当相同的表名存在时，则不执行此创建语句，避免语句执行错误&#x3D;&#x3D;</p>
+<p>​    </p>
+<p>create database if not exists [table];   </p>
+<p>ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8;</p>
+<p>&#x3D;&#x3D;ENGINE 设置表的引擎 和默认的字符类型&#x3D;&#x3D;</p>
+<p>​    </p>
+<p>常见的数据库引擎 </p>
+<p>​    </p>
+<p>InnoDB myisam </p>
+<p>​    </p>
+<p>数据类型 </p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/-xlp/p/8617760.html">https://www.cnblogs.com/-xlp/p/8617760.html</a></p>
+<p>​    </p>
+<h3 id="3-4-约束条件"><a href="#3-4-约束条件" class="headerlink" title="3.4.  约束条件"></a>3.4.  约束条件</h3><p>PRIMARY KEY 标识该属性为该表的主键，可以唯一的标识对应的元组</p>
+<p>FOREIGN KEY 标识该属性为该表的外键，是与之联系某表的主键</p>
+<p>NOT NULL 标识该属性不能为空</p>
+<p>​        UNIQUE 标识该属性的值是唯一的</p>
+<p>​        AUTO_INCREMENT   标识该属性的值是自动增加，这是MySQL的SQL语句的特色</p>
+<p>​        DEFAULT   为该属性设置默认值</p>
+<p>​    </p>
+<h3 id="3-5-修改表的操作"><a href="#3-5-修改表的操作" class="headerlink" title="3.5.  修改表的操作"></a>3.5.  修改表的操作</h3><p>修改表</p>
+<p>​    </p>
+<p>格式：ALTER TABLE 旧表名 RENAME 新表名;</p>
+<p>​    </p>
+<p>修改字段的数据类型</p>
+<p>​    </p>
+<p>​        ALTER TABLE 表名 MODIFY 属性名 数据类型;</p>
+<p>修改字段名：</p>
+<p>​    </p>
+<p>​        ALTER TABLE 表名 CHANGE 旧属性名 新属性名 新数据类型;</p>
+<p>​    </p>
+<p>增加字段名</p>
+<p>​    </p>
+<p>​        ALTER TABLE 表名 ADD 属性名1 数据类型 [完整性约束条件] [FIRST | AFTER 属性名2];</p>
+<p>​    </p>
+<p>删除字段</p>
+<p>​    </p>
+<p>​        ALTER TABLE 表名 DROP 属性名;</p>
+<p>更改表的存储引擎</p>
+<p>​    </p>
+<p>​        格式：ALTER TABLE 表名 ENGINE &#x3D; 存储引擎名; </p>
+<h2 id="4-数据的增删改查"><a href="#4-数据的增删改查" class="headerlink" title="4.  数据的增删改查"></a>4.  数据的增删改查</h2><p>为表中所有字段添加数据</p>
+<p>语法：INSERT INTO 表名（字段名1，字段名2，…）VALUES（值1，值2，…）；</p>
+<p>mysql&gt; insert into users (id,username,password)values(1,’moon’,’123456’);</p>
+<h3 id="4-1-增"><a href="#4-1-增" class="headerlink" title="4.1.  增"></a>4.1.  增</h3><p>语法：INSERT INTO 表名 VALUES(值11，值2，…）；</p>
+<p>mysql&gt; insert into users values(null,’test’,’123456’);</p>
+<p>语法：INSERT INTO 表名（字段1，字段2，…）VALUES(值1，值2，…）</p>
+<p>语法：INSERT INTO 表名 SET 字段名1&#x3D;值1[,字段名2&#x3D;值2，…]</p>
+<p>举例：INSERT INTO student SET id&#x3D;4，name&#x3D;’zhaoliu’,grade&#x3D;72;</p>
+<p>同时添加多条数据</p>
+<p>语法：INSERT INTO 表名[(字段名1，字段名2，…)]VALUES （值1，值2，…），（值1，值2，…），</p>
+<p>mysql&gt; insert into users (id,username,password)values(null,’moon’,’123456’),(null,’alex’,’123456’);</p>
+<p>：INSERT INTO 表名[(字段名1，字段名2，…)]VALUES （值1，值2，…），（值1，值2，…），（值1，值2，…）</p>
+<p>mysql&gt; insert into users values(null,’moon1’,’123456’),(null,’alex1’,’123456’);</p>
+<h3 id="4-2-删"><a href="#4-2-删" class="headerlink" title="4.2.  删"></a>4.2.  删</h3><p>DELETE FROM 表名 [WHERE 条件表达式</p>
+<p>delete from users where id&#x3D;1;</p>
+<p>删除全部数据</p>
+<p>若 DELETE 语句中没有使用WHERE语句，则会将表中所有记录都删除。</p>
+<p>DELETE FROM 表名</p>
+<p>删除全部数据的另一种方法——TRUNCATE</p>
+<h3 id="4-3-更新"><a href="#4-3-更新" class="headerlink" title="4.3.  更新"></a>4.3.  更新</h3><p><code>语法：UPDATE 表名 SET 字段名1=值1，[ ，字段名2=值2，…][ WHERE 条件表达式 ]</code></p>
+<p>update users set password&#x3D;’aaaa’ where id&#x3D;1;</p>
+<p>update users set password&#x3D;’123456’,username&#x3D;’moon’ where id&#x3D;1</p>
+<p>update users set password&#x3D;456789;</p>
+<h3 id="4-4-查"><a href="#4-4-查" class="headerlink" title="4.4.  查"></a>4.4.  查</h3><p>select * from users;</p>
+<p>星号代表所有的字段</p>
+<p>查询指定的字段</p>
+<p>select username,password from users;</p>
+<p>按条件调节查询</p>
+<p>按关系来查询</p>
+<p>语法：SELECT 字段名1，字段名2，…FROM 表名WHERE 条件表达式</p>
+<p>in 查询</p>
+<p>SELECT * FROM student2 WHERE id IN （1,2,3）；</p>
+<p>带 BETWEEN AND 关键字的查询</p>
+<p>select * from users where id not between 1 and 10;</p>
+<p> as  表示别名</p>
+<p>比如：</p>
+<p>select username as name from users ;</p>
+<p>带 DISTINCT 关键字的查询</p>
+<p> 取出不一样的值，相同的值不重复取用</p>
+<p>select distinct username from users</p>
+<p>like查询 一般都会给跟着%</p>
+<p>select * from users where username like “%m%” ;</p>
+<p> m字母左右边的都匹配</p>
+<p>%在左边就匹配m左边的 %在右边就匹配m右边的</p>
+<p>下划线 _ 匹配一个字符</p>
+<p>select* from users where username like “moo_”</p>
+<p>and查询</p>
+<p>满足多个条件</p>
+<p> select * from users where id&#x3D;1 and username&#x3D;’moon’;</p>
+<p>or查询</p>
+<p>满足任意一个条件</p>
+<p>select * from users where id&#x3D;1 or username&#x3D;’moon’;</p>
+<p>OR 和 AND 一起使用的情况</p>
+<p>&#x3D;&#x3D;OR 和 AND 一起使用的时候，AND 的优先级高于 OR，因此二者一起使用时，会先运算 AND 两边的表达式，再运算 OR 两边的表达式。&#x3D;&#x3D;</p>
+<p>mysql&gt; select * from users where id &gt;5 and password&#x3D;’123456c’ or username&#x3D;’moon1’;</p>
+<p>聚合查询</p>
+<p>count 返回行数</p>
+<p>select count(*) from users;</p>
+<p>select count(id) from users;</p>
+<p>COUNT() 返回某列的行数</p>
+<p>SUM() 返回某列值的和</p>
+<p>AVG() 返回某列的平均值</p>
+<p>MAX() 返回某列的最大值</p>
+<p>MIN() 返回某列的最小值</p>
+<p>分组查询</p>
+<p>如果报错请在 my.ini添加 </p>
+<p>sql_mode&#x3D;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION</p>
+<p>GROUP BY</p>
+<p>mysql&gt; SELECT * FROM users GROUP BY password;</p>
+<p>+—-+———-+———-+</p>
+<p>| id | username | password |</p>
+<p>+—-+———-+———-+</p>
+<p>| 3 | moon1  | 123456  |</p>
+<p>| 1 | moon   | 456789  |</p>
+<p>+—-+———-+———-+</p>
+<p>2 rows in set (0.01 sec)</p>
+<p>mysql&gt; SELECT * FROM users GROUP BY username;</p>
+<p>+—-+———-+———-+</p>
+<p>| id | username | password |</p>
+<p>+—-+———-+———-+</p>
+<p>| 2 | alex1  | 456789  |</p>
+<p>| 1 | moon   | 456789  |</p>
+<p>| 3 | moon1  | 123456  |</p>
+<p>+—-+———-+———-+</p>
+<p>3 rows in set (0.01 sec)</p>
+<p>使用 LIMIT 限制查询结果的数量</p>
+<p>select * from users limit 2,10;</p>
+<p>select * from users as u where u.id&#x3D;1;</p>
+<p>为表和字段取别名</p>
+<p>select username as myname from users;</p>
+<p>mysql的子查询</p>
+<p>where型子查询</p>
+<p>  （把内层查询结果当作外层查询的比较条件）  </p>
+<p>​         select * from users where id in (select id from users where id&gt;10);</p>
+<p>​         </p>
+<p>​         </p>
+<p>​                    </p>
+<p>from型子查询 </p>
+<p>​    (把内层的查询结果供外层再次查询)                 </p>
+<p>​        select * from (select username,age from users) as agev_a where age&gt;20   </p>
+<p>​        select * from (select * from users where id&gt;&#x3D;10) as age_10; </p>
+<p>​            (select * from users where id&gt;&#x3D;10)查询出来的是一个集合 别名为age_10</p>
+<p>​            select * from age_10</p>
+<p>​            </p>
+<p>exists型子查询</p>
+<p>​    （把外层查询结果拿到内层，看内层的查询是否成立）</p>
+<p>1</p>
+<p>0</p>
+<p>select * from users where EXISTS (select * from users where id&gt;1)</p>
+<p>联合查询（两个表的查询）</p>
+<p>注释：默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。</p>
+<p>当 ALL 随 UNION 一起使用时（即 UNION ALL），不消除重复行</p>
+<p>UNION ALL 查询全部 而且不会消除重复的行</p>
+<p>union </p>
+<p>SQL UNION ALL 语法</p>
+<p>union的用法及注意事项</p>
+<p>​    两次查询的列数必须一致</p>
+<p>​     select * from users union select *,1 from news;</p>
+<p>CREATE TABLE <code>news</code> (</p>
+<p> <code>id</code> int(11) NOT NULL AUTO_INCREMENT,</p>
+<p> <code>title</code> varchar(255) not NULL,</p>
+<p> <code>content</code> varchar(255) not null,</p>
+<p> PRIMARY KEY (<code>id</code>)</p>
+<p>) ENGINE&#x3D;MyISAM AUTO_INCREMENT&#x3D;0 DEFAULT CHARSET&#x3D;utf8; </p>
+<p>insert into news (title,content)values(‘a1’,’a1’);</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/mysql/">#mysql</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mysql基础</div>
+      <div>http://example.com/2022/08/09/数据库基础/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月9日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88%E9%80%9F%E8%AE%B0%E7%89%88%EF%BC%89/" title="一些正则表达式语法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一些正则表达式语法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/09/web%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="web安全基础知识">
+                        <span class="hidden-mobile">web安全基础知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
+

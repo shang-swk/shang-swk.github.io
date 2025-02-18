@@ -1,0 +1,1218 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Modbus RTU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Modbus RTU通讯协议">
+<meta property="og:url" content="http://example.com/2022/08/08/MODBUS%20RTU/index.html">
+<meta property="og:site_name" content="One ball">
+<meta property="og:description" content="Modbus RTU">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/08/08/MODBUS%20RTU/image-20220711095955587.png">
+<meta property="article:published_time" content="2022-08-08T15:55:22.330Z">
+<meta property="article:modified_time" content="2023-03-15T06:08:12.249Z">
+<meta property="article:tag" content="Modbus RTU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/08/08/MODBUS%20RTU/image-20220711095955587.png">
+  
+  
+  
+  <title>Modbus RTU通讯协议 - One ball</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ditto</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Modbus RTU通讯协议"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-08 23:55" pubdate>
+          2022年8月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Modbus RTU通讯协议</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="MODBUS-RTU协议"><a href="#MODBUS-RTU协议" class="headerlink" title="MODBUS RTU协议"></a>MODBUS RTU协议</h2><p>MODBUS  RTU通信规约</p>
+<p>![img](MODBUS RTU&#x2F;1789291-20200531131537098-1326034318.jpg)</p>
+<p>信息传输为异步方式，并以字节为单位，每个字节由8 位二进制数组成：</p>
+<p>异步：异步双方不需要共同的时钟，也就是接收方不知道发送方什么时候发送，所以在发送的信息中就要有提示接收方开始接收的信息，如开始位，同时在结束时有停止位。</p>
+<p>异步的另外一种含义是计算机多线程的异步处理。与同步处理相对，异步处理不用阻塞当前<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B/103101">线程</a>来等待处理完成，而是允许后续操作，直至其它线程将处理完成，并回调通知此线程。</p>
+<p>但此处需要明确的是:异步与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404">多线程</a>与并行不是同一个概念.</p>
+<table>
+<thead>
+<tr>
+<th>起始位</th>
+<th>1位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据位</td>
+<td>8位</td>
+</tr>
+<tr>
+<td>奇偶校验位</td>
+<td>无校验</td>
+</tr>
+<tr>
+<td>停止位</td>
+<td>1位</td>
+</tr>
+<tr>
+<td>流控</td>
+<td>无流控</td>
+</tr>
+<tr>
+<td>通讯速率</td>
+<td>9600bps</td>
+</tr>
+</tbody></table>
+<img src="/2022/08/08/MODBUS%20RTU/image-20220711095955587.png" srcset="/img/loading.gif" lazyload alt="image-20220711095955587" style="zoom:67%;">
+
+<p>每个数据帧组成如下：（RTU模式）</p>
+<table>
+<thead>
+<tr>
+<th>地址码</th>
+<th>功能码</th>
+<th>数据信息</th>
+<th>CRC 校验</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8 位</td>
+<td>8 位</td>
+<td>N*8 位</td>
+<td>16 位</td>
+</tr>
+</tbody></table>
+<p>地址码：信息发送过来必然有个地址</p>
+<p>功能码：就来告诉从机执行什么动作</p>
+<p>通常用两个16位的数来表示，所以总共是8位</p>
+<table>
+<thead>
+<tr>
+<th><strong>功能码</strong></th>
+<th><strong>定 义</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01H</td>
+<td>Read Coil Status</td>
+<td>读写一个Coil</td>
+</tr>
+<tr>
+<td>02H</td>
+<td>Read Input Status</td>
+<td>只读一个Coil</td>
+</tr>
+<tr>
+<td>03H</td>
+<td>Read Holding Registers</td>
+<td>读写寄存器数值</td>
+</tr>
+<tr>
+<td>04H</td>
+<td>Read Input Registers</td>
+<td>只读寄存器数值</td>
+</tr>
+<tr>
+<td>05H</td>
+<td>Force Single Coil</td>
+<td>修改一个Coil值</td>
+</tr>
+<tr>
+<td>06H</td>
+<td>Preset Single Register</td>
+<td>修改一个寄存器值</td>
+</tr>
+<tr>
+<td>0FH</td>
+<td>Force Multiple Coils</td>
+<td>修改多个Coil值</td>
+</tr>
+<tr>
+<td>10H</td>
+<td>Load Multiple Register</td>
+<td>修改多个寄存器值</td>
+</tr>
+</tbody></table>
+<p>数据区</p>
+<p>数据区包括需要由从机返送何种信息或执行什么动作。这些信息可以是数据、参考地址等。</p>
+<p>错误校验码（16 位CRC 校验）</p>
+<p>主机或从机可用校验码进行判别接收信息是否正确。由于电子噪声或一些其它干扰， 信息在传输过程中有时会发生错误，错误校验码（CRC）可以检验主机或从机在通讯数据传送过程中的信息是否有误，错误的数据可以放弃（无论是发送还是接收），这样增加了系统的安全和效率。</p>
+<p>MODBUS 通讯规约的CRC（冗余循环码）包含2个字节，即16位二进制数。CRC码由发送设备（主机）计算，放置于发送信息帧的尾部（CRC 高字节在前）。接收信息的设备（从机）再重新计算接收到信息的CRC，比较计算得到的CRC 是否与接收到的相符，如果两者不相符，则表明出错。</p>
+<p>16位CRC校验。 CRC-16 &#x3D; <em>x</em>^16 + <em>x</em>^12 + <em>x</em>^5 + <em>x</em>^0</p>
+<p>计算步骤为：</p>
+<p>(1).预置16 位寄存器为十六进制FFFF（即全为1），称此寄存器为CRC 寄存器； </p>
+<p>(2).把第一个8 位数据与16 位CRC 寄存器的&#x3D;&#x3D;低位相异或&#x3D;&#x3D;，把结果放于CRC 寄存器； </p>
+<p>(3).把寄存器的内容右移一位(朝低位)，用0 填补最高位，检查最低位</p>
+<p>（注意：这时的最低位指移位前的最低位，不是移位后的最低位）；</p>
+<p>(4). 如果最低位为0：重复第3 步(再次移位)，如果最低位为1：CRC 寄存器与多项式</p>
+<p>A001H（1010000000000001B）进行异或；</p>
+<p>(5). 重复步骤3 和4，直到右移8 次，这样整个8 位数据全部进行了处理；</p>
+<p>(6). 重复步骤2 到步骤5，进行下一个8 位数据的处理；</p>
+<p>(7). 最后得到的CRC 寄存器即为CRC 码。</p>
+<p>(8).CRC计算参考代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title">calculate_CRC</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *ptr, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> len)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> crc=<span class="hljs-number">0xffff</span>; <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i; <span class="hljs-keyword">while</span>(len!=<span class="hljs-number">0</span>)<br>&#123;<br>crc^=*ptr;<span class="hljs-comment">// crc寄存器与数据的8位进行异或</span><br> <br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;i++)<br>&#123;<br><span class="hljs-keyword">if</span>((crc&amp;<span class="hljs-number">0x0001</span>)==<span class="hljs-number">0</span><span class="hljs-comment">/*与   如果是0就进行移位*/</span>) crc=crc&gt;&gt;<span class="hljs-number">1</span>; <span class="hljs-keyword">else</span><br>&#123;<br>crc=crc&gt;&gt;<span class="hljs-number">1</span>; crc^=<span class="hljs-number">0xa001</span>;<br>&#125;<br>&#125;<br>len-=<span class="hljs-number">1</span>; ptr++;<br>&#125;<br>crc=(crc&lt;&lt;<span class="hljs-number">8</span>) | (crc&gt;&gt;<span class="hljs-number">8</span>);<span class="hljs-comment">//高低字节取反</span><br>    <span class="hljs-keyword">return</span> crc;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="传输格式"><a href="#传输格式" class="headerlink" title="传输格式"></a>传输格式</h4><h5 id="命令报文格式"><a href="#命令报文格式" class="headerlink" title="命令报文格式"></a>命令报文格式</h5><p>数据传输分为被动和主动以及自己传输和接受</p>
+<p>被动比如是打开某个东西然后自动发送某东西</p>
+<p>主动就是主动发信息</p>
+<p>在传输过程中，数据遵循的一些规则统称为协议</p>
+<p>不同设备之间，协议是不同的</p>
+<p>协议有底层协议和高层协议</p>
+<p>这是一个底层协议</p>
+<p>校验码的那些一般都是规定好的，是大家通用的，不需要去学的特别清楚，了解就行。</p>
+<p>&#x3D;&#x3D;地址是设备地址与起始地址是不同的&#x3D;&#x3D;</p>
+<p>起始地址是你需要的东西储存的地址</p>
+<p>1） Read Coil Status</p>
+<p>&#x3D;&#x3D;数据个数要看你需要的东西占多少字节&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;功能码“01H”能读取位元，&#x3D;&#x3D;      读写</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th></th>
+<th>数据个数</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">01</td>
+<td>01</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>字节个数</th>
+<th>数据</th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>01</td>
+<td>N（8位）</td>
+<td>数据N..  1</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>2） Read Input Status： 功能码“02H”能读取位元，</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th></th>
+<th>数据个数</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>02</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>字节个数</th>
+<th>数据</th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>02</td>
+<td>N（8位）</td>
+<td>数据N..  1</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>3） Read Holding Registers</p>
+<p>功能码“03H”能够访问所有内部保持寄存器。</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th></th>
+<th>数据个数</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>03</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>字节个数</th>
+<th>数据</th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>03</td>
+<td>2N</td>
+<td>数据1（16位）……数据N（16位）</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>4） Read Input Registers：</p>
+<p>功能码“04H”能够访问所有外部输入寄存器。</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th></th>
+<th>数据个数</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>04</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>字节个数</th>
+<th>数据</th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>04</td>
+<td>2N</td>
+<td>数据1（16位）……数据N（16位）</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>5） Force Single Coil：</p>
+<p>功能码“05H”能够设置一个位元，这里的数据就是一个字节，只可能是0xFF 00 或者0x00 00。0xFF 00代表开机 0x00 00代表关机。</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>地址</th>
+<th></th>
+<th>数据</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>05</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>地址</th>
+<th></th>
+<th>数据</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>05</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>6） Preset Single Register</p>
+<p>功能码“06H”能修改一个内部保持寄存器。</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>地址</th>
+<th></th>
+<th>数据</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>06</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>地址</th>
+<th></th>
+<th>数据</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>06</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>7） Force Multiple Coils：</p>
+<p>功能码“0FH”，能根据位元的位设置多个量。</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th>数据个数</th>
+<th>数据个数</th>
+<th></th>
+<th>字节个数</th>
+<th>数据</th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>15</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>N</td>
+<td>字节（8位）1……N</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th></th>
+<th>数据个数</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>15</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>8） Load Multiple Register</p>
+<p>功能码“10H”，能根据连续地址修改内部多个保持寄存器。</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th></th>
+<th>数据个数</th>
+<th></th>
+<th>字节个数</th>
+<th>数据</th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>16</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>2N</td>
+<td>数据（16位）1……N</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>返回：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>功能码</th>
+<th>起始地址</th>
+<th></th>
+<th>数据个数</th>
+<th></th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>16</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<h5 id="异常应答返回（测试时开放，实际使用时屏蔽）-非法功能："><a href="#异常应答返回（测试时开放，实际使用时屏蔽）-非法功能：" class="headerlink" title="异常应答返回（测试时开放，实际使用时屏蔽） 非法功能："></a>异常应答返回（测试时开放，实际使用时屏蔽） 非法功能：</h5><table>
+<thead>
+<tr>
+<th>从站地址</th>
+<th>功能码</th>
+<th>异常码</th>
+<th>CRC</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>80H+原功能码</td>
+<td>ERR</td>
+<td>高位</td>
+<td>低位</td>
+</tr>
+</tbody></table>
+<p>ERR ：01 非法功能</p>
+<p>02 非法数据地址</p>
+<p>03 非法数据值</p>
+<p>04 非法个数</p>
+<p>05 CRC错误</p>
+<p>06 从机忙状态</p>
+<p>[2022-05-31 17:34:39:731]: Send:8 char    8字节  </p>
+<p>01 02 00 00 00 0F 38 0E               数据个数15个 ？   </p>
+<p>[2022-05-31 17:34:39:840]: Recv:7 char</p>
+<p>01 02 02 00 00 B9 B8          数据位00 00？<br>[2022-05-31 17:34:39:951]: Send:8 char    8字节</p>
+<p>01 03 00 00 00 04 44 09       4个数据<br>[2022-05-31 17:34:40:060]: Recv:13 char</p>
+<p>01 03 &#x3D;&#x3D;08&#x3D;&#x3D; 00 00 60 18 00 00 15 4A 33 12    08表示2N   4个数据<br>[2022-05-31 17:34:40:172]: Send:8 char   8字节</p>
+<p>01 04 00 00 00 0A 70 0D    数据个数10<br>[2022-05-31 17:34:40:282]: Recv:25 char</p>
+<p>01 04 &#x3D;&#x3D;14&#x3D;&#x3D; 08 E1 08 E7 08 E8 0F 66 0F 6C 0F 69 00 FC 00 00 00 E9 00 00 25 7A  </p>
+<p> 20个数据<br>[2022-05-31 17:34:40:391]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02     数据24个<br>[2022-05-31 17:34:40:500]: Recv:2 char</p>
+<p>01 84      </p>
+<p>[2022-05-31 17:34:40:514]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:40:848]: Recv:2 char</p>
+<p>01 84 </p>
+<p>[2022-05-31 17:34:40:856]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:41:382]: Recv:2 char</p>
+<p>01 84 </p>
+<p>[2022-05-31 17:34:44:740]: Send:8 char</p>
+<p>01 02 00 00 00 0F 38 0E<br>[2022-05-31 17:34:44:847]: Recv:7 char</p>
+<p>01 02 02 00 00 B9 B8<br>[2022-05-31 17:34:44:956]: Send:8 char</p>
+<p>01 03 00 00 00 04 44 09<br>[2022-05-31 17:34:45:066]: Recv:13 char</p>
+<p>01 03 08 00 00 60 18 00 00 15 4A 33 12<br>[2022-05-31 17:34:45:176]: Send:8 char</p>
+<p>01 04 00 00 00 0A 70 0D<br>[2022-05-31 17:34:45:285]: Recv:25 char</p>
+<p>01 04 14 08 E1 08 E7 08 E7 0F 66 0F 6B 0F 67 00 FF 00 00 00 EA 00 00 FF 6A<br>[2022-05-31 17:34:45:396]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:45:504]: Recv:2 char</p>
+<p>01 84 </p>
+<p>[2022-05-31 17:34:45:510]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:45:819]: Recv:2 char</p>
+<p>01 84 </p>
+<p>[2022-05-31 17:34:45:824]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:46:353]: Recv:2 char</p>
+<p>01 84 </p>
+<p>[2022-05-31 17:34:49:735]: Send:8 char</p>
+<p>01 02 00 00 00 0F 38 0E<br>[2022-05-31 17:34:49:842]: Recv:7 char</p>
+<p>01 02 02 00 00 B9 B8<br>[2022-05-31 17:34:49:952]: Send:8 char</p>
+<p>01 03 00 00 00 04 44 09<br>[2022-05-31 17:34:50:063]: Recv:13 char</p>
+<p>01 03 08 00 00 60 18 00 00 15 4A 33 12<br>[2022-05-31 17:34:50:174]: Send:8 char</p>
+<p>01 04 00 00 00 0A 70 0D<br>[2022-05-31 17:34:50:284]: Recv:25 char</p>
+<p>01 04 14 08 DF 08 E6 08 E6 0F 63 0F 69 0F 65 00 FF 00 00 00 ED 00 00 E5 0B<br>[2022-05-31 17:34:50:395]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:50:507]: Recv:2 char</p>
+<p>01 84 </p>
+<p>[2022-05-31 17:34:50:513]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:50:824]: Recv:2 char</p>
+<p>01 84 </p>
+<p>[2022-05-31 17:34:50:829]: Send:8 char</p>
+<p>01 04 00 0A 00 18 D0 02<br>[2022-05-31 17:34:51:346]: Recv:2 char</p>
+<p>01 84 </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Modbus/" class="category-chain-item">Modbus</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Modbus-RTU/">#Modbus RTU</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Modbus RTU通讯协议</div>
+      <div>http://example.com/2022/08/08/MODBUS RTU/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月8日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/08/MODBUS%20TCP/" title="Modbus TCP通讯协议">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Modbus TCP通讯协议</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/" title="Modbus通讯协议">
+                        <span class="hidden-mobile">Modbus通讯协议</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
+

@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="web知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web安全基础知识">
+<meta property="og:url" content="http://example.com/2022/08/09/web%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="One ball">
+<meta property="og:description" content="web知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-09T03:37:11.894Z">
+<meta property="article:modified_time" content="2023-03-15T06:09:29.836Z">
+<meta property="article:tag" content="web基础知识">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>web安全基础知识 - One ball</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ditto</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="web安全基础知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-09 11:37" pubdate>
+          2022年8月9日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          66 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">web安全基础知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>黑盒测试  白盒测试   灰盒测试</p>
+<hr>
+<h4 id="1、肉鸡"><a href="#1、肉鸡" class="headerlink" title="1、肉鸡"></a>1、肉鸡</h4><p>可以被我们随意控制的电脑并且不被发现</p>
+<h4 id="2、木马"><a href="#2、木马" class="headerlink" title="2、木马"></a>2、木马</h4><p>灰鸽子、黑洞……</p>
+<h4 id="3、远控"><a href="#3、远控" class="headerlink" title="3、远控"></a>3、远控</h4><p>远距离控制电脑</p>
+<h4 id="4、网页木马"><a href="#4、网页木马" class="headerlink" title="4、网页木马"></a>4、网页木马</h4><p>字面意思</p>
+<h4 id="5、黑页"><a href="#5、黑页" class="headerlink" title="5、黑页"></a>5、黑页</h4><p>修改网站首页放自己的</p>
+<h4 id="6、挂马"><a href="#6、挂马" class="headerlink" title="6、挂马"></a>6、挂马</h4><p>在别人的网站里面放木马</p>
+<h4 id="7、大马"><a href="#7、大马" class="headerlink" title="7、大马"></a>7、大马</h4><p>功能强大网页后门</p>
+<h4 id="8、小马"><a href="#8、小马" class="headerlink" title="8、小马"></a>8、小马</h4><p>保存文件   有时候上传会查杀</p>
+<h4 id="9、一句话后门"><a href="#9、一句话后门" class="headerlink" title="9、一句话后门"></a>9、一句话后门</h4><p>一段很小的网页代码后门，可以用客户端连接，对网站进行控制</p>
+<h4 id="10、后门"><a href="#10、后门" class="headerlink" title="10、后门"></a>10、后门</h4><p>BackDoor   </p>
+<h4 id="11、拖库"><a href="#11、拖库" class="headerlink" title="11、拖库"></a>11、拖库</h4><p>本来是数据库领域的术语，指从数据库中导出数据。</p>
+<h4 id="12、社工库"><a href="#12、社工库" class="headerlink" title="12、社工库"></a>12、社工库</h4><p>黑客与大数据进行结合1的产物，黑客们将泄露的用户数据整合分析，然后归档在一个地方</p>
+<h4 id="13、撞库"><a href="#13、撞库" class="headerlink" title="13、撞库"></a>13、撞库</h4><p>黑客通过收集互联网已泄露的用户和密码信息，生成对应的字典表，尝试批量登录其他网站后，得到一系列可以登录的用户。很多用户在不同网站用的是相同的账号密码，因此黑客可以通过已经获取的账号密码来登录其他网站</p>
+<h4 id="14、提权"><a href="#14、提权" class="headerlink" title="14、提权"></a>14、提权</h4><p>提高自己在服务器里面的权限</p>
+<h4 id="15、网络钓鱼"><a href="#15、网络钓鱼" class="headerlink" title="15、网络钓鱼"></a>15、网络钓鱼</h4><p>利用欺骗性的电子邮件和伪造的web站点来进行诈骗活动，比如QQ空间盗号</p>
+<h4 id="16、社会工程学攻击"><a href="#16、社会工程学攻击" class="headerlink" title="16、社会工程学攻击"></a>16、社会工程学攻击</h4><p>人为行动，利用心理等手段</p>
+<h4 id="17、rootkit"><a href="#17、rootkit" class="headerlink" title="17、rootkit"></a>17、rootkit</h4><p>rootkit是攻击者用来隐藏自己的行踪和保留root</p>
+<h4 id="18、ipc"><a href="#18、ipc" class="headerlink" title="18、ipc$"></a>18、ipc$</h4><p>它是为了让进程间的通信而开放的饿命名管道，可以通过验证用户名和密码获得相应的权限，在远程管理计算机和查看计算机的共享资源时使用</p>
+<h4 id="19、弱口令"><a href="#19、弱口令" class="headerlink" title="19、弱口令"></a>19、弱口令</h4><p>指那些强度不够的口令</p>
+<h4 id="20、默认共享"><a href="#20、默认共享" class="headerlink" title="20、默认共享"></a>20、默认共享</h4><p>是WINDOWS2000&#x2F;XP&#x2F;2003 系统开启共享服务时自动开启所有硬盘的共享，因为加了“$”符号，所以看不到共享的托手图表，也称为隐藏共享</p>
+<h4 id="21、shell"><a href="#21、shell" class="headerlink" title="21、shell"></a>21、shell</h4><p>指的是命令指行的运行环境</p>
+<h4 id="22、交互shell"><a href="#22、交互shell" class="headerlink" title="22、交互shell"></a>22、交互shell</h4><p>shell等待你的输入，并且执行你提交的命令。这种模式被称为交互式是因为shell与用户进行交互。</p>
+<h4 id="23、webshell"><a href="#23、webshell" class="headerlink" title="23、webshell"></a>23、webshell</h4><p>就是以asp、rphp、jsp 或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称做是一种网页后门。黑客在**了一个网站后，通常会将这些asp或php后门文件与网站服务器WEB目录下正常的网页文件混在一起，好后就可以使用浏览器来访问这些asp 或者php后门，得到一个命令执行环境，以达到控制网站服务器的目的。</p>
+<h4 id="24、溢出"><a href="#24、溢出" class="headerlink" title="24、溢出"></a>24、溢出</h4><p>确切的来说是缓冲区溢出</p>
+<h4 id="25、注入"><a href="#25、注入" class="headerlink" title="25、注入"></a>25、注入</h4><p>随着B&#x2F;S模式应用开发的发展，使用这种模式编写程序的程序员越来越来越多，但是由于程序员的水平参差不齐相当大一部分应用程序存在安全隐患。&#x3D;&#x3D;用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想要知的数据&#x3D;&#x3D;，这个就是所谓的SQLinjection，即: SQL 注意注入。</p>
+<h4 id="26、注入点"><a href="#26、注入点" class="headerlink" title="26、注入点"></a>26、注入点</h4><p>是可以实行注入的地方，通常是一个访问数据库的连接。根据注入点数据库的运行账号的权限不同，所得到的权限也不同</p>
+<h4 id="27、旁站入侵"><a href="#27、旁站入侵" class="headerlink" title="27、旁站入侵"></a>27、旁站入侵</h4><p>同一个服务器上有多个 ，可以通过入侵其中的一个站点，通过提权跨目录访问其他站点</p>
+<h4 id="28、C段渗透"><a href="#28、C段渗透" class="headerlink" title="28、C段渗透"></a>28、C段渗透</h4><p>C端下服务器入侵 同一个网段内例如：202.202.1-2020.0.254  如果拿下其中的一台服务器，通过这台服务器嗅探目标服务器传输上的数据，从而拿到这台服务器的权限。常见的工具有cain</p>
+<h4 id="29、内网"><a href="#29、内网" class="headerlink" title="29、内网"></a>29、内网</h4><p>通俗的来说就是局域网</p>
+<h4 id="30、外网"><a href="#30、外网" class="headerlink" title="30、外网"></a>30、外网</h4><p>字面意思</p>
+<h4 id="31、中间人攻击"><a href="#31、中间人攻击" class="headerlink" title="31、中间人攻击"></a>31、中间人攻击</h4><p>（MITM攻击）密码学里面涉及到</p>
+<p>比如：SMB会话劫持、DNS欺骗等技术</p>
+<h4 id="32、端口"><a href="#32、端口" class="headerlink" title="32、端口"></a>32、端口</h4><p>相当于一种数据的传输通道</p>
+<h4 id="33、免杀"><a href="#33、免杀" class="headerlink" title="33、免杀"></a>33、免杀</h4><p>字面意思</p>
+<h4 id="34、加壳"><a href="#34、加壳" class="headerlink" title="34、加壳"></a>34、加壳</h4><p>逆向里面的加壳相同的意思</p>
+<h4 id="35、花指令"><a href="#35、花指令" class="headerlink" title="35、花指令"></a>35、花指令</h4><p>一般用来做免杀</p>
+<p>就是几句汇编指令，让杀毒软件不能正常找到，从而达到免杀的目的</p>
+<h4 id="36、TCP-x2F-IP"><a href="#36、TCP-x2F-IP" class="headerlink" title="36、TCP&#x2F;IP"></a>36、TCP&#x2F;IP</h4><p>网络通信协议  是internet的基础协议</p>
+<h4 id="37、路由器"><a href="#37、路由器" class="headerlink" title="37、路由器"></a>37、路由器</h4><p>字面意思</p>
+<h4 id="38、蜜罐"><a href="#38、蜜罐" class="headerlink" title="38、蜜罐"></a>38、蜜罐</h4><p>故意让人攻击的目标，引诱黑客来攻击。&#x3D;&#x3D;（自己做网站被攻击，可以试试用蜜罐）&#x3D;&#x3D;</p>
+<h4 id="39、拒绝服务攻击"><a href="#39、拒绝服务攻击" class="headerlink" title="39、拒绝服务攻击"></a>39、拒绝服务攻击</h4><p>DOS攻击，其目的是使计算机无法正常服务，最常见的DOS攻击有计算机网络宽带攻击和连通性攻击，连通性攻击指使用大量的连接请求冲击计算机，使得所有可用的操作系统资源被消耗，最终计算机无法处理。</p>
+<h4 id="40、CC攻击"><a href="#40、CC攻击" class="headerlink" title="40、CC攻击"></a>40、CC攻击</h4><p>攻击者借助代理服务器生成指向受害主机的合法请求，实现DDOS和伪装</p>
+<h4 id="41、脚本注入攻击（SQL-INJECTION）"><a href="#41、脚本注入攻击（SQL-INJECTION）" class="headerlink" title="41、脚本注入攻击（SQL INJECTION）"></a>41、脚本注入攻击（SQL INJECTION）</h4><p>所谓脚本注入攻击者把SQL命令插入到WEB表单的输入域或页面请求的查询字串，欺骗服务器执行恶意的SQL命令，在某些表单中，用户输入的内容直接用来构造动态的SQL命令，或作为存储过程的输入参数，这类表单特别容易受到SQL注入式攻击。</p>
+<h4 id="42、加密技术"><a href="#42、加密技术" class="headerlink" title="42、加密技术"></a>42、加密技术</h4><p>加密技术是最常用的安全保密手段，利用技术手段把重要的数据变为乱码(加密)传送，到达目的地后再用相同或不同的手段还原(解密)。&#x3D;&#x3D;加密技术包括两个元素:算法和密钥。算法是将普通的信息或者可以理解的信息与一串数字(密钥)结合&#x3D;&#x3D;，产生不可理解的密文的步骤，密钥是用来对数据进行编码和解密的一种算法。在安全保密中，可通过适当的钥加密技术和管理机制来保证网络的信息通信安全。</p>
+<h4 id="43、局域网内部的ARP攻击"><a href="#43、局域网内部的ARP攻击" class="headerlink" title="43、局域网内部的ARP攻击"></a>43、局域网内部的ARP攻击</h4><p>ARP (Address Resolution Protocol,地址解析协议)协议的基本功能就是通过目标设备的IP地址，查询目标设备的MAC地址，以保证通信的进行。基于ARP协议的这一工作特性，黑客向对方计算机不断发送有欺诈性质的ARP数据包，数据包内包含有与当前设备重复的Mac地址，使对方在回应报文时，由于简单的地址重复错误而导致不能进行正常的网络通信。一般情况下，受到ARP攻击的计算机会出现&#x3D;&#x3D;两种现象:<br>1.不断弹出“本机的XXX段硬件地址与网络中的XXX段地址冲突”的对话框。<br>2.计算机不能正常上网，出现网络中断的症状。&#x3D;&#x3D;<br>因为这种攻击是利用ARP请求报文进行“欺骗”的，所以防火墙会误以为是正常的请求数据包，不予拦截。&#x3D;&#x3D;因此普通的防火墙很难抵挡这种攻击。&#x3D;&#x3D;</p>
+<h4 id="44、欺骗攻击和他的攻击方式"><a href="#44、欺骗攻击和他的攻击方式" class="headerlink" title="44、欺骗攻击和他的攻击方式"></a>44、欺骗攻击和他的攻击方式</h4><p>网络欺骗的技术主要有：HONEYPOT和分布式HONEYPOT、欺骗空间技术等。主要方式有：IP欺骗、ARP欺骗、DNS欺骗、WEB欺骗、电子邮件欺骗、源路由欺骗（通过指定路由，以假冒身份与其他主机进行合法通信或者发送假报文，使受攻击主机出现错误动作）、地址欺骗（包括伪造原地址或者中间站点）等。</p>
+<h4 id="45、嗅探"><a href="#45、嗅探" class="headerlink" title="45、嗅探"></a>45、嗅探</h4><p>嗅探计算机网络的共享通讯隧道的，支持每队通讯计算机独占通道的交换机&#x2F;集线器仍然过于昂贵，共享意味着计算机能够接收到发送给其他计算机的信息。</p>
+<h4 id="46、跳板"><a href="#46、跳板" class="headerlink" title="46、跳板"></a>46、跳板</h4><p>一个具有辅助作用的机器，利用这个主机作为一个间接工具没控制其他主机，一般和肉鸡连用。</p>
+<h4 id="47、权限"><a href="#47、权限" class="headerlink" title="47、权限"></a>47、权限</h4><p>字面意思</p>
+<h4 id="48、IP地址"><a href="#48、IP地址" class="headerlink" title="48、IP地址"></a>48、IP地址</h4><p>字面意思</p>
+<h4 id="49、RARP反向地址解析协议"><a href="#49、RARP反向地址解析协议" class="headerlink" title="49、RARP反向地址解析协议"></a>49、RARP反向地址解析协议</h4><p>此协议将硬件地址映射到网络地址</p>
+<h4 id="50、UDP用户数据报协议"><a href="#50、UDP用户数据报协议" class="headerlink" title="50、UDP用户数据报协议"></a>50、UDP用户数据报协议</h4><p>参考模型中一种无连接的传输层协议，提供面向事务的简单不可靠信息传送服务。</p>
+<h4 id="51、TCP协议"><a href="#51、TCP协议" class="headerlink" title="51、TCP协议"></a>51、TCP协议</h4><p>面向连接的、可靠的、基于字节流的传输层通信协议</p>
+<h4 id="52、FTP文件传输协议"><a href="#52、FTP文件传输协议" class="headerlink" title="52、FTP文件传输协议"></a>52、FTP文件传输协议</h4><p>允许用户以文件操作的方式（文件的增、删、改、查、传送等）与另一主机相互通信</p>
+<h4 id="53、SMTP简单邮件传送协议"><a href="#53、SMTP简单邮件传送协议" class="headerlink" title="53、SMTP简单邮件传送协议"></a>53、SMTP简单邮件传送协议</h4><p>简单邮件传送协议，SMTP协议为系统之间传送电子邮件。</p>
+<h4 id="54、终端协议"><a href="#54、终端协议" class="headerlink" title="54、终端协议"></a>54、终端协议</h4><p>允许用户以虚终端方式访问远程主机</p>
+<h4 id="55、HTTP"><a href="#55、HTTP" class="headerlink" title="55、HTTP"></a>55、HTTP</h4><p>超文本传输协议（）是一个简单的请求-响应协议，它通常运行在TCP之上。它指定了客户端可能发送给服务器什么样的消息以及得到什么样的响应。</p>
+<h4 id="56、HTTPS"><a href="#56、HTTPS" class="headerlink" title="56、HTTPS"></a>56、HTTPS</h4><p>略</p>
+<h4 id="57、TFTP"><a href="#57、TFTP" class="headerlink" title="57、TFTP"></a>57、TFTP</h4><p>简单文件传输协议</p>
+<h4 id="58、ICMP-协议"><a href="#58、ICMP-协议" class="headerlink" title="58、ICMP  协议"></a>58、ICMP  协议</h4><p>ICMP ( 全InterControlMessageProtocol，即Inter控制消息协议)用于在IP主机、路由器之间传递控制消息，包括网络通不通、主机是否可达、路由是否可用等网络本身的消息。例如，我们在检测网络通不通时常会使用Ping命令，Ping执行操作的过程就是ICMP协议工作的过程。&#x3D;&#x3D;“ICMP 协议”对于网络安全有着极其重要的意义,其本身的特性决定了它非常容易被用于攻击网络上的路由器和主机&#x3D;&#x3D;。例如，曾经轰动一时的海信主页被黑事件就是以ICMP攻击为主的。&#x3D;&#x3D;由于操作系统规定ICMP数据包最大尺寸不超过64KB，因而如果向目标主机发送超过64KB上限的数据包，该主机就会出现内存分配错误&#x3D;&#x3D;，进而导致系统耗费大量的资源处理，疲于奔命，最终瘫瘓、死机。</p>
+<h4 id="59、dns协议"><a href="#59、dns协议" class="headerlink" title="59、dns协议"></a>59、dns协议</h4><p>DNS协议就是用来将域名解析到IP地址的一种协议，当然，也可以将IP地址转换为域名的一种协议。</p>
+<h4 id="60、Root"><a href="#60、Root" class="headerlink" title="60、Root"></a>60、Root</h4><p>Unix里面最高权限的用户，也就是超级管理员</p>
+<h4 id="61、-EXP-x2F-EXPLOIT"><a href="#61、-EXP-x2F-EXPLOIT" class="headerlink" title="61、 EXP&#x2F;EXPLOIT"></a>61、 EXP&#x2F;EXPLOIT</h4><p>漏洞利用代码，运行之后对目标进行攻击。</p>
+<h4 id="62、POC-x2F-Proof-of-Concept"><a href="#62、POC-x2F-Proof-of-Concept" class="headerlink" title="62、POC&#x2F;Proof of Concept"></a>62、POC&#x2F;Proof of Concept</h4><p>漏洞验证代码，检测目标是否存在对应漏洞</p>
+<h4 id="63、Playload"><a href="#63、Playload" class="headerlink" title="63、Playload"></a>63、Playload</h4><p>中文 ‘有效载荷’，指成功exploit之后，真正在目标系统执行的代码和指令</p>
+<h4 id="64、shellcode"><a href="#64、shellcode" class="headerlink" title="64、shellcode"></a>64、shellcode</h4><p>由建立正向&#x2F;反向shell而得名</p>
+<h4 id="65、软件加壳"><a href="#65、软件加壳" class="headerlink" title="65、软件加壳"></a>65、软件加壳</h4><p>“壳”是一段专门负责保护软件不被非法修改或反编译的程序。&#x3D;&#x3D;它们一般都实现于程序运行，拿到控制权，然后完成它们保护软件的任务&#x3D;&#x3D;。经过加壳的软件在跟踪时已看到其真实的十六进制代码，因此起到保护软件的作用。</p>
+<h4 id="66、软件脱壳"><a href="#66、软件脱壳" class="headerlink" title="66、软件脱壳"></a>66、软件脱壳</h4><p>用相应的工具，把壳去掉。</p>
+<h4 id="67、蠕虫病毒"><a href="#67、蠕虫病毒" class="headerlink" title="67、蠕虫病毒"></a>67、蠕虫病毒</h4><p>&#x3D;&#x3D;它利用了WINDOWS系统的开放性特点，特别是COM到COM+的组件编程思路，一个脚本程序能调用功能更大的组件来完成自己的功能。&#x3D;&#x3D;以VB脚本病毒为例，它们都是把VBS脚本文件加在附件中，使用*HTM, VBS等欺骗性的文件名。蠕虫病毒的主要特性有:自我复制能力、很强的传播性、潜伏性、特定的触发性、很大的破坏性。</p>
+<h4 id="68、LAN"><a href="#68、LAN" class="headerlink" title="68、LAN"></a>68、LAN</h4><p>局域网 一种网络，连接近距离的计算机，一般位于单个房间、建筑物或小的地理区域里。LAN上的所有系统位于一个网络跳之间。</p>
+<h4 id="69、Proxy"><a href="#69、Proxy" class="headerlink" title="69、Proxy"></a>69、Proxy</h4><p>代理。一类程序或系统，连接来自客户机计算的流量，并代表客户与服务器交互。代理能用于过滤应用级别的制定类型的流量或缓存信息以提高性能。&#x3D;&#x3D;许多防火墙依赖代理进行过滤&#x3D;&#x3D;。 </p>
+<h4 id="70、HTML"><a href="#70、HTML" class="headerlink" title="70、HTML"></a>70、HTML</h4><p>网页代码    超文本</p>
+<h4 id="71、css"><a href="#71、css" class="headerlink" title="71、css"></a>71、css</h4><h4 id="72、js"><a href="#72、js" class="headerlink" title="72、js"></a>72、js</h4><h4 id="73、CMS"><a href="#73、CMS" class="headerlink" title="73、CMS"></a>73、CMS</h4><p>内容管理系统</p>
+<h4 id="74、独立服务器"><a href="#74、独立服务器" class="headerlink" title="74、独立服务器"></a>74、独立服务器</h4><p>独立服务器整体硬件都是独立的，功能强大的，特别是CPU。使用真实存在的服务器就像拥有自己的房子，没有人打扰，可以自由部署东西。</p>
+<h4 id="75、vps"><a href="#75、vps" class="headerlink" title="75、vps"></a>75、vps</h4><p>VPS主机是一项服务器虚拟化和自动化技术，它采用的是操作系统虚拟化技术。操作&#x3D;&#x3D;系统虚拟化的概念是基于共用操作系统内核,这样虛拟服务器就无需额外的虛拟化内核的过程，因而虚拟过程资源损耗就更低&#x3D;&#x3D;，从而可以在一台物理服务器上实现更多的虚拟化服务器。这些VPS主机以最大化的效率共享硬件、软件许可证以及管理资源。每一个VPS主机均可独立进行重启，并拥有自己的root访.<br>问权限、用户、IP地址、内存、过程、文件、应用程序、系统函数库以及配置文件。</p>
+<h4 id="76、域名"><a href="#76、域名" class="headerlink" title="76、域名"></a>76、域名</h4><h4 id="77、CTF"><a href="#77、CTF" class="headerlink" title="77、CTF"></a>77、CTF</h4><h4 id="78、awd攻防对抗赛"><a href="#78、awd攻防对抗赛" class="headerlink" title="78、awd攻防对抗赛"></a>78、awd攻防对抗赛</h4><h4 id="79、cve"><a href="#79、cve" class="headerlink" title="79、cve"></a>79、cve</h4><p>通用漏洞披露</p>
+<h4 id="80、CNVD"><a href="#80、CNVD" class="headerlink" title="80、CNVD"></a>80、CNVD</h4><p>国家信息安全漏洞共享平台，简称CNVD,国家计算机网络应急技术处理协调中心联合建立的信息安全漏洞信息共享知识库。主要目标提升我国在安全漏洞方面的整体研究水平和及时预防能力，带动国内相关安全产品的发展。</p>
+<h4 id="81、-0day"><a href="#81、-0day" class="headerlink" title="81、 0day"></a>81、 0day</h4><p> 0day漏洞是负责应用程序的程序员或供应商所未知的软件缺陷。因为该漏洞未知，所以没有可用的补丁程序。</p>
+<h4 id="82、1day"><a href="#82、1day" class="headerlink" title="82、1day"></a>82、1day</h4><p>刚发布的  但是已被官方发布补丁</p>
+<h4 id="83、Nday"><a href="#83、Nday" class="headerlink" title="83、Nday"></a>83、Nday</h4><p>已被公布的Nday</p>
+<h4 id="84、APT攻击"><a href="#84、APT攻击" class="headerlink" title="84、APT攻击"></a>84、APT攻击</h4><p>Advanced Persistent Threat,高级可持续性攻击，是指组织(特别是政府)或者小团体利用先进的攻击手段对特定目标进行长期持续性网络攻击的供给形式(极强的隐蔽性、潜伏期长，持续性强、目标性强)</p>
+<h4 id="85、渗透测试"><a href="#85、渗透测试" class="headerlink" title="85、渗透测试"></a>85、渗透测试</h4><p>黑盒测试、白盒测试、灰盒测试</p>
+<h4 id="86、暗网"><a href="#86、暗网" class="headerlink" title="86、暗网"></a>86、暗网</h4><p>“暗网”是指隐藏的网络，普通网民无法通过常规手段搜索访问，需要使用一些特定的软件、配置或者授权等才能登录。&#x3D;&#x3D;一般用tor洋葱浏览器进入。暗网是利用加密传输、P2P 对等网络、多点中继混淆等&#x3D;&#x3D;，为用户提供匿名的互联网信息访问的一类技术手段，其最突出的特点就是匿名性。</p>
+<h4 id="87、恶意软件"><a href="#87、恶意软件" class="headerlink" title="87、恶意软件"></a>87、恶意软件</h4><p>非授权控制计算机或者窃取计算机数据等多种恶意行为的程序</p>
+<h4 id="88、间谍软件"><a href="#88、间谍软件" class="headerlink" title="88、间谍软件"></a>88、间谍软件</h4><p>一般能够在用户不知情的情况下，在其电脑、手机上安装后门，&#x3D;&#x3D;具备收集用户信息。监听和偷拍等功能的软件&#x3D;&#x3D;</p>
+<h4 id="89、洪水攻击"><a href="#89、洪水攻击" class="headerlink" title="89、洪水攻击"></a>89、洪水攻击</h4><p>是黑客比较常用的一种攻击技术，特点是实施简单，威力巨大，大多是无视防御<br>的。从定义上说，攻击者对网络资源发送过量数据时就发生了洪水攻击，这个网络资源可以是router, switch, host, application等。洪水攻击将攻击流量比作成洪水，只要攻击流量足够大，就可以将防御手段打穿。DDoS 攻击便是洪水攻击的一种。</p>
+<h4 id="90、SYN攻击"><a href="#90、SYN攻击" class="headerlink" title="90、SYN攻击"></a>90、SYN攻击</h4><p>利用操作系统TCP协议设计上的问题执行的拒绝服务攻击，涉及TCP建立连接的三次握手设计。</p>
+<h4 id="91、DOS攻击"><a href="#91、DOS攻击" class="headerlink" title="91、DOS攻击"></a>91、DOS攻击</h4><p>拒绝服务攻击。攻击者通过利用漏洞或发送大量请求导致对象无法访问网络或者网站无法被访问。</p>
+<h4 id="92-DDoS"><a href="#92-DDoS" class="headerlink" title="92.DDoS"></a>92.DDoS</h4><p>&#x3D;&#x3D;分布式DOS攻击，常见的UDP、SYN、反射放大攻击等等，就是通过许多台肉鸡一起向你发送一些网络请求信息&#x3D;&#x3D;，导致网络堵塞不能上网。</p>
+<h4 id="93、抓鸡"><a href="#93、抓鸡" class="headerlink" title="93、抓鸡"></a>93、抓鸡</h4><p> 即设法控制电脑</p>
+<h4 id="94、端口扫描"><a href="#94、端口扫描" class="headerlink" title="94、端口扫描"></a>94、端口扫描</h4><p>端口扫描是指发送一组端口扫描信息，通过它了解从哪里可探寻到攻击弱点，并了解其提供的计算机网络服务类型</p>
+<h4 id="95、反弹窗口"><a href="#95、反弹窗口" class="headerlink" title="95、反弹窗口"></a>95、反弹窗口</h4><p>有人发现，防护墙对于连入的连接往往会进行非常严格的过滤但是对于连出的连接却疏于防范。于是，利用这一特性，反弹端口型软件的服务器（被控制端）会主动连接客户端（控制端），就给人“被控制端主动来连接控制端的假象，让人麻痹大意”</p>
+<h4 id="96、鱼叉攻击"><a href="#96、鱼叉攻击" class="headerlink" title="96、鱼叉攻击"></a>96、鱼叉攻击</h4><p>与撒网式钓鱼不同，该攻击具有针对性</p>
+<h4 id="97-钓鲸攻击"><a href="#97-钓鲸攻击" class="headerlink" title="97.钓鲸攻击"></a>97.钓鲸攻击</h4><p>对高级管理人员进行网络钓鱼攻击</p>
+<h4 id="98、水坑攻击"><a href="#98、水坑攻击" class="headerlink" title="98、水坑攻击"></a>98、水坑攻击</h4><p>在受害者额必经之路上设置一个水坑</p>
+<h4 id="99、c2"><a href="#99、c2" class="headerlink" title="99、c2"></a>99、c2</h4><p>常用语apt攻击场景中。作动词解释时理解为恶意软件和攻击者进行交互，作名词解释时理解为攻击者的“基础设施”</p>
+<h4 id="100、供应链攻击"><a href="#100、供应链攻击" class="headerlink" title="100、供应链攻击"></a>100、供应链攻击</h4><p>是黑客攻击目标机构的合作伙伴，并以该合作伙为跳板，达到渗透目标用户的目的。一种常见的表现形式为，用户对厂商产品的信任，&#x3D;&#x3D;在厂商产品下载安装或者更新时进行恶意软件植入进行攻击。&#x3D;&#x3D;所以，在某些软件下载平台下载的时候，若遭遇捆绑软件，就得小心了!</p>
+<h4 id="101、渗透"><a href="#101、渗透" class="headerlink" title="101、渗透"></a>101、渗透</h4><p>通过扫描检测你的网络设备及系统有没有安全漏洞，有的话就可能被入侵，就像一滴水透过一块有漏洞的木板</p>
+<h4 id="102、横移"><a href="#102、横移" class="headerlink" title="102、横移"></a>102、横移</h4><p>指攻击者入侵后，从立足点在内部网络进行拓展，搜寻更多的系统。</p>
+<h4 id="103、暗链"><a href="#103、暗链" class="headerlink" title="103、暗链"></a>103、暗链</h4><p>看不见的网络链接，“暗链”在网站中的链接做得非常隐蔽，短时间内不易被搜索引擎察觉</p>
+<h4 id="104、暴库"><a href="#104、暴库" class="headerlink" title="104、暴库"></a>104、暴库</h4><p>入侵网站的一种方法，通过恶意代码让网站爆出一些敏感数据来</p>
+<h4 id="105、薅羊毛"><a href="#105、薅羊毛" class="headerlink" title="105、薅羊毛"></a>105、薅羊毛</h4><h4 id="106、商业电子邮件攻击（BEC）"><a href="#106、商业电子邮件攻击（BEC）" class="headerlink" title="106、商业电子邮件攻击（BEC）"></a>106、商业电子邮件攻击（BEC）</h4><p>也被称为“变脸诈骗”攻击，这是针对高层管理人员的攻击,攻击者通常冒充(盗用)决策者的邮件，来下达与资金、利益相关的指令;或者攻击者依赖社会工程学制作电子邮件，说服&#x2F;诱导高管短时间进行经济交易。</p>
+<h4 id="107、电信诈骗"><a href="#107、电信诈骗" class="headerlink" title="107、电信诈骗"></a>107、电信诈骗</h4><h4 id="108、杀猪盘"><a href="#108、杀猪盘" class="headerlink" title="108、杀猪盘"></a>108、杀猪盘</h4><p>电信诈骗的一种</p>
+<h4 id="109、黑产"><a href="#109、黑产" class="headerlink" title="109、黑产"></a>109、黑产</h4><p>网络非法交易产业</p>
+<h4 id="110、黑帽黑客"><a href="#110、黑帽黑客" class="headerlink" title="110、黑帽黑客"></a>110、黑帽黑客</h4><h4 id="111、白帽黑客"><a href="#111、白帽黑客" class="headerlink" title="111、白帽黑客"></a>111、白帽黑客</h4><h4 id="112、红帽黑客"><a href="#112、红帽黑客" class="headerlink" title="112、红帽黑客"></a>112、红帽黑客</h4><h4 id="113、红队"><a href="#113、红队" class="headerlink" title="113、红队"></a>113、红队</h4><h4 id="114、蓝队"><a href="#114、蓝队" class="headerlink" title="114、蓝队"></a>114、蓝队</h4><h4 id="115、紫队"><a href="#115、紫队" class="headerlink" title="115、紫队"></a>115、紫队</h4><p>裁判</p>
+<h4 id="116、加密机"><a href="#116、加密机" class="headerlink" title="116、加密机"></a>116、加密机</h4><h4 id="117、CA证书"><a href="#117、CA证书" class="headerlink" title="117、CA证书"></a>117、CA证书</h4><h4 id="118、SSL证书"><a href="#118、SSL证书" class="headerlink" title="118、SSL证书"></a>118、SSL证书</h4><h4 id="119、防火墙"><a href="#119、防火墙" class="headerlink" title="119、防火墙"></a>119、防火墙</h4><p>主要部署于不同网络或网络安全域之间的出口，通过监测、限制、更改跨越防火<br>墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况，有选择地<br>接受外部访问。</p>
+<h4 id="120、IDS"><a href="#120、IDS" class="headerlink" title="120、IDS"></a>120、IDS</h4><p>入侵检测系统,用于在黑客发起进攻或是发起进攻之前检测到攻击,并加以拦截。IDS是不同于防火墙。防火墙只能屏蔽入侵，而DS却可以在入侵发生以前，通过一些信息来检测到即将发生的攻击或是入侵并作出反应。</p>
+<h4 id="121、NIDS"><a href="#121、NIDS" class="headerlink" title="121、NIDS"></a>121、NIDS</h4><p>是Network Intrusion Detection System的缩写，即网络入侵检测系统，主要用于<br>检测Hacker或Cracker通过网络进行的入侵行为。&#x3D;&#x3D;NIDS的运行方式有两种，一种是在目标主机上运行以监测其本身的通信信息，另一种是在一台单独的机器上运行以监测所有网络设备的通信信息，比如Hub、路由器。&#x3D;&#x3D;</p>
+<h4 id="122、IPS"><a href="#122、IPS" class="headerlink" title="122、IPS"></a>122、IPS</h4><p>入侵防御系统，目的在于及时识破攻击程序或有害代码及其克隆和变种，采取预防措施，先期组织入侵，防患于未然。</p>
+<h4 id="123、杀毒软件"><a href="#123、杀毒软件" class="headerlink" title="123、杀毒软件"></a>123、杀毒软件</h4><h4 id="124-、反病毒引擎"><a href="#124-、反病毒引擎" class="headerlink" title="124 、反病毒引擎"></a>124 、反病毒引擎</h4><h4 id="125、防毒墙"><a href="#125、防毒墙" class="headerlink" title="125、防毒墙"></a>125、防毒墙</h4><h4 id="126、告警"><a href="#126、告警" class="headerlink" title="126、告警"></a>126、告警</h4><h4 id="127、误报"><a href="#127、误报" class="headerlink" title="127、误报"></a>127、误报</h4><h4 id="128、漏报"><a href="#128、漏报" class="headerlink" title="128、漏报"></a>128、漏报</h4><h4 id="129、NAC"><a href="#129、NAC" class="headerlink" title="129、NAC"></a>129、NAC</h4><p>网络转入控制</p>
+<h4 id="130、漏扫"><a href="#130、漏扫" class="headerlink" title="130、漏扫"></a>130、漏扫</h4><p>即漏洞扫描，指基于漏洞数据库，通过扫描等手段对指定的远程或者本地计算机<br>系统的安全脆弱性进行检测，发现可利用漏洞的一种安全检测(渗透攻击)行为。</p>
+<h4 id="131、UTM"><a href="#131、UTM" class="headerlink" title="131、UTM"></a>131、UTM</h4><p>即Unified Threat Management，中文名为统一威胁管理，最早由IDC于2014年提出，即将不同设备的安全能力(最早包括入侵检测、防火墙和反病毒技术)，集中在同一网关上，实现统一管理和运维。</p>
+<h4 id="132、网闸"><a href="#132、网闸" class="headerlink" title="132、网闸"></a>132、网闸</h4><h4 id="133、堡垒机"><a href="#133、堡垒机" class="headerlink" title="133、堡垒机"></a>133、堡垒机</h4><p>运用各种技术手段监控和记录运维人员对网络内的服务器、网络设备。安全设备、数据库等设备的操作行为，以便集中报警，及时处理及审计定责。</p>
+<h4 id="134、数据库审计"><a href="#134、数据库审计" class="headerlink" title="134、数据库审计"></a>134、数据库审计</h4><p>能够实时记录网络.上的数据库活动，对数据库操作进行细粒度审计的合规性管<br>理，对数据库遭受到的风险行为进行告警，对攻击行为进行阻断。它通过对用户访问数据库行为的记录、分析和汇报，用来帮助用户事后生成合规报告、事故追根溯源，同时加强内外部数据库网络行为记录，提高数据资产安全。</p>
+<h4 id="135、DLP"><a href="#135、DLP" class="headerlink" title="135、DLP"></a>135、DLP</h4><p>数据防泄露，通过数字资产的精准识别和策略制定，主要用于防止企业的制定数据和信息资产以违反安全策略规定的形式流出企业。</p>
+<h4 id="136、VPN"><a href="#136、VPN" class="headerlink" title="136、VPN"></a>136、VPN</h4><p>虚拟专用网，在公用网络上建立专用网络，进行加密通讯，通过对数据包的加密和数据包目标地址的转换实现远程访问。</p>
+<h4 id="137、SD-WAN"><a href="#137、SD-WAN" class="headerlink" title="137、SD-WAN"></a>137、SD-WAN</h4><h4 id="138、路由器"><a href="#138、路由器" class="headerlink" title="138、路由器"></a>138、路由器</h4><h4 id="139、网关"><a href="#139、网关" class="headerlink" title="139、网关"></a>139、网关</h4><h4 id="140、WAF"><a href="#140、WAF" class="headerlink" title="140、WAF"></a>140、WAF</h4><p>web应用防火墙</p>
+<h4 id="141、SOC"><a href="#141、SOC" class="headerlink" title="141、SOC"></a>141、SOC</h4><p>安全运行中心</p>
+<h4 id="142、LAS"><a href="#142、LAS" class="headerlink" title="142、LAS"></a>142、LAS</h4><p>日志审计系统，主要功能是提供日志的收集、检索和分析能力，可为威胁检测提供丰富的上下文。</p>
+<h4 id="143、NOC"><a href="#143、NOC" class="headerlink" title="143、NOC"></a>143、NOC</h4><p>网络操作中心</p>
+<h4 id="144、siem"><a href="#144、siem" class="headerlink" title="144、siem"></a>144、siem</h4><h4 id="145、上网行为管理"><a href="#145、上网行为管理" class="headerlink" title="145、上网行为管理"></a>145、上网行为管理</h4><h4 id="146、蜜罐"><a href="#146、蜜罐" class="headerlink" title="146、蜜罐"></a>146、蜜罐</h4><h4 id="147、沙箱"><a href="#147、沙箱" class="headerlink" title="147、沙箱"></a>147、沙箱</h4><p>用来执行非可信的程序</p>
+<h4 id="148、沙箱逃逸"><a href="#148、沙箱逃逸" class="headerlink" title="148、沙箱逃逸"></a>148、沙箱逃逸</h4><h4 id="149、网络靶场"><a href="#149、网络靶场" class="headerlink" title="149、网络靶场"></a>149、网络靶场</h4><h4 id="150、加密技术"><a href="#150、加密技术" class="headerlink" title="150、加密技术"></a>150、加密技术</h4><h4 id="151、黑名单"><a href="#151、黑名单" class="headerlink" title="151、黑名单"></a>151、黑名单</h4><h4 id="152、白名单"><a href="#152、白名单" class="headerlink" title="152、白名单"></a>152、白名单</h4><h4 id="153、-边界防御"><a href="#153、-边界防御" class="headerlink" title="153、 边界防御"></a>153、 边界防御</h4><h4 id="154、-南北向流量"><a href="#154、-南北向流量" class="headerlink" title="154、 南北向流量"></a>154、 南北向流量</h4><p>数据中心内部通信产生的流量</p>
+<h4 id="155、-东西流量"><a href="#155、-东西流量" class="headerlink" title="155、 东西流量"></a>155、 东西流量</h4><p>数据中心内部不同主机之间相互通信所产生的流量</p>
+<h4 id="156、规则库"><a href="#156、规则库" class="headerlink" title="156、规则库"></a>156、规则库</h4><h4 id="157、下一代"><a href="#157、下一代" class="headerlink" title="157、下一代"></a>157、下一代</h4><p>表示产品和技术的大创新</p>
+<h4 id="158、大数据安全分析"><a href="#158、大数据安全分析" class="headerlink" title="158、大数据安全分析"></a>158、大数据安全分析</h4><h4 id="159、EPP"><a href="#159、EPP" class="headerlink" title="159、EPP"></a>159、EPP</h4><h4 id="160、EDR"><a href="#160、EDR" class="headerlink" title="160、EDR"></a>160、EDR</h4><h4 id="161、NDR"><a href="#161、NDR" class="headerlink" title="161、NDR"></a>161、NDR</h4><h4 id="162、安全可视化"><a href="#162、安全可视化" class="headerlink" title="162、安全可视化"></a>162、安全可视化</h4><h4 id="163、NTA"><a href="#163、NTA" class="headerlink" title="163、NTA"></a>163、NTA</h4><h4 id="164、MDR"><a href="#164、MDR" class="headerlink" title="164、MDR"></a>164、MDR</h4><h4 id="165、-应急响应"><a href="#165、-应急响应" class="headerlink" title="165、 应急响应"></a>165、 应急响应</h4><h4 id="166、XDR"><a href="#166、XDR" class="headerlink" title="166、XDR"></a>166、XDR</h4><h4 id="167、-安全运营"><a href="#167、-安全运营" class="headerlink" title="167、 安全运营"></a>167、 安全运营</h4><h4 id="168、威胁情报"><a href="#168、威胁情报" class="headerlink" title="168、威胁情报"></a>168、威胁情报</h4><h4 id="169、TTP"><a href="#169、TTP" class="headerlink" title="169、TTP"></a>169、TTP</h4><h4 id="170、IOC"><a href="#170、IOC" class="headerlink" title="170、IOC"></a>170、IOC</h4><h4 id="171、上下文"><a href="#171、上下文" class="headerlink" title="171、上下文"></a>171、上下文</h4><h4 id="172、STIX"><a href="#172、STIX" class="headerlink" title="172、STIX"></a>172、STIX</h4><h4 id="173、杀伤链"><a href="#173、杀伤链" class="headerlink" title="173、杀伤链"></a>173、杀伤链</h4><h4 id="174、ATT-amp-CK"><a href="#174、ATT-amp-CK" class="headerlink" title="174、ATT&amp;CK"></a>174、ATT&amp;CK</h4><h4 id="175、钻石模型"><a href="#175、钻石模型" class="headerlink" title="175、钻石模型"></a>175、钻石模型</h4><h4 id="176、关联分析"><a href="#176、关联分析" class="headerlink" title="176、关联分析"></a>176、关联分析</h4>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web%E5%AE%89%E5%85%A8/" class="category-chain-item">web安全</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">#web基础知识</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>web安全基础知识</div>
+      <div>http://example.com/2022/08/09/web一些基础知识/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月9日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/" title="mysql基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mysql基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/09/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0/" title="VMware Workstation虚拟机学习使用">
+                        <span class="hidden-mobile">VMware Workstation虚拟机学习使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
+

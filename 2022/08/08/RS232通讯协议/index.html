@@ -1,0 +1,982 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="RS232">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RS232通讯协议">
+<meta property="og:url" content="http://example.com/2022/08/08/RS232%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="One ball">
+<meta property="og:description" content="RS232">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/08/08/RS232%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/D89">
+<meta property="article:published_time" content="2022-08-08T15:55:29.594Z">
+<meta property="article:modified_time" content="2023-03-15T06:09:01.397Z">
+<meta property="article:tag" content="RS232">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/08/08/RS232%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/D89">
+  
+  
+  
+  <title>RS232通讯协议 - One ball</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ditto</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RS232通讯协议"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-08 23:55" pubdate>
+          2022年8月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          117 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">RS232通讯协议</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="RS232通讯协议"><a href="#RS232通讯协议" class="headerlink" title="RS232通讯协议"></a>RS232通讯协议</h2><p>一、硬件Hardware：</p>
+<p>波特率: 2400 bps </p>
+<p>数据位: 8 bits </p>
+<p>停止位 : 1 bits </p>
+<p>奇偶校验: NON</p>
+<p>二、DB9使用标准直通线，长度不宜超过15米</p>
+<p><img src="/2022/08/08/RS232%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/D89" srcset="/img/loading.gif" lazyload alt="image-20220712112329773"></p>
+<p>三、命令</p>
+<table>
+<thead>
+<tr>
+<th>Q1</th>
+<th>1-80K使用</th>
+<th align="center">状态查询</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Q2</td>
+<td>三相20-80K使用</td>
+<td align="center">状态查询</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td>1-80K使用</td>
+<td align="center">状态查询</td>
+</tr>
+<tr>
+<td>WA</td>
+<td>6-80K使用</td>
+<td align="center">功率查询</td>
+</tr>
+<tr>
+<td>S<n></n></td>
+<td>1-80K使用</td>
+<td align="center">关机</td>
+</tr>
+</tbody></table>
+<p>&#x3D;&#x3D;备注：<cr>表示回车．&#x3D;&#x3D;</cr></p>
+<h3 id="（1）-查询命令-Q1"><a href="#（1）-查询命令-Q1" class="headerlink" title="（1） 查询命令 Q1"></a><strong>（1）</strong> <strong>查询命令</strong> <strong>Q1</strong></h3><p>为了查询系统基本的状态信息，&#x3D;&#x3D;主机发送：&#x3D;&#x3D;</p>
+<h4 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1<cr></cr></h4><p><strong>UPS 回应</strong></p>
+<p>(MMM.M NNN.N PPP.P QQQ RR.R S.SS TT.T b7b6b5b4b3b2b1b0<CR></CR></p>
+<h4 id="输入电压-MMM-M"><a href="#输入电压-MMM-M" class="headerlink" title="输入电压: MMM.M"></a>输入电压: MMM.M</h4><p>M 是一个整数，范围为 0 – 9。单位是 V。</p>
+<h4 id="上次转电池放电时电压-NNN-N"><a href="#上次转电池放电时电压-NNN-N" class="headerlink" title="上次转电池放电时电压: NNN.N"></a><strong>上次转电池放电时电压</strong>: NNN.N</h4><p>N 是一个整数，范围为 0 – 9，有部分机种默认为 0。 单位是 V。</p>
+<h4 id="输出电压-PPP-P"><a href="#输出电压-PPP-P" class="headerlink" title="输出电压: PPP.P"></a><strong>输出电压: PPP.P</strong></h4><p>P 是十进制的整数，范围为 0 - 9。 单位是 V。三相输入时为 R 相电压。</p>
+<h4 id="输出负载百分比-QQQ"><a href="#输出负载百分比-QQQ" class="headerlink" title="输出负载百分比: QQQ"></a><strong>输出负载百分比: QQQ</strong></h4><p>QQQ 是 W% 或 VA%的最大值。 VA% 是 VA 的最大值的百分比。 W% 是有用功率的最大值的百分比。</p>
+<h4 id="输入频率-RR-R"><a href="#输入频率-RR-R" class="headerlink" title="输入频率: RR.R"></a>输入频率: RR.R</h4><p>R 是一个整数，范围为 0 – 9。 单位是 Hz。</p>
+<h4 id="电池单元电压-S-SS"><a href="#电池单元电压-S-SS" class="headerlink" title="电池单元电压: S.SS"></a><strong>电池单元电压</strong>: S.SS</h4><p>S 是一个整数，范围为 0 – 9。 单位是 V。每节电池有 6 个电池单元，读到的电压要乘以 6，得到单节电池电压。市电模式时，读到的是充电电压，电池模式时读到电池电压。</p>
+<h4 id="温度-TT-T"><a href="#温度-TT-T" class="headerlink" title="温度: TT.T"></a><strong>温度</strong>: TT.T</h4><p>T 是一个整数，范围为 0 – 9。单位是 摄氏度。</p>
+<h4 id="UPS-状态-b7b6b5b4b3b2b1b0"><a href="#UPS-状态-b7b6b5b4b3b2b1b0" class="headerlink" title="UPS 状态: b7b6b5b4b3b2b1b0"></a>UPS 状态: b7b6b5b4b3b2b1b0</h4><p><bn> 是二进制数 ‘0’ 或 ‘1’。UPS 状态：</bn></p>
+<table>
+<thead>
+<tr>
+<th>Bit</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td>1 :  市电异常</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1 :  电池电压低</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1 :  旁路输出</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1 :  UPS 故障</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 :  UPS 后备式  (0 ：在线式)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1 :  测试进行中</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 :  内部保留</td>
+</tr>
+<tr>
+<td>0</td>
+<td>保留是 0</td>
+</tr>
+</tbody></table>
+<p>二进制代码被修改为 8 个字节的二进制代码为避免与 ASCII 控制代码混淆. </p>
+<p>&#x3D;&#x3D;备注：<cr>是回车，如果用 16 进制发送 Q1<cr>为 51 31 OD&#x3D;&#x3D;</cr></cr></p>
+<p>举例:</p>
+<p>电脑: Q1<cr></cr></p>
+<p>UPS:  (208.4 000.0 208.4 034 59.9 2.05 35.0 00110000<cr></cr></p>
+<p>表示:</p>
+<p>输入电压 208.4 V.</p>
+<p>上次转电池放电时输入电压 000.0 V.</p>
+<p>输出电压 208.4 V</p>
+<p>负载 34%.</p>
+<p>输入频率 59.9 Hz</p>
+<p>每个电池单元电池电压 2.05 V。每节电池 12.3V</p>
+<p>温度 35.0</p>
+<p>UPS 是在线式的, UPS 故障, 旁路运行.</p>
+<h3 id="（2）-查询命令-Q2"><a href="#（2）-查询命令-Q2" class="headerlink" title="（2） 查询命令 Q2"></a>（2） 查询命令 Q2</h3><p>&#x3D;&#x3D;备注：<cr>是回车，如果用 16 进制发送 Q2<cr>为 51 32 OD&#x3D;&#x3D;</cr></cr></p>
+<p>Computer: <strong>Q2 <cr></cr></strong></p>
+<p>UPS: (MMM.M MMM.M MMM.M NNN.N PPP.P PPP.P PPP.P QQQ QQQ QQQ RR.R SSS.S TT.T</p>
+<p>b7b6b5b4b3b2b1b0 ttt.tt CCC BB ff ff ff ff wwwwwwww YO<cr></cr></p>
+<h4 id="UPS-输入电压-MMM-M"><a href="#UPS-输入电压-MMM-M" class="headerlink" title="UPS 输入电压: MMM.M"></a>UPS 输入电压: MMM.M</h4><p>M 是十进制的整数，范围为 0 - 9。 单位是 V。</p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。在三相系统中，按顺序代表 R、S、T 相的值</p>
+<h4 id="上次转电池放电时电压-NNN-N-1"><a href="#上次转电池放电时电压-NNN-N-1" class="headerlink" title="上次转电池放电时电压: NNN.N"></a>上次转电池放电时电压: NNN.N</h4><p>N 是一个整数，范围为 0 – 9，有部分机种默认为 0。 单位是 V.</p>
+<h4 id="输出电压-PPP-P-1"><a href="#输出电压-PPP-P-1" class="headerlink" title="输出电压: PPP.P"></a>输出电压: PPP.P</h4><p>P 是十进制的整数，范围为 0 - 9。 单位是 V。</p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="输出电流-QQQ"><a href="#输出电流-QQQ" class="headerlink" title="输出电流: QQQ"></a>输出电流: QQQ</h4><p>QQQ 是电流最大值的百分比，不是一个绝对值。</p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="输出-频率-RR-R"><a href="#输出-频率-RR-R" class="headerlink" title="输出 频率: RR.R"></a>输出 频率: RR.R</h4><p>R 是十进制的整数，范围为 0 - 9。 单位是 Hz。</p>
+<h4 id="电池电压-SSS-S"><a href="#电池电压-SSS-S" class="headerlink" title="电池电压: SSS.S"></a>电池电压: SSS.S</h4><p>S 是一个整数，范围为 0 – 9。 单位是 V。</p>
+<h4 id="温度-TT-T-1"><a href="#温度-TT-T-1" class="headerlink" title="温度: TT.T"></a>温度: TT.T</h4><p>T 是一个整数，范围为 0 – 9。单位是 摄氏度。</p>
+<h4 id="UPS-状态-b7b6b5b4b3b2b1b0-1"><a href="#UPS-状态-b7b6b5b4b3b2b1b0-1" class="headerlink" title="UPS 状态: b7b6b5b4b3b2b1b0"></a>UPS 状态: b7b6b5b4b3b2b1b0</h4><p><bn> 是二进制数 ‘0’ 或 ‘1’。UPS 状态：</bn></p>
+<table>
+<thead>
+<tr>
+<th>Bit</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td>1 :  市电异常</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1 :  电池电压低</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1 :  旁路输出</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1 :  UPS 故障</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 :  UPS 后备式  (0 ：在线式)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1 :  测试进行中</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 :  内部保留</td>
+</tr>
+<tr>
+<td>0</td>
+<td>保留是 0</td>
+</tr>
+</tbody></table>
+<h4 id="电池剩余备用时间估计-ttttt"><a href="#电池剩余备用时间估计-ttttt" class="headerlink" title="电池剩余备用时间估计: ttttt"></a>电池剩余备用时间估计: ttttt</h4><p>估计的电池剩余备用时间。单位是秒。因电池备用时间与电池质量，放电频率，负载大小等条件都有关系，此数据仅供参考．</p>
+<h4 id="电池容量百分比-CCC"><a href="#电池容量百分比-CCC" class="headerlink" title="电池容量百分比: CCC"></a>电池容量百分比: CCC</h4><p>CCC 为 000  - 100。值超过 100 % 时显示为最大值。</p>
+<h4 id="电池测试状态-BB"><a href="#电池测试状态-BB" class="headerlink" title="电池测试状态: BB"></a>电池测试状态: BB</h4><p>00      idle</p>
+<p>01   processing</p>
+<p>02   result : no failure</p>
+<p>03   result : failure &#x2F; warning 04 Not possible 或 inhibite 05 Test cancel</p>
+<p>06   Reserved</p>
+<p>07   Other values</p>
+<h4 id="故障代码-ffffffff"><a href="#故障代码-ffffffff" class="headerlink" title="故障代码: ffffffff"></a>故障代码: ffffffff</h4><p>可包含同时发生的 4 种故障代码。此项仅供维修人员使用． <strong>警告: wwwwwwww</strong></p>
+<p>可包含同时发生的4种故障代码，此项仅供维修人员使用．</p>
+<h4 id="输入变压器类型-Y"><a href="#输入变压器类型-Y" class="headerlink" title="输入变压器类型: Y"></a><strong>输入变压器类型</strong>: Y</h4><p>Y 是二进制数字0 或 1</p>
+<p>Y&#x3D;1,输入变压器是Y 型, LCD 显示相电压</p>
+<p>Y&#x3D;0,输入变压器是∆, LCD 显示线电压</p>
+<h4 id="Lcd-显示输出相电压或线电压-O"><a href="#Lcd-显示输出相电压或线电压-O" class="headerlink" title="Lcd 显示输出相电压或线电压: O"></a>Lcd 显示输出相电压或线电压: O</h4><p>O 是二进制数字0或1。</p>
+<p>O&#x3D;1, LCD 显示输出电压是相电压</p>
+<p>O&#x3D;0, LCD 显示输出电压是线电压</p>
+<p>如果 O&#x3D;1(相电压), 但监控需要线电压，线电压 &#x3D; √3 ×相电压如果 O&#x3D;0(线电压), 但监控需要相电压，相电压 &#x3D; 线电压 &#x2F;√</p>
+<h3 id="（3）-查询命令-Q6"><a href="#（3）-查询命令-Q6" class="headerlink" title="（3） 查询命令 Q6"></a>（3） 查询命令 Q6</h3><p>&#x3D;&#x3D;备注：<cr>是回车，如果用 16 进制发送 Q6<cr>为 51 36 OD&#x3D;&#x3D;</cr></cr></p>
+<p>Q6<cr></cr></p>
+<p><strong>回应：</strong></p>
+<p>(MMM.M MMM.M MMM.M NN.N PPP.P PPP.P PPP.P RR.R QQQ QQQ QQQ SSS.S</p>
+<p>VVV.V TT.T ttttt CCC KB ffffffff wwwwwwww YO<cr></cr></p>
+<h4 id="UPS-输入电压-MMM-M-1"><a href="#UPS-输入电压-MMM-M-1" class="headerlink" title="UPS 输入电压: MMM.M"></a>UPS 输入电压: MMM.M</h4><p>M 是十进制的整数，范围为 0 - 9。 单位是 V。</p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="UPS-输入频率-频率-NN-N"><a href="#UPS-输入频率-频率-NN-N" class="headerlink" title="UPS 输入频率 频率: NN.N"></a>UPS 输入频率 频率: NN.N</h4><p><strong>N</strong>  是十进制的整数，范围为 0 - 9。 单位是 Hz。<strong>输出电压</strong><strong>: PPP.P</strong></p>
+<p>P 是十进制的整数，范围为 0 - 9。 单位是 V。</p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="输出-频率-RR-R-1"><a href="#输出-频率-RR-R-1" class="headerlink" title="输出 频率: RR.R"></a>输出 频率: RR.R</h4><p>R 是十进制的整数，范围为 0 - 9。 单位是 Hz。<strong>输出电流</strong><strong>: QQQ</strong></p>
+<p>QQQ 是电流最大值的百分比，不是一个绝对值。</p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="Positive-电池-电压-SSS-S"><a href="#Positive-电池-电压-SSS-S" class="headerlink" title="Positive 电池 电压: SSS.S"></a>Positive 电池 电压: SSS.S</h4><p>S 是十进制的整数，范围为 0 - 9。 单位是 V。</p>
+<h4 id="Negative-电池-电压-VVV-V"><a href="#Negative-电池-电压-VVV-V" class="headerlink" title="Negative 电池 电压: VVV.V"></a>Negative 电池 电压: VVV.V</h4><p>V 是十进制的整数，范围为 0 - 9。 单位是 V。</p>
+<h4 id="温度-TT-T-2"><a href="#温度-TT-T-2" class="headerlink" title="温度: TT.T"></a>温度: TT.T</h4><p>T 是十进制的整数，范围为 0 - 9。 单位是摄氏度。</p>
+<h4 id="电池剩余备用时间估计-ttttt-1"><a href="#电池剩余备用时间估计-ttttt-1" class="headerlink" title="电池剩余备用时间估计: ttttt"></a>电池剩余备用时间估计: ttttt</h4><p>估计的电池剩余备用时间。单位是秒。因电池备用时间与电池质量，放电频率，负载大小等条件都有关系，此数据仅供参考．</p>
+<h4 id="电池容量百分比-CCC-1"><a href="#电池容量百分比-CCC-1" class="headerlink" title="电池容量百分比: CCC"></a>电池容量百分比: CCC</h4><p>CCC 为 000  - 100。值超过 100 % 时显示为最大值。</p>
+<h4 id="系统模式-K"><a href="#系统模式-K" class="headerlink" title="系统模式: K"></a>系统模式: K</h4><p>系统模式定义如下：</p>
+<table>
+<thead>
+<tr>
+<th>K</th>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>PowerOn 模式</td>
+<td>系统上电初始化。</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Standby 模式</td>
+<td>系统无输出，在此模式下，用户可进行系统配置及开  机。系统关机后，也会先转入此模式。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bypass 模式</td>
+<td>在不满足高效模式条件的情况下，以旁路输出为系统  输出。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Line 模式</td>
+<td>UPS 模块由市电提供能量进行逆变输出，且系统以  UPS 并联输出为系统输出。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Bat 模式</td>
+<td>UPS 模块由电池提供能量进行逆变输出，且系统以  UPS 并联输出为系统输出。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>BatTest 模式</td>
+<td>UPS 模块定时或根据用户设定由市电模式转换到电  池模式工作一段时间，检测电池是否正常，自检时间</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>到后返回市电模式。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6</td>
+<td>Fault 模式</td>
+<td>故障模式。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Converter 模式</td>
+<td>逆变始终以额定的固定频率输出，给负载提供输出质  量极高的稳定电源。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>HE 模式</td>
+<td>高效模式，在旁路状况良好的情况下，可直接由旁路  为负载供电。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Shutdown 模式</td>
+<td>关机模式</td>
+</tr>
+</tbody></table>
+<h4 id="电池测试状态-B"><a href="#电池测试状态-B" class="headerlink" title="电池测试状态: B"></a>电池测试状态: B</h4><p>0     idle</p>
+<p>1        processing</p>
+<p>2      result : no failure</p>
+<p>3      result : failure &#x2F; warning</p>
+<p>4     Not possible 或 inhibite</p>
+<p>5     Test cancel</p>
+<p>6     Reserved</p>
+<p>7    Other values</p>
+<h4 id="故障代码-ffffffff-1"><a href="#故障代码-ffffffff-1" class="headerlink" title="故障代码: ffffffff"></a>故障代码: ffffffff</h4><p>可包含同时发生的 4 种故障代码。此项仅供维修人员使用． <strong>警告</strong><strong>: wwwwwwww</strong></p>
+<p>可包含同时发生的4种故障代码，此项仅供维修人员使用．</p>
+<h4 id="输入变压器类型-Y-1"><a href="#输入变压器类型-Y-1" class="headerlink" title="输入变压器类型: Y"></a><strong>输入变压器类型: Y</strong></h4><p>Y 是二进制数字0 或 1</p>
+<p>Y&#x3D;1,输入变压器是Y 型, LCD 显示相电压</p>
+<p>Y&#x3D;0,输入变压器是∆, LCD 显示线电压</p>
+<h4 id="Lcd-显示输出相电压或线电压-O-1"><a href="#Lcd-显示输出相电压或线电压-O-1" class="headerlink" title="Lcd 显示输出相电压或线电压: O"></a>Lcd 显示输出相电压或线电压: O</h4><p>O  是二进制数字0或1。</p>
+<p>O&#x3D;1, LCD 显示输出电压是相电压</p>
+<p>O&#x3D;0, LCD 显示输出电压是线电压</p>
+<p>如果 O&#x3D;1(相电压), 但监控需要线电压，线电压 &#x3D; √3 ×相电压如果 O&#x3D;0(线电压), 但监控需要相电压，相电压 &#x3D; 线电压 &#x2F;√3</p>
+<h3 id="4-查询命令WA"><a href="#4-查询命令WA" class="headerlink" title="(4)查询命令WA"></a>(4)查询命令WA</h3><p>&#x3D;&#x3D;备注：<cr>是回车，如果用 16 进制发送 WA<cr>为 51 41 OD&#x3D;&#x3D;</cr></cr></p>
+<p>WA<cr></cr></p>
+<p>UPS 响应</p>
+<p>(<a target="_blank" rel="noopener" href="http://www.w/">WWW.W </a><a target="_blank" rel="noopener" href="http://www.w/">WWW.W </a><a target="_blank" rel="noopener" href="http://www.w/">WWW.W </a>VVV.V VVV.V VVV.V TTT.T SSS.S AAA.A AAA.A AAA.A QQQ</p>
+<p>b7b6b5b4b3b2b1b0<cr></cr></p>
+<h4 id="输出功率：-WWW-W"><a href="#输出功率：-WWW-W" class="headerlink" title="输出功率： WWW.W"></a>输出功率： <a target="_blank" rel="noopener" href="http://www.w/">WWW.W</a></h4><p>W 是十进制的整数，范围从 0 - 9。 单位是 KW. </p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。 </p>
+<p>在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="输出视在功率：-VVV-V"><a href="#输出视在功率：-VVV-V" class="headerlink" title="输出视在功率： VVV.V"></a><strong>输出视在功率：</strong> <strong>VVV.V</strong></h4><p>V 是十进制的整数，范围从 0 - 9。 单位是 KVA. </p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。 </p>
+<p>在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="总功率-TTT-T"><a href="#总功率-TTT-T" class="headerlink" title="总功率: TTT.T"></a><strong>总功率: TTT.T</strong></h4><p>T 是十进制的整数，范围从 0 - 9。 单位是 KW.</p>
+<p>3 Phase system, Include of three phase R,S,&amp;T real power.</p>
+<h4 id="总视在功率-SSS-S"><a href="#总视在功率-SSS-S" class="headerlink" title="总视在功率: SSS.S"></a>总视在功率: SSS.S</h4><p>S 是十进制的整数，范围从 0 - 9。 单位是 KVA.</p>
+<p>3 Phase system, Include of three phase R,S,&amp;T complex power.</p>
+<h4 id="输出电流-AAA-A"><a href="#输出电流-AAA-A" class="headerlink" title="输出电流: AAA.A"></a>输出电流: AAA.A</h4><p>A 是十进制的整数，范围从 0 - 9。 单位是 A.</p>
+<p>在单相系统中，只有 R 相是有效的，S 和 T 相总是 0。在三相系统中，按顺序代表 R、S、T 相的值。</p>
+<h4 id="输出负载百分比-QQQ-1"><a href="#输出负载百分比-QQQ-1" class="headerlink" title="输出负载百分比: QQQ"></a>输出负载百分比: QQQ</h4><p>QQQ 是 W% 或 VA%的最大值。 VA% 是 VA 的最大值的百分比。 W% 是有用功率的最大值的百分比。</p>
+<h4 id="UPS-Status-b7b6b5b4b3b2b1b0"><a href="#UPS-Status-b7b6b5b4b3b2b1b0" class="headerlink" title="UPS Status:b7b6b5b4b3b2b1b0"></a>UPS Status:b7b6b5b4b3b2b1b0</h4><p><bn> 是二进制数 ‘0’ 或 ‘1’。UPS 状态：</bn></p>
+<table>
+<thead>
+<tr>
+<th>Bit</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td>1 : 市电异常</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1 :  电池电压低</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1 :  旁路模式</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1 :  UPS 故障</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 :  UPS 后备式  (0 ：在线式)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1 :  测试进行中</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 :  内部保留</td>
+</tr>
+<tr>
+<td>0</td>
+<td>保留是 0</td>
+</tr>
+</tbody></table>
+<h3 id="（5）关机命令S-S"><a href="#（5）关机命令S-S" class="headerlink" title="（5）关机命令S S"></a>（5）关机命令S S<n><cr></cr></n></h3><h4 id="关机延迟时间"><a href="#关机延迟时间" class="headerlink" title="关机延迟时间: "></a>关机延迟时间: <n></n></h4><p><n>可设置范围： .2, .3, …, 01, 02,…, to 10。 单位是分钟。</n></p>
+<h4 id="UPS-动作-x2F-回应"><a href="#UPS-动作-x2F-回应" class="headerlink" title="UPS 动作&#x2F;回应:"></a>UPS 动作&#x2F;回应:</h4><p>延时<n>分钟后关闭 UPS 输出。电池模式下（该指令仅限于电池模式），UPS 在接受到关机指令<n>分钟后都会关闭输出。但如果<n>分钟内电池电压低于关闭点电压， 则 UPS 立即关闭输出。UPS 输出关闭后如果侦测到有市电，则延时 10 秒后重新输出。</n></n></n></p>
+<p>例如： S.3<cr> — 在(0.3) 分钟后切断输出。</cr></p>
+<p>Send:3 char<br>51 31 0D </p>
+<p>Recv:46 char<br>28 32 33 31 2E 36 20 31 34 30 2E 30 20 32 32 30 2E 34 20 30 33 36 20 35 30 2E 30 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 00 </p>
+<p>Send:3 char<br>51 31 0D </p>
+<p>Send:3 char<br>51 31 0D </p>
+<p>Recv:47 char<br>28 32 33 30 2E 39 20 31 34 30 2E 30 20 32 32 30 2E 37 20 30 33 36 20 35 30 2E 30 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D </p>
+<p>Send:3 char<br>51 32 0D </p>
+<p>Recv:118 char<br>28 32 33 31 2E 31 20 32 33 31 2E 37 20 32 32 38 2E 35 20 31 34 30 2E 30 20 32 32 30 2E 37 20 32 32 31 2E 31 20 32 32 30 2E 36 20 30 30 33 20 30 31 34 20 30 30 30 20 35 30 2E 30 20 34 32 33 2E 32 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D </p>
+<p>Send:3 char<br>51 36 0D </p>
+<p>Recv:110 char<br>28 32 33 30 2E 38 20 32 33 31 2E 35 20 32 32 39 2E 31 20 35 30 2E 30 20 32 32 30 2E 36 20 32 32 31 2E 30 20 32 32 30 2E 36 20 35 30 2E 31 20 30 30 33 20 30 31 34 20 30 30 30 20 32 31 31 2E 33 20 32 31 31 2E 39 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D </p>
+<p>Send:3 char<br>57 41 0D </p>
+<p>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 39 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 31 20 30 30 30 2E 30 20 30 33 34 2E 30 20 30 33 39 2E 39 20 30 30 33 2E 33 20 30 31 34 2E 35 20 30 30 30 2E 33 20 30 33 36 20 30 30 30 30 30 30 30 30 0D </p>
+<p>Send:3 char<br>51 31 0D </p>
+<p>Recv:47 char<br>28 32 33 31 2E 31 20 31 34 30 2E 30 20 32 32 30 2E 36 20 30 33 37 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D </p>
+<p>Send:3 char<br>51 32 0D </p>
+<p>Recv:118 char<br>28 32 33 31 2E 33 20 32 33 32 2E 35 20 32 33 30 2E 31 20 31 34 30 2E 30 20 32 32 30 2E 36 20 32 32 31 2E 31 20 32 32 30 2E 36 20 30 30 33 20 30 31 34 20 30 30 30 20 35 30 2E 30 20 34 32 33 2E 34 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D </p>
+<p>Send:3 char<br>51 36 0D </p>
+<p>Recv:110 char<br>28 32 33 30 2E 39 20 32 33 32 2E 37 20 32 33 30 2E 32 20 34 39 2E 39 20 32 32 30 2E 38 20 32 32 30 2E 39 20 32 32 30 2E 35 20 34 39 2E 39 20 30 30 33 20 30 31 34 20 30 30 30 20 32 31 31 2E 33 20 32 31 31 2E 39 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D </p>
+<p>Send:3 char<br>57 41 0D </p>
+<p>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 38 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 31 20 30 30 30 2E 30 20 30 33 33 2E 37 20 30 33 39 2E 34 20 30 30 33 2E 33 20 30 31 34 2E 32 20 30 30 30 2E 33 20 30 33 36 20 30 30 30 30 30 30 30 30 0D </p>
+<p>本次采集结束</p>
+<p>[2021-08-18 10:36:39:578]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:36:39:809]:<br>Recv:47 char<br>28 32 33 31 2E 33 20 31 34 30 2E 30 20 32 32 30 2E 38 20 30 33 37 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:36:39:928]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:36:40:458]:<br>Recv:118 char<br>28 32 33 31 2E 34 20 32 33 32 2E 38 20 32 32 39 2E 39 20 31 34 30 2E 30 20 32 32 30 2E 37 20 32 32 31 2E 31 20 32 32 30 2E 36 20 30 30 33 20 30 31 35 20 30 30 30 20 34 39 2E 39 20 34 32 33 2E 33 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:36:40:569]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:36:41:078]:<br>Recv:110 char<br>28 32 33 31 2E 33 20 32 33 32 2E 36 20 32 32 39 2E 37 20 34 39 2E 39 20 32 32 30 2E 36 20 32 32 30 2E 39 20 32 32 30 2E 35 20 34 39 2E 39 20 30 30 33 20 30 31 35 20 30 30 30 20 32 31 31 2E 33 20 32 31 32 2E 30 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D<br>[2021-08-18 10:36:41:198]:<br>Send:3 char<br>57 41 0D<br>[2021-08-18 10:36:41:556]:<br>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 39 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 32 20 30 30 30 2E 30 20 30 33 34 2E 34 20 30 34 30 2E 32 20 30 30 33 2E 32 20 30 31 34 2E 37 20 30 30 30 2E 33 20 30 33 36 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:36:41:677]:<br>本次采集结束</p>
+<p>[2021-08-18 10:36:44:568]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:36:44:784]:<br>Recv:47 char<br>28 32 33 30 2E 39 20 31 34 30 2E 30 20 32 32 30 2E 37 20 30 33 36 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:36:44:899]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:36:45:431]:<br>Recv:118 char<br>28 32 33 31 2E 31 20 32 33 32 2E 34 20 32 33 30 2E 34 20 31 34 30 2E 30 20 32 32 30 2E 35 20 32 32 30 2E 37 20 32 32 30 2E 36 20 30 30 33 20 30 31 34 20 30 30 30 20 34 39 2E 39 20 34 32 33 2E 32 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:36:45:552]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:36:46:051]:<br>Recv:110 char<br>28 32 33 31 2E 33 20 32 33 32 2E 38 20 32 33 30 2E 33 20 34 39 2E 39 20 32 32 30 2E 35 20 32 32 31 2E 31 20 32 32 30 2E 34 20 35 30 2E 30 20 30 30 33 20 30 31 34 20 30 30 30 20 32 31 31 2E 33 20 32 31 31 2E 39 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D<br>[2021-08-18 10:36:46:164]:<br>Send:3 char<br>57 41 0D<br>[2021-08-18 10:36:46:527]:<br>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 38 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 31 20 30 30 30 2E 30 20 30 33 33 2E 38 20 30 33 39 2E 37 20 30 30 33 2E 33 20 30 31 34 2E 33 20 30 30 30 2E 33 20 30 33 36 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:36:46:643]:<br>本次采集结束</p>
+<p>[2021-08-18 10:36:49:573]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:36:49:808]:<br>Recv:47 char<br>28 32 33 30 2E 35 20 31 34 30 2E 30 20 32 32 30 2E 38 20 30 33 36 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:36:49:920]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:36:50:454]:<br>Recv:118 char<br>28 32 33 30 2E 37 20 32 33 32 2E 37 20 32 33 30 2E 34 20 31 34 30 2E 30 20 32 32 30 2E 39 20 32 32 31 2E 30 20 32 32 30 2E 35 20 30 30 33 20 30 31 34 20 30 30 30 20 34 39 2E 39 20 34 32 33 2E 33 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:36:50:572]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:36:50:770]:<br>Recv:38 char<br>28 32 33 31 2E 32 20 32 33 32 2E 32 20 32 32 39 2E 34 20 34 39 2E 39 20 32 32 30 2E 36 20 32 32 31 2E 33 20 32 00<br>[2021-08-18 10:36:50:774]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:36:50:777]:<br>本次采集结束</p>
+<p>[2021-08-18 10:37:38:605]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:37:38:840]:<br>Recv:47 char<br>28 32 33 30 2E 39 20 31 34 30 2E 30 20 32 32 30 2E 37 20 30 33 36 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:38:961]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:37:39:487]:<br>Recv:118 char<br>28 32 33 31 2E 30 20 32 33 32 2E 39 20 32 33 30 2E 34 20 31 34 30 2E 30 20 32 32 30 2E 36 20 32 32 30 2E 38 20 32 32 30 2E 36 20 30 30 33 20 30 31 34 20 30 30 30 20 35 30 2E 30 20 34 32 33 2E 33 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:39:603]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:37:40:107]:<br>Recv:110 char<br>28 32 33 31 2E 30 20 32 33 32 2E 36 20 32 33 30 2E 37 20 34 39 2E 39 20 32 32 30 2E 35 20 32 32 31 2E 30 20 32 32 30 2E 36 20 35 30 2E 30 20 30 30 33 20 30 31 34 20 30 30 30 20 32 31 31 2E 33 20 32 31 32 2E 30 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:40:219]:<br>Send:3 char<br>57 41 0D<br>[2021-08-18 10:37:40:584]:<br>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 39 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 32 20 30 30 30 2E 30 20 30 33 34 2E 31 20 30 34 30 2E 35 20 30 30 33 2E 34 20 30 31 34 2E 35 20 30 30 30 2E 33 20 30 33 36 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:40:696]:<br>本次采集结束</p>
+<p>[2021-08-18 10:37:43:505]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:37:43:763]:<br>Recv:47 char<br>28 32 33 31 2E 30 20 31 34 30 2E 30 20 32 32 30 2E 35 20 30 33 37 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:43:872]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:37:44:410]:<br>Recv:118 char<br>28 32 33 31 2E 33 20 32 33 33 2E 31 20 32 33 31 2E 30 20 31 34 30 2E 30 20 32 32 30 2E 38 20 32 32 31 2E 31 20 32 32 30 2E 36 20 30 30 33 20 30 31 35 20 30 30 30 20 34 39 2E 39 20 34 32 33 2E 32 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:44:529]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:37:45:031]:<br>Recv:110 char<br>28 32 33 31 2E 34 20 32 33 32 2E 34 20 32 33 30 2E 38 20 34 39 2E 39 20 32 32 30 2E 35 20 32 32 31 2E 32 20 32 32 30 2E 37 20 34 39 2E 39 20 30 30 33 20 30 31 34 20 30 30 30 20 32 31 31 2E 33 20 32 31 32 2E 30 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:45:142]:<br>Send:3 char<br>57 41 0D<br>[2021-08-18 10:37:45:509]:<br>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 39 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 32 20 30 30 30 2E 30 20 30 33 34 2E 36 20 30 34 30 2E 39 20 30 30 33 2E 33 20 30 31 34 2E 38 20 30 30 30 2E 33 20 30 33 36 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:45:616]:<br>本次采集结束</p>
+<p>[2021-08-18 10:37:48:507]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:37:48:736]:<br>Recv:47 char<br>28 32 33 31 2E 32 20 31 34 30 2E 30 20 32 32 30 2E 36 20 30 33 37 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:48:854]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:37:49:385]:<br>Recv:118 char<br>28 32 33 31 2E 32 20 32 33 32 2E 38 20 32 33 30 2E 38 20 31 34 30 2E 30 20 32 32 30 2E 36 20 32 32 30 2E 39 20 32 32 30 2E 35 20 30 30 33 20 30 31 34 20 30 30 30 20 35 30 2E 30 20 34 32 33 2E 33 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:49:497]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:37:50:004]:<br>Recv:110 char<br>28 32 33 31 2E 30 20 32 33 33 2E 32 20 32 33 30 2E 38 20 34 39 2E 39 20 32 32 30 2E 37 20 32 32 30 2E 38 20 32 32 30 2E 37 20 34 39 2E 39 20 30 30 33 20 30 31 34 20 30 30 30 20 32 31 31 2E 33 20 32 31 31 2E 39 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:50:122]:<br>Send:3 char<br>57 41 0D<br>[2021-08-18 10:37:50:481]:<br>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 39 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 32 20 30 30 30 2E 30 20 30 33 34 2E 35 20 30 34 30 2E 30 20 30 30 33 2E 32 20 30 31 34 2E 35 20 30 30 30 2E 33 20 30 33 37 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:50:597]:<br>本次采集结束</p>
+<p>[2021-08-18 10:37:53:509]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:37:53:761]:<br>Recv:47 char<br>28 32 33 31 2E 36 20 31 34 30 2E 30 20 32 32 30 2E 33 20 30 33 36 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:53:875]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:37:54:409]:<br>Recv:118 char<br>28 32 33 31 2E 31 20 32 33 33 2E 30 20 32 33 30 2E 36 20 31 34 30 2E 30 20 32 32 30 2E 37 20 32 32 31 2E 30 20 32 32 30 2E 35 20 30 30 33 20 30 31 34 20 30 30 30 20 35 30 2E 30 20 34 32 33 2E 33 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:54:517]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:37:55:029]:<br>Recv:110 char<br>28 32 33 31 2E 30 20 32 33 32 2E 38 20 32 33 30 2E 38 20 34 39 2E 39 20 32 32 30 2E 35 20 32 32 31 2E 31 20 32 32 30 2E 35 20 34 39 2E 39 20 30 30 33 20 30 31 34 20 30 30 30 20 32 31 31 2E 33 20 32 31 32 2E 30 20 32 32 2E 30 20 30 30 30 30 30 20 31 30 30 20 33 32 20 30 30 30 30 30 30 30 30 20 30 30 30 30 30 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:55:136]:<br>Send:3 char<br>57 41 0D<br>[2021-08-18 10:37:55:506]:<br>Recv:80 char<br>28 30 30 30 2E 34 20 30 30 32 2E 39 20 30 30 30 2E 30 20 30 30 30 2E 37 20 30 30 33 2E 32 20 30 30 30 2E 30 20 30 33 34 2E 34 20 30 34 30 2E 34 20 30 30 33 2E 32 20 30 31 34 2E 37 20 30 30 30 2E 33 20 30 33 36 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:55:628]:<br>本次采集结束</p>
+<p>[2021-08-18 10:37:58:514]:<br>Send:3 char<br>51 31 0D<br>[2021-08-18 10:37:58:734]:<br>Recv:47 char<br>28 32 33 31 2E 31 20 31 34 30 2E 30 20 32 32 30 2E 36 20 30 33 36 20 34 39 2E 39 20 32 2E 32 30 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 0D<br>[2021-08-18 10:37:58:844]:<br>Send:3 char<br>51 32 0D<br>[2021-08-18 10:37:59:382]:<br>Recv:118 char<br>28 32 33 31 2E 31 20 32 33 32 2E 39 20 32 33 30 2E 35 20 31 34 30 2E 30 20 32 32 30 2E 36 20 32 32 31 2E 30 20 32 32 30 2E 35 20 30 30 33 20 30 31 34 20 30 30 30 20 35 30 2E 30 20 34 32 33 2E 33 20 32 32 2E 30 20 30 30 30 30 30 30 30 30 20 30 30 30 2E 30 30 20 31 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 20 30 30 30 30 34 30 30 30 20 31 31 0D<br>[2021-08-18 10:37:59:488]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:37:59:597]:<br>Recv:1 char<br>00<br>[2021-08-18 10:37:59:601]:<br>Send:3 char<br>51 36 0D<br>[2021-08-18 10:37:59:605]:<br>本次采集结束</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/RS232/" class="category-chain-item">RS232</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/RS232/">#RS232</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>RS232通讯协议</div>
+      <div>http://example.com/2022/08/08/RS232通讯协议/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月8日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/08/HTTP%E5%8D%8F%E8%AE%AE/" title="HTTP通讯协议">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HTTP通讯协议</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/08/MODBUS%20TCP/" title="Modbus TCP通讯协议">
+                        <span class="hidden-mobile">Modbus TCP通讯协议</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
+

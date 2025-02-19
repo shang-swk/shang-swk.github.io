@@ -4,23 +4,23 @@
   
   
   <entry>
-    <title>1</title>
-    <link href="/2025/02/19/1/"/>
-    <url>/2025/02/19/1/</url>
+    <title>hexo部署及git后续问题与解决</title>
+    <link href="/2025/02/19/hexo%E9%83%A8%E7%BD%B2%E5%8F%8Agit%E5%90%8E%E7%BB%AD%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3/"/>
+    <url>/2025/02/19/hexo%E9%83%A8%E7%BD%B2%E5%8F%8Agit%E5%90%8E%E7%BB%AD%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3/</url>
     
-    <content type="html"><![CDATA[<h2 id="WEB安全-DIV-CSS基础"><a href="#WEB安全-DIV-CSS基础" class="headerlink" title="WEB安全 DIV CSS基础"></a>WEB安全 DIV CSS基础</h2><h3 id="1、DIV和CSS简介"><a href="#1、DIV和CSS简介" class="headerlink" title="1、DIV和CSS简介"></a>1、DIV和CSS简介</h3><p>css 层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="连接不上github"><a href="#连接不上github" class="headerlink" title="连接不上github"></a>连接不上github</h3><h4 id="fatal-unable-to-access-‘https-github-com-shang-swk-shang-swk-github-io-git-39-Failed-to-connect-to-github-com-port-443-after-21093-ms-Could-not-connect-to-server-FATAL-err-Error-Spawn-failed-at-ChildProcess"><a href="#fatal-unable-to-access-‘https-github-com-shang-swk-shang-swk-github-io-git-39-Failed-to-connect-to-github-com-port-443-after-21093-ms-Could-not-connect-to-server-FATAL-err-Error-Spawn-failed-at-ChildProcess" class="headerlink" title="fatal: unable to access ‘https://github.com/shang-swk/shang-swk.github.io.git/&#39;: Failed to connect to github.com port 443 after 21093 ms: Could not connect to server FATAL {   err: Error: Spawn failed       at ChildProcess."></a>fatal: unable to access ‘<a href="https://github.com/shang-swk/shang-swk.github.io.git/&#39;">https://github.com/shang-swk/shang-swk.github.io.git/&#39;</a>: Failed to connect to github.com port 443 after 21093 ms: Could not connect to server FATAL {   err: Error: Spawn failed       at ChildProcess.</h4><p>这个问题通常是由网络连接问题或代理设置不正确导致的。</p><p>原因1：之前的http或者https代理服务器与目标地址连接出现问题，我们需要先断开 </p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> https<span class="hljs-selector-class">.proxy</span><br>git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> http.proxy<br></code></pre></td></tr></table></figure><p>这样就可以清除 Git 的代理设置，让其直接连接网络进行操作。</p><p>http和https的代理服务器可以用网上付费的一些服务器充当：<strong>Google Proxyton</strong>、<strong>Cloudflare Proxies</strong>，也可以用自己本地代替</p><p>原因2：</p><p>有时候取消代理设置仍然会出现报错，这时可以通过设置系统代理来解决。</p><p>打开系统设置，搜索代理设置，并点击编辑按钮。</p><p>在代理服务器中，将端口设置为7890（这个端口不会影响正常上网，可以放心设置），然后点击保存。</p><p>在终端输入以下命令，设置 Git 使用本地代理：</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> http<span class="hljs-selector-class">.proxy</span> http:<span class="hljs-comment">//127.0.0.1:7890</span><br></code></pre></td></tr></table></figure><p>设置完成后，可以通过以下命令检验是否设置成功：</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global -l</span><br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
       
-      <category>前端</category>
+      <category>git</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>DIV CSS</tag>
+      <tag>git</tag>
       
     </tags>
     

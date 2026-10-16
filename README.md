@@ -107,13 +107,16 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-首次发布需要登录 GitHub：`gh auth login`，然后 `gh auth setup-git`。当前电脑已完成登录。本仓库目前使用直连 GitHub，已验证源码和网页推送成功；当前系统代理曾导致源码上传超时。
+首次发布需要登录 GitHub：`gh auth login`，然后 `gh auth setup-git`。当前电脑已完成登录。Git 网络设置仅保存在本机，可以按当前网络选择直连或系统代理。
 
 如果以后网络需要代理，可仅为本仓库启用电脑上已有的代理：
 
 ```bash
 git config --local http.https://github.com/.proxy http://127.0.0.1:7892
-# 恢复直连：
+# 当前代理下的上传兼容配置（仅此仓库）：
+git config --local http.version HTTP/1.1
+git config --local http.postBuffer 10485760
+# 改用直连：
 git config --local http.https://github.com/.proxy ''
 ```
 

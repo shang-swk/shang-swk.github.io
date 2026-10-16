@@ -105,10 +105,14 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-首次发布需要登录 GitHub：`gh auth login`，然后 `gh auth setup-git`。当前电脑已完成登录，并为本仓库配置系统现有的代理 `http://127.0.0.1:7892`。如果以后不再使用代理：
+首次发布需要登录 GitHub：`gh auth login`，然后 `gh auth setup-git`。当前电脑已完成登录。本仓库目前使用直连 GitHub，已验证源码和网页推送成功；当前系统代理曾导致源码上传超时。
+
+如果以后网络需要代理，可仅为本仓库启用电脑上已有的代理：
 
 ```bash
-git config --local --unset http.https://github.com/.proxy
+git config --local http.https://github.com/.proxy http://127.0.0.1:7892
+# 恢复直连：
+git config --local http.https://github.com/.proxy ''
 ```
 
 这份项目沿用旧站版本以恢复原貌；`npm run deploy` 和`bash bin/publish.sh` 也会调用上述发布流程。

@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "博客：本地预览",
+      "type": "shell",
+      "command": "bash scripts/preview.sh",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "博客：拉取云端更新",
+      "type": "shell",
+      "command": "git pull --ff-only",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "博客：发布到 GitHub",
+      "type": "shell",
+      "command": "bash scripts/publish.sh",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}

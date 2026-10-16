@@ -2,8 +2,10 @@
 updated: 2023-03-15T06:09:29.836Z
 date: 2022-08-09 13:37:00
 title: web安全基础知识
-categories: web安全
-tags: web基础知识
+categories: 网络与安全
+tags:
+  - web基础知识
+  - web安全
 excerpt: web知识
 ---
 

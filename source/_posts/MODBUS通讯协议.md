@@ -2,8 +2,9 @@
 updated: 2022-08-09T03:34:47.691Z
 date: 2022-08-09 01:55:00
 title: Modbus通讯协议
-categories: Modbus
-tags: Modbus
+categories: 工业通信
+tags:
+  - Modbus
 excerpt: Modbus是工业领域通信协议的业界标准，是工业电子设备之间常用的连接方式。
 ---
 

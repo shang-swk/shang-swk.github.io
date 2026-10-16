@@ -1,0 +1,71 @@
+# 寻影的主题覆盖配置；原主题保留在 themes/Fluid/。
+navbar:
+  blog_title: 寻影
+  menu:
+    - { key: home, name: 首页, link: / }
+    - { key: archive, name: 文章, link: /archives/ }
+    - { key: category, name: 专题, link: /categories/ }
+    - { key: about, name: 关于, link: /about/ }
+index:
+  banner_img_height: 52
+  banner_mask_alpha: 0.38
+  slogan:
+    text: 寻影
+post:
+  banner_img_height: 38
+  meta:
+    date:
+      format: YYYY年M月D日
+    min2read:
+      wpm: 250
+  toc:
+    headingSelector: h2,h3,h4
+    collapseDepth: 2
+archive:
+  title: 全部文章
+  subtitle: 全部文章
+  banner_img_height: 32
+category:
+  title: 阅读专题
+  subtitle: 按主题，慢慢读
+  banner_img_height: 32
+  order_by: name
+  post_limit: 5
+tag:
+  banner_img_height: 32
+about:
+  title: 关于寻影
+  subtitle: 关于寻影
+  banner_img_height: 32
+  name: shang-swk
+  intro: 学习、实践，也记录过程。
+page:
+  banner_img_height: 32
+page404:
+  banner_img_height: 45
+fun_features:
+  typing:
+    enable: false
+banner:
+  parallax: false
+  width_height_ratio: 0
+font:
+  font_size: 16px
+  font_family: '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif'
+  letter_spacing: 0.01em
+code:
+  language:
+    default: TEXT
+  highlight:
+    highlightjs:
+      style: github
+color:
+  body_bg_color: '#f4f6f7'
+  navbar_bg_color: '#203c46'
+  link_hover_color: '#237b85'
+  post_link_color: '#237b85'
+  post_link_color_dark: '#92d2d1'
+custom_css:
+  - /css/xunying.css
+footer:
+  content: '<a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>'

@@ -1,0 +1,25 @@
+intro: 把学过的知识，写成自己的理解。
+description: 记录开发实践、网络与安全、工业通信，也留下一些英语学习笔记。
+featured:
+  - source: _posts/hexo部署及git后续问题与解决.md
+    title: Hexo 部署与 Git 连接排查
+    description: 从连接报错出发，梳理博客部署中的网络与代理配置。
+  - source: _posts/AES实现.md
+    title: 用 C 语言实现 AES
+    description: 结合代码，理解 AES 加密中的分组、变换与轮函数。
+  - source: _posts/MODBUS通讯协议.md
+    title: 理解 Modbus 通信协议
+    description: 从协议基础入手，整理工业设备之间如何交换数据。
+topics:
+  - name: 开发技术
+    label: DEVELOPMENT
+    description: 前端、数据库与日常开发工具，把基础知识用起来。
+  - name: 网络与安全
+    label: NETWORK & SECURITY
+    description: 从 HTTP 到密码学，理解通信与安全背后的原理。
+  - name: 工业通信
+    label: INDUSTRIAL COMMUNICATION
+    description: 整理 Modbus、RS232 等协议与设备通信基础。
+  - name: 语言学习
+    label: LANGUAGE LEARNING
+    description: 按系列整理雅思词汇，方便查找和反复复习。

@@ -20,7 +20,7 @@ npm run new -- "我的新文章"
 ---
 title: 我的新文章
 date: 2026-10-16 12:00:00
-categories: 学习笔记
+categories: 开发技术
 tags:
   - 随笔
 excerpt: 这篇文章的简短介绍。
@@ -42,7 +42,9 @@ source/_posts/我的新文章/截图.png
 {% asset_img 截图.png 图片说明 %}
 ```
 
-已有文章也在 `source/_posts/`，直接编辑对应 `.md` 文件。主题配置位于 `themes/Fluid/_config.yml`，网站配置位于根目录的 `_config.yml`。
+已有文章也在 `source/_posts/`，直接编辑对应 `.md` 文件。外观配置位于 `source/_data/fluid_config.yml`，首页精选文章与专题文案位于 `source/_data/home.yml`，网站标题等配置位于根目录的 `_config.yml`。
+
+文章分类统一使用 `开发技术`、`网络与安全`、`工业通信`、`语言学习`；Git、HTTP、雅思词汇等具体知识点放在 `tags`。旧分类网址保留跳转，不需要修改已有文章链接。
 
 ## 本地预览
 

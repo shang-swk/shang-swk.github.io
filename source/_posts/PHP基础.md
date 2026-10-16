@@ -2,9 +2,11 @@
 updated: 2023-03-15T06:08:47.316Z
 date: 2022-08-09 13:37:00
 title: PHP基础
-categories: 前端
-tags: PHP
-excerpt: PHP
+categories: 开发技术
+tags:
+  - PHP
+  - 前端
+excerpt: 记录 PHP 的基础语法与常用操作，作为学习和查阅时的参考。
 ---
 
 

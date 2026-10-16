@@ -72,7 +72,7 @@ module.exports = (hexo) => {
       enable     : true,
       hljs       : true,
       wrap       : false,
-      auto_detect: true,
+      auto_detect: false,
       line_number: config.code.highlight.line_number || false
     });
     hexo.theme.config.code.highlight.highlightjs = objUtil.merge({}, hexo.theme.config.code.highlight.highlightjs, {

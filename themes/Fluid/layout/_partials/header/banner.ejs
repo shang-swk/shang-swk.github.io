@@ -9,19 +9,34 @@ var subtitle = page.subtitle || page.title
      style="background: url('<%- url_for(banner_img) %>') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, <%= parseFloat(banner_mask_alpha) %>)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+      <% if (page.custom_home) { %>
+      <div class="container hero-container">
+        <div class="home-hero">
+          <p class="hero-eyebrow">shang-swk 的个人博客</p>
+          <h1 id="subtitle"><%= config.title %></h1>
+          <p class="hero-intro"><%= site.data.home.intro %></p>
+          <p class="hero-description"><%= site.data.home.description %></p>
+          <div class="hero-actions">
+            <a class="hero-button hero-button-primary" href="#featured">开始阅读 <span aria-hidden="true">↗</span></a>
+            <a class="hero-button hero-button-secondary" href="<%= url_for('/about/') %>">关于我</a>
+          </div>
+        </div>
+      </div>
+      <% } else { %>
+      <div class="banner-text text-center">
+        <h1 class="banner-title">
           <% if(theme.fun_features.typing.enable && in_scope(theme.fun_features.typing.scope)) { %>
             <span id="subtitle" data-typed-text="<%= subtitle %>"></span>
           <% } else { %>
-            <span id="subtitle"><%- subtitle %></span>
+            <span id="subtitle"><%= subtitle %></span>
           <% } %>
-        </div>
+        </h1>
 
         <% if (is_post()) { %>
           <%- inject_point('postMetaTop') %>
         <% } %>
       </div>
+      <% } %>
 
       <% if (theme.scroll_down_arrow.enable && theme.scroll_down_arrow.banner_height_limit <= banner_img_height && page.layout !== '404') { %>
         <div class="scroll-down-bar">

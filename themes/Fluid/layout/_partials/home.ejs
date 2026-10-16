@@ -1,0 +1,45 @@
+<%
+const home = site.data.home
+const posts = site.posts.sort('-date').toArray()
+const featured = home.featured.map(item => ({ ...item, post: posts.find(post => post.source === item.source) })).filter(item => item.post)
+const recent = posts.filter(post => !post.categories.toArray().some(cat => cat.name === '语言学习')).slice(0, 6)
+%>
+<section id="featured" class="home-section" aria-labelledby="featured-heading">
+  <div class="section-heading"><div><p class="section-kicker">值得慢慢读</p><h2 id="featured-heading">精选文章</h2></div><a href="<%= url_for('/archives/') %>">全部 <%= site.posts.length %> 篇文章 <span aria-hidden="true">→</span></a></div>
+  <div class="featured-grid">
+    <% featured.forEach((item, index) => { %>
+    <a class="featured-card" href="<%= url_for(item.post.path) %>">
+      <div class="card-topline"><span><%= item.post.categories.first().name %></span><span class="card-number" aria-hidden="true">0<%= index + 1 %></span></div>
+      <h3><%= item.title %></h3>
+      <p><%= item.description %></p>
+      <div class="card-bottom"><time datetime="<%= date(item.post.date, 'YYYY-MM-DD') %>"><%= date(item.post.date, 'YYYY.MM.DD') %></time><span aria-hidden="true">↗</span></div>
+    </a>
+    <% }) %>
+  </div>
+</section>
+<section class="home-section" aria-labelledby="topics-heading">
+  <div class="section-heading"><div><p class="section-kicker">让知识连起来</p><h2 id="topics-heading">按主题阅读</h2></div><a href="<%= url_for('/categories/') %>">浏览专题 <span aria-hidden="true">→</span></a></div>
+  <div class="topic-grid">
+    <% home.topics.forEach(topic => { const category = site.categories.findOne({ name: topic.name }); if (!category) return; %>
+    <a class="topic-card" href="<%= url_for(category.path) %>">
+      <span class="topic-label"><%= topic.label %></span>
+      <h3><%= topic.name %></h3>
+      <p><%= topic.description %></p>
+      <span class="topic-count"><%= category.posts.length %> 篇笔记 <span aria-hidden="true">→</span></span>
+    </a>
+    <% }) %>
+  </div>
+</section>
+<section class="home-section recent-section" aria-labelledby="recent-heading">
+  <div class="section-heading"><div><p class="section-kicker">一点点积累</p><h2 id="recent-heading">近期技术笔记</h2></div><a href="<%= url_for('/archives/') %>">完整时间线 <span aria-hidden="true">→</span></a></div>
+  <div class="recent-list">
+    <% recent.forEach(post => { const summary = strip_html(post.description || post.excerpt || post.content).trim().replace(/\s+/g, ' ').slice(0, 105); %>
+    <article class="recent-item">
+      <time datetime="<%= date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, 'YYYY.MM.DD') %></time>
+      <div class="recent-content"><h3><a href="<%= url_for(post.path) %>"><%= post.title %></a></h3><p><%= summary %></p></div>
+      <a class="recent-category" href="<%= url_for(post.categories.length ? post.categories.first().path : '/archives/') %>"><%= post.categories.length ? post.categories.first().name : '本地草稿' %></a>
+    </article>
+    <% }) %>
+  </div>
+  <div class="series-note"><div><span class="section-kicker">学习也有另一面</span><p>英语学习笔记已整理成系列，按篇阅读，随时回看。</p></div><a href="<%= url_for('/categories/语言学习/') %>">查看词汇系列 <span aria-hidden="true">→</span></a></div>
+</section>

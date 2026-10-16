@@ -2,8 +2,10 @@
 updated: 2023-03-15T06:08:12.249Z
 date: 2022-08-09 01:55:00
 title: Modbus RTU通讯协议
-categories: Modbus
-tags: Modbus RTU
+categories: 工业通信
+tags:
+  - Modbus RTU
+  - Modbus
 excerpt: Modbus RTU
 ---
 

@@ -2,9 +2,11 @@
 updated: 2022-08-09T03:40:06.651Z
 date: 2022-08-09 13:37:00
 title:  HTML的一些简单语法
-categories: 前端
-tags: HTML
-excerpt: HTML
+categories: 开发技术
+tags:
+  - HTML
+  - 前端
+excerpt: 从页面结构和常用标签开始，整理表单、图片、表格与列表的基础语法。
 ---
 
 

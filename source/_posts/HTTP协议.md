@@ -2,8 +2,9 @@
 updated: 2023-03-15T06:11:47.567Z
 date: 2022-08-09 01:55:00
 title: HTTP通讯协议
-categories: HTTP
-tags: HTTP
+categories: 网络与安全
+tags:
+  - HTTP
 excerpt: HTTP
 ---
 

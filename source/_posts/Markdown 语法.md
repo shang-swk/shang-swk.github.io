@@ -2,8 +2,9 @@
 updated: 2023-03-15T06:07:51.896Z
 date: 2022-07-04 19:44:00
 title: 一些基本Markdown语法
-categories: Markdown
-tags: Markdown
+categories: 开发技术
+tags:
+  - Markdown
 excerpt: markdown命令
 ---
 

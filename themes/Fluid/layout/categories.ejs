@@ -5,15 +5,18 @@ page.subtitle = theme.category.subtitle || __('category.subtitle')
 page.banner_img = theme.category.banner_img
 page.banner_img_height = theme.category.banner_img_height
 page.banner_mask_alpha = theme.category.banner_mask_alpha
-var orderBy = theme.category.order_by || 'name'
-var curCats = site.categories.find({ parent: { $exists: false } }).sort(orderBy).filter(cat => cat.length)
 %>
-
-<%- partial('_partials/category-list', {
-  curCats: curCats,
-  params: {
-    orderBy: orderBy,
-    postLimit  : theme.category.post_limit,
-    postOrderBy: theme.category.post_order_by || config.index_generator.order_by
-  }
-}) %>
+<div class="topics-intro"><p class="section-kicker">TOPICS</p><h2>找到你感兴趣的方向</h2><p>按主题整理的学习记录。具体工具与知识点，也可以通过<a href="<%= url_for('/tags/') %>">标签</a>查找。</p></div>
+<div class="topic-directory">
+<% site.data.home.topics.forEach(topic => { const category = site.categories.findOne({ name: topic.name }); if (!category) return; %>
+<section class="topic-directory-card">
+  <div class="card-topline"><span class="topic-label"><%= topic.label %></span><span class="topic-count"><%= category.posts.length %> 篇</span></div>
+  <h2><a href="<%= url_for(category.path) %>"><%= topic.name %> <span aria-hidden="true">↗</span></a></h2>
+  <p><%= topic.description %></p>
+  <ul>
+    <% category.posts.sort('-date').limit(3).each(post => { %><li><a href="<%= url_for(post.path) %>"><%= post.title %></a></li><% }) %>
+  </ul>
+  <a class="directory-more" href="<%= url_for(category.path) %>">阅读全部 <%= category.posts.length %> 篇 <span aria-hidden="true">→</span></a>
+</section>
+<% }) %>
+</div>

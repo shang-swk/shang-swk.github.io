@@ -2,9 +2,11 @@
 updated: 2023-03-15T06:07:06.694Z
 date: 2022-08-09 13:37:00
 title: JavaScript基础
-categories: 前端
-tags: JS
-excerpt: js
+categories: 开发技术
+tags:
+  - JS
+  - 前端
+excerpt: 从变量、作用域与数据类型，到函数、对象和原型，梳理 JavaScript 基础。
 ---
 
 

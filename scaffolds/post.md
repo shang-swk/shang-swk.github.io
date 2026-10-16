@@ -1,7 +1,7 @@
 ---
 title: {{ title }}
 date: {{ date }}
-categories:
+categories: 开发技术
 tags:
 excerpt: ""
 ---

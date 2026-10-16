@@ -9,4 +9,13 @@ page.banner_mask_alpha = theme.category.banner_mask_alpha
 var cat = site.categories.find({name: page.category}).filter(cat => cat.length).data[0]
 %>
 
+<% if (page.category === '语言学习' && page.current === 1 && cat) { %>
+<div class="topics-intro"><p class="section-kicker">循序渐进，随时回看</p><h2>雅思词汇学习笔记</h2><p>按学习顺序整理的 <%= cat.posts.length %> 篇记录，从第一篇开始，也可以选择要复习的部分。</p></div>
+<ol class="learning-series">
+  <% cat.posts.sort('date').each((post, index) => { %>
+  <li><a href="<%= url_for(post.path) %>"><span class="series-number" aria-hidden="true"><%= String(index + 1).padStart(2, '0') %></span><div><h3><%= post.title %></h3><p><%= strip_html(post.excerpt || '').trim() %></p></div><span aria-hidden="true">→</span></a></li>
+  <% }) %>
+</ol>
+<% } else { %>
 <%- partial('_partials/archive-list.ejs', { params: { key: page.layout, postTotal: cat ? cat.posts.length : 0 } }) %>
+<% } %>

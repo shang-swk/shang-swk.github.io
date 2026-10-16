@@ -2,9 +2,11 @@
 updated: 2023-03-15T06:06:42.315Z
 date: 2022-08-09 13:37:00
 title:  DIV CSS基础
-categories: 前端
-tags: DIV CSS
-excerpt: css 
+categories: 开发技术
+tags:
+  - DIV CSS
+  - 前端
+excerpt: 整理样式选择器、盒模型、浮动与定位，理解网页布局和样式的基础。
 ---
 
 

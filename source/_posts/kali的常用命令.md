@@ -2,9 +2,11 @@
 updated: 2023-03-15T06:07:27.740Z
 date: 2022-08-09 13:37:00
 title: Kali常用命令
-categories: web安全
-tags: kali
-excerpt: kali命令
+categories: 网络与安全
+tags:
+  - kali
+  - web安全
+excerpt: 整理文件操作、系统信息、用户权限与网络配置等常用 Linux 命令。
 ---
 
 

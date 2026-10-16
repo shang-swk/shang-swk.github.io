@@ -8,7 +8,8 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
 
 <%- partial('_partials/head.ejs') %>
 
-<body>
+<body class="<%= page.custom_home ? 'home-page' : (is_post() ? 'post-page' : 'inner-page') %>">
+  <a class="skip-link" href="#board">跳到正文</a>
   <%- inject_point('bodyBegin') %>
 
   <header>
@@ -16,7 +17,9 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
   </header>
 
   <main>
-    <% if(is_post() || page.layout === '404') { %>
+    <% if (page.custom_home) { %>
+      <div class="container home-shell"><div id="board" class="home-board"><%- body %></div></div>
+    <% } else if(is_post() || page.layout === '404') { %>
       <%- body %>
     <% } else { %>
       <div class="container nopadding-x-md">
@@ -39,7 +42,7 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
     <% } %>
 
     <% if (theme.scroll_top_arrow.enable) { %>
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <a id="scroll-top-button" aria-label="返回顶部" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     <% } %>
@@ -71,7 +74,4 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
   </noscript>
 </body>
 </html>
-<!--动态线条背景-->
-<script type="text/javascript"
-color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
 

@@ -2,8 +2,10 @@
 updated: 2023-03-15T06:08:27.956Z
 date: 2022-08-09 01:55:00
 title: Modbus TCP通讯协议
-categories: Modbus
-tags: Modbus TCP
+categories: 工业通信
+tags:
+  - Modbus TCP
+  - Modbus
 excerpt: Modbus TCP
 ---
 

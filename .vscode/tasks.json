@@ -2,25 +2,53 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "博客：本地预览",
+      "label": "博客：新建文章",
       "type": "shell",
-      "command": "bash scripts/preview.sh",
-      "options": { "cwd": "${workspaceFolder}" },
+      "command": "npm",
+      "args": [
+        "run",
+        "new",
+        "--",
+        "${input:postTitle}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": []
     },
     {
-      "label": "博客：拉取云端更新",
+      "label": "博客：本地预览（含草稿）",
       "type": "shell",
-      "command": "git pull --ff-only",
-      "options": { "cwd": "${workspaceFolder}" },
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "博客：拉取源码更新",
+      "type": "shell",
+      "command": "npm run sync",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": []
     },
     {
       "label": "博客：发布到 GitHub",
       "type": "shell",
-      "command": "bash scripts/publish.sh",
-      "options": { "cwd": "${workspaceFolder}" },
+      "command": "npm run publish",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "postTitle",
+      "type": "promptString",
+      "description": "输入文章标题"
     }
   ]
 }

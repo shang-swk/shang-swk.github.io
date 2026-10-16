@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-04",
+  "records": 11,
+  "failures": [
+    "Error: 403 https://www.toddsnyder.com/collections/new-balance/products.json?limit=250&page=1",
+    "Error: 404 https://kith.com/products/nbu990kt3.js",
+    "Error: 404 https://kith.com/products/nbu990tk4.js",
+    "Error: 404 https://kith.com/products/nbu992ki.js",
+    "Error: 404 https://kith.com/products/nbu993hk.js",
+    "Error: 404 https://kith.com/products/nbu201130y-ph.js",
+    "Error: 404 https://kith.com/products/nbu20118v9-ph.js"
+  ]
+}

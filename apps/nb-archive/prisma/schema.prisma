@@ -1,0 +1,463 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ModelFamily {
+  NINETY_NINE_X
+  ONE_THOUSAND
+}
+
+enum VerificationStatus {
+  draft
+  imported
+  unverified
+  needs_source
+  partially_verified
+  verified
+  published
+  deprecated
+  duplicate
+}
+
+enum RarityLevel {
+  general
+  limited
+  very_limited
+  friends_and_family
+  sample
+  unknown
+}
+
+enum SneakerStatus {
+  released
+  rumored
+  upcoming
+  cancelled
+  archived
+}
+
+enum ReleaseType {
+  raffle
+  online
+  in_store
+  global
+}
+
+enum SourceType {
+  official
+  retailer
+  magazine
+  resale
+  social
+  community
+  unknown
+}
+
+enum OwnershipStatus {
+  owned
+  wanted
+  sold
+  watching
+}
+
+enum SubmissionStatus {
+  pending
+  approved
+  rejected
+  needs_review
+}
+
+enum VerificationTaskStatus {
+  open
+  in_progress
+  resolved
+  ignored
+}
+
+enum ImportStatus {
+  success
+  partial
+  failed
+}
+
+model User {
+  id              String           @id @default(cuid())
+  name            String?
+  email           String?          @unique
+  image           String?
+  role            String           @default("user")
+  collectionItems CollectionItem[]
+  submissions     UserSubmission[]
+  changeLogs      ChangeLog[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model Brand {
+  id                   String          @id @default(cuid())
+  name                 String          @unique
+  slug                 String          @unique
+  logoUrl              String?
+  country              String?
+  description          String?
+  collaborationHistory String?
+  officialWebsite      String?
+  instagram            String?
+  collaborations       Collaboration[]
+  sneakers             Sneaker[]
+  articles             Article[]
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+}
+
+model ModelSeries {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  slug        String      @unique
+  family      ModelFamily
+  releaseYear Int?
+  description String?
+  features    String?
+  madeInNotes String?
+  sneakers    Sneaker[]
+  articles    Article[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Collaboration {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  brandId     String
+  description String?
+  startYear   Int?
+  endYear     Int?
+  brand       Brand      @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  sneakers    Sneaker[]
+  designers   Designer[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([brandId])
+}
+
+model Designer {
+  id             String          @id @default(cuid())
+  name           String
+  slug           String          @unique
+  bio            String?
+  country        String?
+  instagram      String?
+  collaborations Collaboration[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model Sneaker {
+  id                 String             @id @default(cuid())
+  name               String
+  slug               String             @unique
+  brandId            String
+  modelSeriesId      String
+  collaborationId    String?
+  sku                String?
+  nickname           String?
+  colorway           String?
+  releaseDate        DateTime?
+  releaseYear        Int?
+  retailPrice        Decimal?           @db.Decimal(10, 2)
+  currency           String?
+  region             String?
+  madeIn             String?
+  materialsText      String?
+  story              String?
+  designInspiration  String?
+  culturalContext    String?
+  rarityLevel        RarityLevel        @default(unknown)
+  status             SneakerStatus      @default(released)
+  verificationStatus VerificationStatus @default(unverified)
+  heroImageUrl       String?
+  officialSourceUrl  String?
+  referenceUrls      Json?
+  colorFamily        String?
+  verified           Boolean            @default(false)
+  brand              Brand              @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  modelSeries        ModelSeries        @relation(fields: [modelSeriesId], references: [id], onDelete: Cascade)
+  collaboration      Collaboration?     @relation(fields: [collaborationId], references: [id], onDelete: SetNull)
+  images             SneakerImage[]
+  releases           Release[]
+  sources            Source[]
+  sneakerTags        SneakerTag[]
+  colorPalettes      ColorPalette[]
+  sneakerMaterials   SneakerMaterial[]
+  collectionItems    CollectionItem[]
+  verificationTasks  VerificationTask[]
+  changeLogs         ChangeLog[]
+  marketListings     MarketListing[]
+  priceSnapshots     PriceSnapshot[]
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  @@index([brandId])
+  @@index([modelSeriesId])
+  @@index([collaborationId])
+  @@index([sku])
+  @@index([releaseDate])
+  @@index([releaseYear])
+  @@index([verificationStatus])
+}
+
+model SneakerImage {
+  id            String   @id @default(cuid())
+  sneakerId     String
+  imageUrl      String?
+  alt           String
+  source        String?
+  sourceUrl     String?
+  photographer  String?
+  copyrightNote String?
+  sortOrder     Int      @default(0)
+  sneaker       Sneaker  @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([sneakerId])
+}
+
+model Release {
+  id          String      @id @default(cuid())
+  sneakerId   String
+  releaseType ReleaseType
+  releaseDate DateTime?
+  storeName   String?
+  storeUrl    String?
+  country     String?
+  notes       String?
+  sneaker     Sneaker     @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([sneakerId])
+}
+
+model Source {
+  id               String     @id @default(cuid())
+  sneakerId        String
+  title            String
+  url              String
+  sourceType       SourceType @default(unknown)
+  reliabilityScore Int?
+  publishedAt      DateTime?
+  archivedAt       DateTime?
+  notes            String?
+  sneaker          Sneaker    @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  @@index([sneakerId])
+}
+
+model Tag {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  slug        String       @unique
+  sneakerTags SneakerTag[]
+  articles    Article[]
+}
+
+model SneakerTag {
+  sneakerId String
+  tagId     String
+  sneaker   Sneaker @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([sneakerId, tagId])
+}
+
+model ColorPalette {
+  id        String   @id @default(cuid())
+  sneakerId String
+  name      String?
+  hex       String
+  sortOrder Int      @default(0)
+  sneaker   Sneaker  @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([sneakerId])
+}
+
+model Material {
+  id               String            @id @default(cuid())
+  name             String            @unique
+  slug             String            @unique
+  description      String?
+  sneakerMaterials SneakerMaterial[]
+}
+
+model SneakerMaterial {
+  sneakerId  String
+  materialId String
+  placement  String?
+  notes      String?
+  material   Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+  sneaker    Sneaker  @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+
+  @@id([sneakerId, materialId])
+}
+
+model CollectionItem {
+  id              String          @id @default(cuid())
+  userId          String
+  sneakerId       String
+  ownershipStatus OwnershipStatus @default(watching)
+  size            String?
+  condition       String?
+  purchasePrice   Decimal?        @db.Decimal(10, 2)
+  purchaseDate    DateTime?
+  platform        String?
+  notes           String?
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sneaker         Sneaker         @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@unique([userId, sneakerId, ownershipStatus])
+  @@index([userId])
+  @@index([sneakerId])
+}
+
+model UserSubmission {
+  id            String           @id @default(cuid())
+  userId        String?
+  sneakerName   String
+  brand         String?
+  model         String?
+  sku           String?
+  sourceUrl     String
+  description   String?
+  imageUrl      String?
+  submitterNote String?
+  status        SubmissionStatus @default(pending)
+  reviewerNote  String?
+  user          User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@index([status])
+}
+
+model VerificationTask {
+  id          String                 @id @default(cuid())
+  sneakerId   String?
+  title       String
+  description String?
+  status      VerificationTaskStatus @default(open)
+  priority    Int                    @default(2)
+  dueDate     DateTime?
+  sneaker     Sneaker?               @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+
+  @@index([status])
+  @@index([sneakerId])
+}
+
+model ChangeLog {
+  id        String   @id @default(cuid())
+  sneakerId String?
+  userId    String?
+  action    String
+  before    Json?
+  after     Json?
+  notes     String?
+  sneaker   Sneaker? @relation(fields: [sneakerId], references: [id], onDelete: SetNull)
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+
+  @@index([sneakerId])
+  @@index([userId])
+}
+
+model Article {
+  id            String       @id @default(cuid())
+  title         String
+  slug          String       @unique
+  excerpt       String?
+  content       String?
+  heroImageUrl  String?
+  publishedAt   DateTime?
+  brandId       String?
+  modelSeriesId String?
+  brand         Brand?       @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  modelSeries   ModelSeries? @relation(fields: [modelSeriesId], references: [id], onDelete: SetNull)
+  tags          Tag[]
+  rankings      Ranking[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model Ranking {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  articleId   String?
+  criteria    String?
+  article     Article? @relation(fields: [articleId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model MarketListing {
+  id         String          @id @default(cuid())
+  sneakerId  String
+  platform   String
+  url        String
+  size       String?
+  askPrice   Decimal?        @db.Decimal(10, 2)
+  currency   String?
+  condition  String?
+  capturedAt DateTime        @default(now())
+  sneaker    Sneaker         @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  snapshots  PriceSnapshot[]
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  @@index([sneakerId])
+}
+
+model PriceSnapshot {
+  id              String         @id @default(cuid())
+  sneakerId       String
+  marketListingId String?
+  platform        String
+  size            String?
+  price           Decimal        @db.Decimal(10, 2)
+  currency        String
+  capturedAt      DateTime       @default(now())
+  sneaker         Sneaker        @relation(fields: [sneakerId], references: [id], onDelete: Cascade)
+  marketListing   MarketListing? @relation(fields: [marketListingId], references: [id], onDelete: SetNull)
+
+  @@index([sneakerId])
+  @@index([marketListingId])
+}
+
+model ImportLog {
+  id           String       @id @default(cuid())
+  fileName     String?
+  sourceType   String
+  status       ImportStatus
+  totalRows    Int          @default(0)
+  importedRows Int          @default(0)
+  skippedRows  Int          @default(0)
+  errorRows    Int          @default(0)
+  report       Json?
+  createdAt    DateTime     @default(now())
+}

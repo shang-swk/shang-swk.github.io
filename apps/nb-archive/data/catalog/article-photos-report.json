@@ -1,0 +1,14 @@
+{
+  "records": 19,
+  "errors": [
+    "Error: 429 https://www.aimeleondore.com/collections/ald-new-balance-991-capsule-collection",
+    "Error: Image size outside range: https://cncpts.com/",
+    "Error: Image size outside range: https://cncpts.com/",
+    "TypeError: fetch failed",
+    "Error: No image: https://strayrats.com/",
+    "Error: 403 https://www.solezilla.com/new-balance/new-balance-997/new-balance-997-5-tassie-tiger-sneaker-freaker-ml997hsf/",
+    "Error: No image: https://www.sneakerfreaker.com/",
+    "Error: No image: https://www.levi.com/",
+    "Error: 403 https://news.solesavy.com/jjjjound-new-balance-992-grey-releasing-july-24th-green-on-july-31st/"
+  ]
+}

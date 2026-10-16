@@ -1,0 +1,478 @@
+[
+  {
+    "name": "Aime Leon Dore x New Balance 991 Made in UK",
+    "brand": "Aime Leon Dore",
+    "modelSeries": "991",
+    "sku": null,
+    "releaseDate": "2022-06-03",
+    "madeIn": "UK",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.aimeleondore.com/collections/ald-new-balance-991-capsule-collection",
+      "https://www.sneakerfiles.com/aime-leon-dore-new-balance-991-release-date-info/"
+    ],
+    "photoSourcePageUrl": "https://www.sneakerfiles.com/aime-leon-dore-new-balance-991-release-date-info/",
+    "imageRightsNote": "Use as research lead only. Do not hotlink; request permission or replace with owned product photography."
+  },
+  {
+    "name": "Aime Leon Dore x New Balance 993",
+    "brand": "Aime Leon Dore",
+    "modelSeries": "993",
+    "sku": null,
+    "releaseDate": null,
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://www.aimeleondore.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Kith x New Balance 990v2 Cyclades",
+    "brand": "Kith",
+    "modelSeries": "990v2",
+    "sku": null,
+    "releaseDate": null,
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://kith.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Kith x New Balance Made in USA 99X Series",
+    "brand": "Kith",
+    "modelSeries": "990v3 / 990v4 / 992 / 993",
+    "sku": null,
+    "releaseDate": "2026-05",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://www.designscene.net/2026/05/kith-x-new-balance-99x-series.html"],
+    "photoSourcePageUrl": "https://www.designscene.net/2026/05/kith-x-new-balance-99x-series.html",
+    "imageRightsNote": "Research lead from editorial coverage. Confirm with Kith/New Balance before use."
+  },
+  {
+    "name": "Joe Freshgoods x New Balance 1000 Pink Mink",
+    "brand": "Joe Freshgoods",
+    "modelSeries": "1000",
+    "sku": "M1000JG1",
+    "releaseDate": "2024-04-08",
+    "madeIn": null,
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/sneakers/joe-freshgoods-x-1000-pink-mink-m1000jg1",
+      "https://essentialhomme.fr/joe-freshgoods-new-balance-1000-collaboration/"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/joe-freshgoods-x-1000-pink-mink-m1000jg1",
+    "candidateImageUrls": [
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/100/501/660/original/1402471_01.jpg.jpeg?action=crop&width=750"
+    ],
+    "imageRightsNote": "Marketplace/editorial images are not licensed for reuse by default."
+  },
+  {
+    "name": "Joe Freshgoods x New Balance 1000 Black Ice",
+    "brand": "Joe Freshgoods",
+    "modelSeries": "1000",
+    "sku": null,
+    "releaseDate": "2024-04",
+    "madeIn": null,
+    "verificationStatus": "unverified",
+    "sourceUrls": [
+      "https://essentialhomme.fr/joe-freshgoods-new-balance-1000-collaboration/",
+      "https://solesavy.com/news-joe-freshgoods-new-balance-1000-pink-mink-black-ice/"
+    ],
+    "photoSourcePageUrl": "https://essentialhomme.fr/joe-freshgoods-new-balance-1000-collaboration/",
+    "imageRightsNote": "Research lead only; verify SKU and rights."
+  },
+  {
+    "name": "Bodega x New Balance 990v3 Here to Stay",
+    "brand": "Bodega",
+    "modelSeries": "990v3",
+    "sku": null,
+    "releaseDate": "2021-06",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://bdgastore.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Concepts x New Balance 997 Luxury Goods",
+    "brand": "Concepts",
+    "modelSeries": "997",
+    "sku": null,
+    "releaseDate": "2014",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://cncpts.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Concepts x New Balance 998 C-Note 10th Anniversary",
+    "brand": "Concepts",
+    "modelSeries": "998",
+    "sku": "U998CN",
+    "releaseDate": "2023-10-05",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://sneakernews.com/2023/09/26/concepts-new-balance-998-old-money-c-note-2023-release-info/",
+      "https://www.goat.com/sneakers/concepts-x-998-made-in-usa-esruc-u998cn"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/concepts-x-998-made-in-usa-esruc-u998cn",
+    "imageRightsNote": "Editorial images are not licensed for reuse by default."
+  },
+  {
+    "name": "Concepts x New Balance 999 Kennedy",
+    "brand": "Concepts",
+    "modelSeries": "999",
+    "sku": null,
+    "releaseDate": "2011",
+    "madeIn": null,
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://cncpts.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "JJJJound x New Balance 990v3 Brown Black",
+    "brand": "JJJJound",
+    "modelSeries": "990v3",
+    "sku": "M990JJ3",
+    "releaseDate": "2022-05-12",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": ["https://stockx.com/new-balance-990v3-jjjjound-brown-black"],
+    "photoSourcePageUrl": "https://stockx.com/new-balance-990v3-jjjjound-brown-black",
+    "imageRightsNote": "Marketplace images are not licensed for reuse by default."
+  },
+  {
+    "name": "JJJJound x New Balance 990v4 Navy",
+    "brand": "JJJJound",
+    "modelSeries": "990v4",
+    "sku": null,
+    "releaseDate": "2021",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://www.jjjjound.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "WTAPS x New Balance 992",
+    "brand": "WTAPS",
+    "modelSeries": "992",
+    "sku": null,
+    "releaseDate": "2020-05",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://www.wtaps.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Stray Rats x New Balance 991 Made in UK",
+    "brand": "Stray Rats",
+    "modelSeries": "991",
+    "sku": "M991SRG",
+    "releaseDate": "2021-12-10",
+    "madeIn": "UK",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.soleretriever.com/news/articles/where-to-buy-stray-rats-new-balance-991",
+      "https://www.deadstock.de/en/sneaker-releases/stray-rats-new-balance-991-brown-purple",
+      "https://www.goat.com/en-gb/sneakers/stray-rats-x-991-made-in-england-brown-purple-stray-rats-991-bwn"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/en-gb/sneakers/stray-rats-x-991-made-in-england-brown-purple-stray-rats-991-bwn",
+    "imageRightsNote": "Retail/editorial image source; verify rights before reuse."
+  },
+  {
+    "name": "Stray Rats x New Balance 990v3",
+    "brand": "Stray Rats",
+    "modelSeries": "990v3",
+    "sku": null,
+    "releaseDate": "2019",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://strayrats.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Sneaker Freaker x New Balance 997.5 Tassie Tiger",
+    "brand": "Sneaker Freaker",
+    "modelSeries": "997.5",
+    "sku": "ML997HSF",
+    "releaseDate": "2016",
+    "madeIn": null,
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.solezilla.com/new-balance/new-balance-997/new-balance-997-5-tassie-tiger-sneaker-freaker-ml997hsf/",
+      "https://www.j-01.com/blogs/sneakers/2016-07-24-new-balance-9975-x-sneaker-freaker"
+    ],
+    "photoSourcePageUrl": "https://www.solezilla.com/new-balance/new-balance-997/new-balance-997-5-tassie-tiger-sneaker-freaker-ml997hsf/",
+    "imageRightsNote": "Marketplace/editorial images are not licensed for reuse by default."
+  },
+  {
+    "name": "Sneaker Freaker x New Balance 998 Tassie Devil",
+    "brand": "Sneaker Freaker",
+    "modelSeries": "998",
+    "sku": null,
+    "releaseDate": "2012",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://www.sneakerfreaker.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Levi's x New Balance 990v3",
+    "brand": "Levi's",
+    "modelSeries": "990v3",
+    "sku": null,
+    "releaseDate": "2021",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": ["https://www.levi.com/", "https://www.newbalance.com/"],
+    "photoSourcePageUrl": null,
+    "imageRightsNote": "Needs manual photo/source verification."
+  },
+  {
+    "name": "Aime Leon Dore x New Balance 993 Beef & Broccoli",
+    "brand": "Aime Leon Dore",
+    "modelSeries": "993",
+    "sku": "MR993ALD",
+    "releaseDate": null,
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/sneakers/aime-leon-dore-x-993-made-in-usa-brown-m993ald-brn",
+      "https://stockx.com/en-gb/new-balance-993-aime-leon-dore-brown"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/aime-leon-dore-x-993-made-in-usa-brown-m993ald-brn",
+    "candidateImageUrls": [
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/063/600/009/original/847992_01.jpg.jpeg?action=crop&width=750"
+    ],
+    "imageRightsNote": "GOAT/StockX images are marketplace reference only; do not hotlink or republish without permission."
+  },
+  {
+    "name": "Kith x New Balance 993 Made in USA Pistachio",
+    "brand": "Kith",
+    "modelSeries": "993",
+    "sku": "MR993KH1",
+    "releaseDate": "2022-11-23",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/sneakers/kith-x-993-made-in-usa-pistachio-mr993kh1?sizing=7.0",
+      "https://stockx.com/new-balance-993-miusa-kith-pistachio",
+      "https://kith.com/blogs/kith/kith-for-new-balance-993-2002r-pistachio"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/kith-x-993-made-in-usa-pistachio-mr993kh1?sizing=7.0",
+    "imageRightsNote": "Marketplace and Kith editorial images require rights review before use."
+  },
+  {
+    "name": "Kith x New Balance 993 Made in USA Spring 101",
+    "brand": "Kith",
+    "modelSeries": "993",
+    "sku": "MR993KT1",
+    "releaseDate": null,
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://stockx.com/new-balance-993-miusa-kith-spring-101"
+    ],
+    "photoSourcePageUrl": "https://stockx.com/new-balance-993-miusa-kith-spring-101",
+    "imageRightsNote": "StockX page is a photo/source lead only."
+  },
+  {
+    "name": "Kith x United Arrows & Sons x New Balance 990v4 Made in USA",
+    "brand": "Kith",
+    "modelSeries": "990v4",
+    "sku": "M990KT4",
+    "releaseDate": "2022-07-15",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://stockx.com/en-gb/new-balance-990v4-kith-united-arrowssons",
+      "https://www.goat.com/sneakers/kith-x-united-arrows-sons-x-990v4-made-in-usa-m990kti",
+      "https://www.nicekicks.com/kith-x-new-balance-990v4-united-arrows-sons/"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/kith-x-united-arrows-sons-x-990v4-made-in-usa-m990kti",
+    "imageRightsNote": "Use as research lead only; verify image rights with Kith/New Balance/photographer."
+  },
+  {
+    "name": "Joe Freshgoods x New Balance 990v3 Outside Clothes",
+    "brand": "Joe Freshgoods",
+    "modelSeries": "990v3",
+    "sku": "M990JG3",
+    "releaseDate": "2021-09-10",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/en-ca/sneakers/joe-freshgoods-x-990v3-outside-clothes-joe-990v3",
+      "https://stockx.com/de-de/new-balance-990v3-joe-freshgoods-outside-clothes",
+      "https://www.kickscrew.com/products/new-balance-joe-freshgoods-x-990-v3-outside-clothes-m990jg3"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/en-ca/sneakers/joe-freshgoods-x-990v3-outside-clothes-joe-990v3",
+    "imageRightsNote": "GOAT/KicksCrew/StockX images are marketplace references only."
+  },
+  {
+    "name": "Joe Freshgoods x New Balance 993 Performance Art Powder Pink",
+    "brand": "Joe Freshgoods",
+    "modelSeries": "993",
+    "sku": "MR993JH1",
+    "releaseDate": "2022-10-17",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/sneakers/joe-freshgoods-x-993-made-in-usa-performance-art-powder-pink-jfg-993-pink",
+      "https://stockx.com/new-balance-993-joe-freshgoods-performance-art-powder-pink"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/joe-freshgoods-x-993-made-in-usa-performance-art-powder-pink-jfg-993-pink",
+    "imageRightsNote": "GOAT/StockX images are not licensed for reuse by default."
+  },
+  {
+    "name": "Joe Freshgoods x New Balance 993 Performance Art Arctic Blue",
+    "brand": "Joe Freshgoods",
+    "modelSeries": "993",
+    "sku": "MR993JF1",
+    "releaseDate": "2022-10-21",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/sneakers/joe-freshgoods-x-993-made-in-usa-performance-art-arctic-blue-jfg-993-blue",
+      "https://stockx.com/new-balance-993-joe-freshgoods-performance-art-arctic-blue",
+      "https://www.nicekicks.com/joe-freshgoods-new-balance-993-arctic-blue-mr993jf1/"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/joe-freshgoods-x-993-made-in-usa-performance-art-arctic-blue-jfg-993-blue",
+    "imageRightsNote": "Marketplace/editorial image rights need manual clearance."
+  },
+  {
+    "name": "Joe Freshgoods x New Balance 993 Performance Art Sage",
+    "brand": "Joe Freshgoods",
+    "modelSeries": "993",
+    "sku": "MR993JG1",
+    "releaseDate": "2022-10",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://stockx.com/brands/joe-freshgoods?category=sneakers&model=993",
+      "https://www.soleretriever.com/news/articles/joe-freshgoods-new-balance-993-performance-art-pink-olive-release-date-2022"
+    ],
+    "photoSourcePageUrl": "https://stockx.com/brands/joe-freshgoods?category=sneakers&model=993",
+    "imageRightsNote": "Source confirms product family; verify exact product page and image rights."
+  },
+  {
+    "name": "Joe Freshgoods x New Balance 990v4 1998 Keisha Blue",
+    "brand": "Joe Freshgoods",
+    "modelSeries": "990v4",
+    "sku": "U990JO4",
+    "releaseDate": "2023-12-15",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://stockx.com/new-balance-990v4-miusa-joe-freshgoods-keisha-blue"
+    ],
+    "photoSourcePageUrl": "https://stockx.com/new-balance-990v4-miusa-joe-freshgoods-keisha-blue",
+    "imageRightsNote": "StockX page is a photo/source lead only."
+  },
+  {
+    "name": "Salehe Bembury x New Balance 990v2 Sand Be The Time",
+    "brand": "Salehe Bembury",
+    "modelSeries": "990v2",
+    "sku": "M990SB2",
+    "releaseDate": "2022-12-08",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/en-gb/sneakers/salehe-bembury-x-990v2-made-in-usa-salehe-990v2",
+      "https://stockx.com/en-gb/new-balance-990v2-salehe-bembury-sand-be-the-time",
+      "https://sneakernews.com/2022/12/13/salehe-bembury-new-balance-990v2-sand-be-the-time-m990sb2/"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/en-gb/sneakers/salehe-bembury-x-990v2-made-in-usa-salehe-990v2",
+    "candidateImageUrls": [
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/082/302/353/original/994811_01.jpg.jpeg?action=crop&width=750"
+    ],
+    "imageRightsNote": "Marketplace/editorial image rights need manual clearance."
+  },
+  {
+    "name": "JJJJound x New Balance 992 Made in USA Grey",
+    "brand": "JJJJound",
+    "modelSeries": "992",
+    "sku": "M992J2",
+    "releaseDate": "2020-07-31",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/sneakers/jjjjound-x-992-m992jjjjound/",
+      "https://stockx.com/en-gb/new-balance-992-jjjjound",
+      "https://news.solesavy.com/jjjjound-new-balance-992-grey-releasing-july-24th-green-on-july-31st/"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/jjjjound-x-992-m992jjjjound/",
+    "candidateImageUrls": [
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/083/391/749/original/641295_01.jpg.jpeg?action=crop&width=750"
+    ],
+    "imageRightsNote": "GOAT/StockX images are marketplace references only."
+  },
+  {
+    "name": "JJJJound x New Balance 992 Made in USA Green",
+    "brand": "JJJJound",
+    "modelSeries": "992",
+    "sku": "M992JJ",
+    "releaseDate": "2020-07-31",
+    "madeIn": "USA",
+    "verificationStatus": "unverified",
+    "sourceUrls": [
+      "https://news.solesavy.com/jjjjound-new-balance-992-grey-releasing-july-24th-green-on-july-31st/",
+      "https://www.solezilla.com/new-balance/sneaker/new-balance-x-jjjjound-992-green-2020-m992jj/"
+    ],
+    "photoSourcePageUrl": "https://www.solezilla.com/new-balance/sneaker/new-balance-x-jjjjound-992-green-2020-m992jj/",
+    "imageRightsNote": "Needs stronger source verification and image-rights review."
+  },
+  {
+    "name": "Action Bronson x New Balance 990v6 Baklava",
+    "brand": "Action Bronson",
+    "modelSeries": "990v6",
+    "sku": "M990AB6",
+    "releaseDate": "2023-03-17",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.nicekicks.com/action-bronson-x-new-balance-990v6-baklava-m990ab6/",
+      "https://stockx.com/en-gb/6ed22acd-66d6-4884-a50f-6660d4fea38c"
+    ],
+    "photoSourcePageUrl": "https://www.nicekicks.com/action-bronson-x-new-balance-990v6-baklava-m990ab6/",
+    "imageRightsNote": "Editorial/social images include photographer or social-source credits; verify before reuse."
+  },
+  {
+    "name": "Action Bronson x New Balance 990v6 Lapis Lazuli",
+    "brand": "Action Bronson",
+    "modelSeries": "990v6",
+    "sku": "M990AC6",
+    "releaseDate": null,
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.nicekicks.com/action-bronson-new-balance-990v6-lapis-lazuli-m990ac6/",
+      "https://www.deadstock.de/sneaker-releases/action-bronson-new-balance-990v6-lapis-lazuli-m990ac6"
+    ],
+    "photoSourcePageUrl": "https://www.deadstock.de/sneaker-releases/action-bronson-new-balance-990v6-lapis-lazuli-m990ac6",
+    "imageRightsNote": "Retail/editorial images require manual clearance."
+  },
+  {
+    "name": "AURALEE x New Balance 990v4 Made in USA London Fog",
+    "brand": "Auralee",
+    "modelSeries": "990v4",
+    "sku": "U990AR4",
+    "releaseDate": "2024",
+    "madeIn": "USA",
+    "verificationStatus": "partially_verified",
+    "sourceUrls": [
+      "https://www.goat.com/sneakers/auralee-x-990v4-made-in-usa-grey-u990ar4",
+      "https://stockx.com/new-balance-990v4-miusa-auralee-grey"
+    ],
+    "photoSourcePageUrl": "https://www.goat.com/sneakers/auralee-x-990v4-made-in-usa-grey-u990ar4",
+    "imageRightsNote": "Marketplace images are reference-only until rights are cleared."
+  }
+]

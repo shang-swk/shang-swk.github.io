@@ -121,3 +121,9 @@ git config --local http.https://github.com/.proxy ''
 ```
 
 这份项目沿用旧站版本以恢复原貌；`npm run deploy` 和`bash bin/publish.sh` 也会调用上述发布流程。
+
+## NB Archive 项目网站
+
+博客的“项目”入口链接到 `/projects/`，档案站位于 `/nb-archive/`。发布副本源码在 `apps/nb-archive/`，原项目 `/Users/kevin/Documents/newbalance 网站` 保持不变。
+
+`npm run build` 和 `npm run publish` 会一并构建这个 Next.js 静态网站。它保留档案浏览、筛选、对比和当前浏览器的本地鞋柜；社区发帖、评论和在线纠错未开放。修改原项目不会自动改变发布副本，更新上线版请在 `apps/nb-archive/` 中修改。

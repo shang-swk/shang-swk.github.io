@@ -11,3 +11,11 @@ if grep -Eq '^(ERROR|FATAL)([[:space:]]|$)' "$build_log"; then
   exit 1
 fi
 touch public/.nojekyll
+if [[ -f apps/nb-archive/package.json ]]; then
+  if [[ ! -d apps/nb-archive/node_modules ]]; then
+    npm --prefix apps/nb-archive ci
+  fi
+  npm --prefix apps/nb-archive run build -- --webpack
+  mkdir -p public/nb-archive
+  rsync -a --delete apps/nb-archive/out/ public/nb-archive/
+fi

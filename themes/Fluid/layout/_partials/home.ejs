@@ -30,6 +30,13 @@ const recent = posts.filter(post => !post.categories.toArray().some(cat => cat.n
     <% }) %>
   </div>
 </section>
+<section class="home-section" aria-labelledby="projects-heading">
+  <div class="section-heading"><div><p class="section-kicker">把兴趣做成作品</p><h2 id="projects-heading">项目作品</h2></div><a href="<%= url_for('/projects/') %>">查看项目 <span aria-hidden="true">→</span></a></div>
+  <div class="project-showcase">
+    <a class="project-preview" href="<%= url_for('/nb-archive/') %>"><img src="<%= url_for('/img/projects/nb-archive.jpg') %>" alt="NB Archive：New Balance 联名鞋款档案网站" loading="lazy"></a>
+    <div class="project-copy"><p class="section-kicker">独立球鞋档案</p><h3>NB Archive</h3><p>查阅 New Balance 9XX 与 1000 系列联名鞋款，按品牌、鞋型和年份探索，也可以对比鞋款、整理自己的鞋柜。</p><a class="project-visit" href="<%= url_for('/nb-archive/') %>">访问网站 <span aria-hidden="true">↗</span></a><a class="project-detail" href="<%= url_for('/projects/') %>">了解项目 →</a></div>
+  </div>
+</section>
 <section class="home-section recent-section" aria-labelledby="recent-heading">
   <div class="section-heading"><div><p class="section-kicker">一点点积累</p><h2 id="recent-heading">近期技术笔记</h2></div><a href="<%= url_for('/archives/') %>">完整时间线 <span aria-hidden="true">→</span></a></div>
   <div class="recent-list">

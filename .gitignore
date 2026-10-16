@@ -12,3 +12,7 @@ _multiconfig.yml
 .venv/
 __pycache__/
 source/_drafts/
+apps/nb-archive/.next/
+apps/nb-archive/out/
+apps/nb-archive/tsconfig.tsbuildinfo
+apps/nb-archive/node_modules

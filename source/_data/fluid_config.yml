@@ -5,6 +5,7 @@ navbar:
     - { key: home, name: 首页, link: / }
     - { key: archive, name: 文章, link: /archives/ }
     - { key: category, name: 专题, link: /categories/ }
+    - { key: projects, name: 项目, link: /projects/ }
     - { key: about, name: 关于, link: /about/ }
 index:
   banner_img_height: 52

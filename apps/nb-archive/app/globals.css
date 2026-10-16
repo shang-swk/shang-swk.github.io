@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #f8f7f4;
+  color: #111111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f8f7f4;
+  color: #111111;
+}
+
+/* Shared editorial system: generous spacing, fine rules, restrained red. */
+.site-container { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 48px; }
+.site-header { position: sticky; top: 0; z-index: 40; background: rgb(248 247 244 / 96%); border-bottom: 1px solid rgb(30 30 28 / 10%); backdrop-filter: blur(16px); }
+.archive-mark { position: relative; display: flex; width: 36px; height: 36px; align-items: center; justify-content: center; background: #c8102e; color: white; font-size: 24px; font-weight: 900; font-style: italic; }
+.nav-link { position: relative; padding-block: 31px; color: #555650; transition: color .2s; }
+.nav-link::after { content: ''; position: absolute; height: 2px; background: #c8102e; bottom: 20px; left: 0; width: 0; transition: width .2s; }
+.nav-link:hover, .nav-link[aria-current] { color: #111; }
+.nav-link:hover::after, .nav-link[aria-current]::after { width: 100%; }
+.menu-link { display: flex; align-items: center; justify-content: space-between; padding: 13px 8px; font-size: 13px; }
+.menu-link:hover, .menu-link[aria-current] { color: #c8102e; background: white; }
+.font-editorial { letter-spacing: -.035em; font-weight: 500; }
+.eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .17em; color: #c8102e; }
+.editorial-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 28px; padding: 0 22px; background: #20231f; color: white; font-size: 12px; font-weight: 500; transition: background .2s; }
+.editorial-button:hover { background: #c8102e; }
+.text-link { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 500; transition: color .2s; }
+.text-link:hover { color: #c8102e; }
+.home-hero { background: #f8f7f4; padding-top: 36px; }
+.hero-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 54px; align-items: center; }
+.hero-intro { padding-block: 42px; }
+.hero-title { font-size: clamp(46px, 4.9vw, 72px); line-height: 1.2; letter-spacing: -.055em; font-weight: 650; margin-top: 28px; }
+.hero-cover { position: relative; height: 530px; overflow: hidden; }
+.hero-cover-product { background: #e7eae2; }
+.hero-cover-photo { background: #232723; color: white; }
+.hero-model { position: absolute; left: 0; top: 22px; width: 100%; text-align: center; font-size: clamp(180px, 19vw, 280px); font-weight: 700; letter-spacing: -.07em; line-height: 1.3; color: rgb(48 66 38 / 7%); pointer-events: none; }
+.hero-image-link { position: absolute; inset: 0; display: block; }
+.hero-product-image { position: absolute; top: 23%; height: 52%; width: 100%; object-fit: contain; padding: 0 26px; mix-blend-mode: multiply; transition: transform .6s; }
+.hero-image-link:hover .hero-product-image { transform: scale(1.035); }
+.hero-editorial-image { height: 100%; width: 100%; object-fit: cover; }
+.hero-cover-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(10 18 12 / 85%), transparent 65%, rgb(10 18 12 / 30%)); pointer-events: none; }
+.hero-cover-caption { position: absolute; left: 32px; right: 32px; bottom: 28px; z-index: 1; }
+.hero-bottom { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: 20px; }
+.hero-slide-button { display: flex; height: 44px; align-items: center; gap: 8px; font-size: 10px; color: #797b73; }
+.hero-slide-button.is-active { color: #111; }
+.hero-slide-track { display: block; width: 30px; height: 2px; background: #d4d5ce; position: relative; }
+.hero-slide-track > span { display: block; height: 100%; background: #c8102e; }
+.hero-slide-button.is-active .hero-slide-track { background: #c8102e; }
+.home-stat-strip { border-block: 1px solid rgb(30 30 28 / 12%); background: #f8f7f4; }
+.home-section { padding-block: 88px; }
+.section-title { font-size: clamp(30px, 3.5vw, 48px); font-weight: 600; letter-spacing: -.04em; line-height: 1.2; }
+.model-tile { background: #eeeee9; border: 1px solid transparent; transition: background .25s, border-color .25s; }
+.model-tile:hover { background: #f8f7f4; border-color: #bcbfb5; }
+.shoe-surface { background: #eeeee9; }
+.shoe-surface img { mix-blend-mode: multiply; }
+.sneaker-detail-hero { border-bottom: 1px solid rgb(30 30 28 / 10%); background: #f8f7f4; }
+.sneaker-detail-image { background: #eeeee9; }
+.sneaker-detail-image img { mix-blend-mode: multiply; }
+:focus-visible { outline: 2px solid #c8102e; outline-offset: 4px; }
+.skip-link { position: fixed; top: 12px; left: 16px; z-index: 100; transform: translateY(-160%); background: #111; color: white; padding: 12px 20px; font-size: 13px; }
+.skip-link:focus { transform: translateY(0); }
+@media (min-width: 1600px) { .hero-cover { height: 590px; } }
+@media (max-width: 1023px) {
+  .site-container { padding-inline: 32px; }
+  .hero-grid { gap: 24px; grid-template-columns: 1fr 1fr; }
+  .hero-cover { height: 460px; }
+  .hero-title { font-size: 46px; }
+  .hero-intro { padding-block: 24px; }
+}
+@media (max-width: 640px) {
+  .site-header .text-link { display: none; }
+  .site-container { padding-inline: 20px; }
+  .home-hero { padding-top: 12px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+  .hero-intro { padding-top: 24px; padding-bottom: 0; }
+  .hero-title { margin-top: 22px; font-size: 46px; line-height: 1.15; }
+  .hero-cover { height: 350px; }
+  .hero-model { font-size: 175px; top: 24px; }
+  .hero-product-image { top: 23%; height: 48%; padding-inline: 12px; }
+  .hero-cover-caption { left: 24px; right: 24px; bottom: 20px; }
+  .hero-cover-caption h2 { font-size: 23px; }
+  .hero-bottom { min-height: 68px; gap: 8px; }
+  .home-section { padding-block: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background: #c8102e;
+  color: white;
+}
+
+.editorial-rule {
+  background: linear-gradient(90deg, #111 0, #111 12%, transparent 12%, transparent 16%, #c8102e 16%, #c8102e 24%, transparent 24%);
+}
+
+.field-select {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  border: 1px solid rgb(17 17 17 / 16%);
+  background: white;
+  padding: 0 0.75rem;
+  color: #111;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.field-select:focus {
+  border-color: #c8102e;
+}

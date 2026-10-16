@@ -13,27 +13,28 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="">
+  <meta name="author" content="shang-swk">
   <meta name="keywords" content="">
   
     <meta name="description" content="Modbus是工业领域通信协议的业界标准，是工业电子设备之间常用的连接方式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Modbus通讯协议">
-<meta property="og:url" content="http://example.com/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:url" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="One ball">
 <meta property="og:description" content="Modbus是工业领域通信协议的业界标准，是工业电子设备之间常用的连接方式。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530140559414-931108713.jpg">
-<meta property="og:image" content="http://example.com/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144651500-608118892.jpg">
-<meta property="og:image" content="http://example.com/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144719721-773949887.jpg">
-<meta property="og:image" content="http://example.com/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530143538234-1678145168.jpg">
-<meta property="og:image" content="http://example.com/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155234175-1895322693.jpg">
-<meta property="og:image" content="http://example.com/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155637575-1588436382.jpg">
-<meta property="article:published_time" content="2022-08-08T15:55:17.125Z">
-<meta property="article:modified_time" content="2022-08-09T03:34:47.691Z">
+<meta property="og:image" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530140559414-931108713.jpg">
+<meta property="og:image" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144651500-608118892.jpg">
+<meta property="og:image" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144719721-773949887.jpg">
+<meta property="og:image" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530143538234-1678145168.jpg">
+<meta property="og:image" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155234175-1895322693.jpg">
+<meta property="og:image" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155637575-1588436382.jpg">
+<meta property="article:published_time" content="2022-08-08T17:55:00.000Z">
+<meta property="article:modified_time" content="2022-08-08T19:34:47.691Z">
+<meta property="article:author" content="shang-swk">
 <meta property="article:tag" content="Modbus">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530140559414-931108713.jpg">
+<meta name="twitter:image" content="https://shang-swk.github.io/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530140559414-931108713.jpg">
   
   
   
@@ -75,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -289,25 +290,25 @@
 <h3 id="Modbus-通讯方式"><a href="#Modbus-通讯方式" class="headerlink" title="Modbus 通讯方式"></a>Modbus 通讯方式</h3><p>1、TCP&#x2F;IP</p>
 <p>2、各种媒体（有线：EIA&#x2F;TIA-232-E、EIA-422、EIA&#x2F;TIA-485-A ；光纤、无线等）上的异步串行传输；&#x3D;&#x3D;Modbus RTU和Modbus ASCII通讯既是采用该方式；&#x3D;&#x3D;</p>
 <p>3、Modbus Plus，一种高速令牌传递网络。</p>
-<p><img src="/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530140559414-931108713.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530140559414-931108713.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="协议描述"><a href="#协议描述" class="headerlink" title="协议描述"></a>协议描述</h3><p>Modbus协议定义了一个控制器能认识使用的消息结构,而不管它们是经过何种网络进行通信的。它描述了一控制器请求访问其它设备的过程，如果回应来自其它设备的请求，以及怎样侦测错误并记录。</p>
 <p>通过此协议，控制器相互之间、或控制器经由网络（如以太网）可以和其它设备之间进行通信。Modbus通讯物理接口可以选用串口（包括RS232、RS485和RS422），也可以选择以太网口。</p>
 <p>通信过程：</p>
-<p><img src="/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144651500-608118892.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144719721-773949887.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144651500-608118892.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530144719721-773949887.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>当主站不发送请求时，从站不会自己发出数据，从站和从站之间不能直接通讯。</strong></p>
 <p>Modbus协议能够应用在不同类型的总线或者网络。对应不同的总线或网络，Modbus协议引入一些附加域映射成应用数据单元（ADU），即ADU &#x3D; 附加域 + PDU。例如：</p>
 <ul>
 <li>RS232 &#x2F; RS485 ADU &#x3D; 253 字节+服务器地址(1 byte) + CRC (2 字节) &#x3D; 256 字节 ；</li>
 <li>TCP MODBUS ADU &#x3D; 249 字节+ MBAP (7 字节) &#x3D; 256 字节 。</li>
 </ul>
-<p><img src="/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530143538234-1678145168.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530143538234-1678145168.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="功能码"><a href="#功能码" class="headerlink" title="功能码"></a>功能码</h3><p>1.公共功能码</p>
 <p>2.用户定义功能码</p>
 <p>3.保留功能码</p>
-<p><img src="/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155234175-1895322693.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155234175-1895322693.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>公共功能码：</p>
-<p><img src="/2022/08/08/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155637575-1588436382.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2022/08/09/MODBUS%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/1789291-20200530155637575-1588436382.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 
                 
               </div>
@@ -354,9 +355,14 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Modbus通讯协议</div>
-      <div>http://example.com/2022/08/09/MODBUS通讯协议/</div>
+      <div>https://shang-swk.github.io/2022/08/09/MODBUS通讯协议/</div>
     </div>
     <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>shang-swk</div>
+        </div>
       
       
         <div class="license-meta-item license-meta-date">
@@ -391,9 +397,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/09/MODBUS%20RTU/" title="Modbus RTU通讯协议">
+                      <a href="/2022/08/09/MODBUS%20TCP/" title="Modbus TCP通讯协议">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Modbus RTU通讯协议</span>
+                        <span class="hidden-mobile">Modbus TCP通讯协议</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -401,8 +407,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/" title="AES算法C语言实现">
-                        <span class="hidden-mobile">AES算法C语言实现</span>
+                      <a href="/2022/08/09/MODBUS%20RTU/" title="Modbus RTU通讯协议">
+                        <span class="hidden-mobile">Modbus RTU通讯协议</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

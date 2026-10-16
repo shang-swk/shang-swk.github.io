@@ -12,7 +12,7 @@ const primaryNav = [
 const secondaryNav = [
   { href: "https://shang-swk.github.io/projects/", label: "返回寻影博客" },
   { href: "/start", label: "鞋型入门" }, { href: "/timeline", label: "时间线" },
-  { href: "/collection", label: "我的鞋柜" }, { href: "/community", label: "穿搭交流" }, { href: "/compare", label: "鞋款对比" }
+  { href: "/collection", label: "我的鞋柜" }, { href: "/community", label: "公开版说明" }, { href: "/compare", label: "鞋款对比" }
 ];
 
 export function SiteHeader() {

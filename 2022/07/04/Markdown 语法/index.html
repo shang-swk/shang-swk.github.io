@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#203c46">
   <meta name="author" content="shang-swk">
   <meta name="keywords" content="">
   
@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些基本Markdown语法">
 <meta property="og:url" content="https://shang-swk.github.io/2022/07/04/Markdown%20%E8%AF%AD%E6%B3%95/index.html">
-<meta property="og:site_name" content="One ball">
+<meta property="og:site_name" content="寻影">
 <meta property="og:description" content="markdown命令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-04T11:44:00.000Z">
@@ -31,7 +31,7 @@
   
   
   
-  <title>一些基本Markdown语法 - One ball</title>
+  <title>一些基本Markdown语法 - 寻影</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -65,11 +65,15 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/xunying.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h2,h3,h4","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -85,22 +89,23 @@
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
-<body>
+<body class="post-page">
+  <a class="skip-link" href="#board">跳到正文</a>
   
 
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 38vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Ditto</strong>
+      <strong>寻影</strong><span class="brand-note">学习 · 实践 · 记录</span>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="展开导航">
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
@@ -113,8 +118,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
+              
+              <a class="nav-link" href="/" >
+                
                 首页
               </a>
             </li>
@@ -125,9 +131,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
+              
+              <a class="nav-link" href="/archives/" >
+                
+                文章
               </a>
             </li>
           
@@ -137,9 +144,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
+              
+              <a class="nav-link" href="/categories/" >
+                
+                专题
               </a>
             </li>
           
@@ -149,20 +157,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
+              
+              <a class="nav-link" href="/about/" >
+                
                 关于
               </a>
             </li>
@@ -170,7 +167,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="搜索文章">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
@@ -178,7 +175,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="切换深色模式">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -189,16 +186,17 @@
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" false
      style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+      
+      <div class="banner-text text-center">
+        <h1 class="banner-title">
           
-            <span id="subtitle" data-typed-text="一些基本Markdown语法"></span>
+            <span id="subtitle">一些基本Markdown语法</span>
           
-        </div>
+        </h1>
 
         
           
@@ -208,7 +206,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-07-04 19:44" pubdate>
-          2022年7月4日 晚上
+          2022年7月4日
         </time>
       </span>
     
@@ -230,7 +228,7 @@
         
         
         
-          13 分钟
+          3 分钟
         
       </span>
     
@@ -242,6 +240,7 @@
 
         
       </div>
+      
 
       
     </div>
@@ -267,30 +266,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">一些基本Markdown语法</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="块级元素："><a href="#块级元素：" class="headerlink" title="块级元素："></a>块级元素：</h2><h3 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h3><p>总共有六级标题，通过#的个数来区分，输入#之后一定要按空格键</p>
 <p>比如一个四级标题如下:</p>
-<h4 id="测试（-）"><a href="#测试（-）" class="headerlink" title="测试（####）"></a>测试（####）</h4><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs clean"># 一级标题<br><br>## 二级标题<br><br>### 三级标题<br><br>#### 四级标题<br><br>##### 五级标题<br><br>###### 六级标题<br>Copy<br></code></pre></td></tr></table></figure>
+<h4 id="测试（-）"><a href="#测试（-）" class="headerlink" title="测试（####）"></a>测试（####）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"># 一级标题<br><br>## 二级标题<br><br>### 三级标题<br><br>#### 四级标题<br><br>##### 五级标题<br><br>###### 六级标题<br>Copy<br></code></pre></td></tr></table></figure>
 
-<h3 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">引用是用&gt;表示<br><span class="hljs-keyword">Copy</span><br></code></pre></td></tr></table></figure>
+<h3 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">引用是用&gt;表示<br>Copy<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>这是一段引用</p>
 </blockquote>
-<h3 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h3><h4 id="有序列表："><a href="#有序列表：" class="headerlink" title="有序列表："></a>有序列表：</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">篮网总冠军<br><br><span class="hljs-number">1</span>.击败骑士<br><br><span class="hljs-number">2</span>.干掉凯尔特人<br><br><span class="hljs-number">3</span>.跨过雄鹿<br><br><span class="hljs-number">4</span>.射落太阳<br><span class="hljs-keyword">Copy</span><br></code></pre></td></tr></table></figure>
+<h3 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h3><h4 id="有序列表："><a href="#有序列表：" class="headerlink" title="有序列表："></a>有序列表：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">篮网总冠军<br><br>1.击败骑士<br><br>2.干掉凯尔特人<br><br>3.跨过雄鹿<br><br>4.射落太阳<br>Copy<br></code></pre></td></tr></table></figure>
 
-<h4 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h4><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">用-加空格<br><span class="hljs-bullet">- </span><br><span class="hljs-bullet"></span>Copy<br></code></pre></td></tr></table></figure>
+<h4 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">用-加空格<br>- <br>Copy<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>测试</li>
 </ul>
 <p>用 - 加 [ 加空格加 ]</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">-<span class="hljs-selector-attr">[ ]</span><br>Copy<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">-[ ]<br>Copy<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>hahaha</li>
@@ -298,7 +295,7 @@
 <h3 id="代码块："><a href="#代码块：" class="headerlink" title="代码块："></a>代码块：</h3><p>1.自己右键</p>
 <p>2.<code> </code>两个反引号中间算一行</p>
 <p>3.三个反引号代码块</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span><br><span class="hljs-function">Copy</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">int main()<br>Copy<br></code></pre></td></tr></table></figure>
 
 <h3 id="数学公式："><a href="#数学公式：" class="headerlink" title="数学公式："></a>数学公式：</h3><p>使用LaTeX</p>
 <p>$$ \frac{\partial f}{\partial x}&#x3D;2\sqrt{a}x$$</p>
@@ -321,14 +318,14 @@
 <h3 id="脚注："><a href="#脚注：" class="headerlink" title="脚注："></a>脚注：</h3><p>在MarkDown中支持添加脚注方式来对文本进行补充说明。</p>
 <p>在需要添加注脚的文字后加上脚注名： [^注脚名] 。 然后在文本的任意位置(一般在最后)添加脚注：</p>
 <p><em>脚注自动生成在页面最最后面，在页面末尾可以看到，并且脚注后方的链接可以直接跳转回到加脚注的地方。</em></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">脚注示例，这是第一个脚注[^注脚名1]，这是第二个脚注[^注脚名2]，这是第三个脚注[^注脚名3]<br><br>[<span class="hljs-symbol">^注脚名1</span>]: <span class="hljs-link">我是脚注一.</span><br>[<span class="hljs-symbol">^注脚名2</span>]: <span class="hljs-link">我是脚注二.</span><br>[<span class="hljs-symbol">^注脚名3</span>]: <span class="hljs-link">我是脚注三.</span><br>Copy<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">脚注示例，这是第一个脚注[^注脚名1]，这是第二个脚注[^注脚名2]，这是第三个脚注[^注脚名3]<br><br>[^注脚名1]: 我是脚注一.<br>[^注脚名2]: 我是脚注二.<br>[^注脚名3]: 我是脚注三.<br>Copy<br></code></pre></td></tr></table></figure>
 
 <h3 id="横线"><a href="#横线" class="headerlink" title="横线"></a>横线</h3><p>三个减号-</p>
 <hr>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-string">Copy</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">---<br>Copy<br></code></pre></td></tr></table></figure>
 
 <h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="https://shang-swk.github.io/%22%E6%9C%AC%E4%BA%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%22">swk的博客</a></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-attr">[swk的博客]</span>(<span class="hljs-attribute">https</span>:<span class="hljs-comment">//shang-swk.github.io/)</span><br>Copy<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[swk的博客](https://shang-swk.github.io/)<br>Copy<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><h4 id="简单链接"><a href="#简单链接" class="headerlink" title="简单链接"></a>简单链接</h4><ul>
@@ -339,7 +336,7 @@
 </li>
 </ul>
 <p><em>文字说明可以通过鼠标悬浮链接上查看</em></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">百度[百度](https:<span class="hljs-regexp">//</span>www.baidu.com/)<br>百度[百度](https:<span class="hljs-regexp">//</span>www.baidu.com/ <span class="hljs-string">&quot;百度搜索&quot;</span>)<br>百度&lt;https:<span class="hljs-regexp">//</span>www.baidu.com/&gt;<br>Copy<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">百度[百度](https://www.baidu.com/)<br>百度[百度](https://www.baidu.com/ &quot;百度搜索&quot;)<br>百度&lt;https://www.baidu.com/&gt;<br>Copy<br></code></pre></td></tr></table></figure>
 
 <p><em><strong>示例效果:</strong></em></p>
 <hr>
@@ -347,11 +344,11 @@
 <h4 id="高级链接"><a href="#高级链接" class="headerlink" title="高级链接"></a>高级链接</h4><p>可以使用变量来调用链接</p>
 <p><em>使用变量要记得在文档的结尾为变量赋值</em></p>
 <p><em><strong>代码示例:</strong></em></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-attr">[百度]</span><span class="hljs-selector-attr">[1]</span><br><span class="hljs-selector-attr">[谷歌]</span><span class="hljs-selector-attr">[2]</span><br><br>然后在文档的结尾为变量赋值（网址）<br><br><span class="hljs-selector-attr">[1]</span>: <span class="hljs-selector-tag">https</span>:<span class="hljs-comment">//www.baidu.com/</span><br><span class="hljs-selector-attr">[2]</span>: <span class="hljs-selector-tag">http</span>:<span class="hljs-comment">//www.google.com/</span><br><span class="hljs-selector-tag">Copy</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[百度][1]<br>[谷歌][2]<br><br>然后在文档的结尾为变量赋值（网址）<br><br>[1]: https://www.baidu.com/<br>[2]: http://www.google.com/<br>Copy<br></code></pre></td></tr></table></figure>
 
 <h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>跟链接的方法区别在于前面加了个感叹号 <code>!</code></p>
 <p><em><strong>代码示例:</strong></em></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk">![百度logo]](https:<span class="hljs-regexp">//</span>www.baidu.com<span class="hljs-regexp">/img/</span>PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png)<br><br>![百度](https:<span class="hljs-regexp">//</span>www.baidu.com<span class="hljs-regexp">/img/</span>PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png <span class="hljs-string">&quot;百度logo&quot;</span>)<br><br>[百度][<span class="hljs-number">1</span>]<br><br>[<span class="hljs-number">1</span>]: https:<span class="hljs-regexp">//</span>www.baidu.com/<br>Copy<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">![百度logo]](https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png)<br><br>![百度](https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png &quot;百度logo&quot;)<br><br>[百度][1]<br><br>[1]: https://www.baidu.com/<br>Copy<br></code></pre></td></tr></table></figure>
 
 <h3 id="其他行内格式"><a href="#其他行内格式" class="headerlink" title="其他行内格式"></a>其他行内格式</h3><p>一对<code>*</code>表示斜体：</p>
 <p><em>haha</em></p>
@@ -365,25 +362,25 @@
 <p><code>&lt;u&gt;下划线&lt;/u&gt;</code>下划线</p>
 <hr>
 <p>:kiss:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">冒号加表情英文得到表情<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">冒号加表情英文得到表情<br></code></pre></td></tr></table></figure>
 
 <hr>
 <p>行内公式</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> sssss <span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">$ sssss $<br></code></pre></td></tr></table></figure>
 
 <hr>
 <p>下标：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica">用<span class="hljs-operator">~</span>加<span class="hljs-operator">~</span>来表示 <span class="hljs-variable">H</span><span class="hljs-operator">~</span><span class="hljs-number">2</span><span class="hljs-operator">~</span><span class="hljs-built_in">O</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">用~加~来表示 H~2~O<br></code></pre></td></tr></table></figure>
 
 <p>H<del>2</del>O</p>
 <hr>
 <p>上标：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">用^加^表示<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">用^加^表示<br></code></pre></td></tr></table></figure>
 
 <p>X^2^</p>
 <hr>
 <p>高亮：</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-operator">=</span><span class="hljs-operator">=</span>语句<span class="hljs-operator">=</span><span class="hljs-operator">=</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">==语句==<br></code></pre></td></tr></table></figure>
 
 <p>&#x3D;&#x3D;啊哈哈哈&#x3D;&#x3D;</p>
 <hr>
@@ -407,7 +404,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Markdown/" class="category-chain-item">Markdown</a>
+  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" class="category-chain-item">开发技术</a>
   
   
 
@@ -546,7 +543,7 @@
     
 
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <a id="scroll-top-button" aria-label="返回顶部" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -582,7 +579,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
     </div>
   
   
@@ -611,21 +608,6 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
 
@@ -721,7 +703,4 @@
   </noscript>
 </body>
 </html>
-<!--动态线条背景-->
-<script type="text/javascript"
-color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
 

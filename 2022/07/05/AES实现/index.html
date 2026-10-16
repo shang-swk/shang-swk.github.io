@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#203c46">
   <meta name="author" content="shang-swk">
   <meta name="keywords" content="">
   
@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="AES算法C语言实现">
 <meta property="og:url" content="https://shang-swk.github.io/2022/07/05/AES%E5%AE%9E%E7%8E%B0/index.html">
-<meta property="og:site_name" content="One ball">
+<meta property="og:site_name" content="寻影">
 <meta property="og:description" content="AES的数据分组长度统一为128位，而密钥空间可根据需要采用128位、192位和256位三种不同长度。和大多数分组加密算法不一样AES的轮函数并没有采用Feistel结构设计，而是使用了3个不同的可逆均匀变换。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shang-swk.github.io/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-b22e3bdd7da5ddf5ea6ff71909dac4b7_720w.jpg">
@@ -32,12 +32,13 @@
 <meta property="article:modified_time" content="2022-08-08T19:33:33.895Z">
 <meta property="article:author" content="shang-swk">
 <meta property="article:tag" content="AES">
+<meta property="article:tag" content="密码学">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shang-swk.github.io/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-b22e3bdd7da5ddf5ea6ff71909dac4b7_720w.jpg">
   
   
   
-  <title>AES算法C语言实现 - One ball</title>
+  <title>AES算法C语言实现 - 寻影</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -71,11 +72,15 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/xunying.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h2,h3,h4","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -91,22 +96,23 @@
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
-<body>
+<body class="post-page">
+  <a class="skip-link" href="#board">跳到正文</a>
   
 
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 38vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Ditto</strong>
+      <strong>寻影</strong><span class="brand-note">学习 · 实践 · 记录</span>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="展开导航">
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
@@ -119,8 +125,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
+              
+              <a class="nav-link" href="/" >
+                
                 首页
               </a>
             </li>
@@ -131,9 +138,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
+              
+              <a class="nav-link" href="/archives/" >
+                
+                文章
               </a>
             </li>
           
@@ -143,9 +151,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
+              
+              <a class="nav-link" href="/categories/" >
+                
+                专题
               </a>
             </li>
           
@@ -155,20 +164,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
+              
+              <a class="nav-link" href="/about/" >
+                
                 关于
               </a>
             </li>
@@ -176,7 +174,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="搜索文章">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
@@ -184,7 +182,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="切换深色模式">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -195,16 +193,17 @@
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" false
      style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+      
+      <div class="banner-text text-center">
+        <h1 class="banner-title">
           
-            <span id="subtitle" data-typed-text="AES算法C语言实现"></span>
+            <span id="subtitle">AES算法C语言实现</span>
           
-        </div>
+        </h1>
 
         
           
@@ -214,7 +213,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-07-05 01:16" pubdate>
-          2022年7月5日 凌晨
+          2022年7月5日
         </time>
       </span>
     
@@ -236,7 +235,7 @@
         
         
         
-          55 分钟
+          14 分钟
         
       </span>
     
@@ -248,6 +247,7 @@
 
         
       </div>
+      
 
       
     </div>
@@ -273,13 +273,11 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">AES算法C语言实现</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="密码学基础-AES算法C语言实现"><a href="#密码学基础-AES算法C语言实现" class="headerlink" title="密码学基础  AES算法C语言实现"></a>密码学基础  AES算法C语言实现</h1><p><em>作为密码学的第一篇blog，首先将字符和位的关系说明清楚：</em></p>
+                <h2 id="密码学基础-AES算法C语言实现"><a href="#密码学基础-AES算法C语言实现" class="headerlink" title="密码学基础  AES算法C语言实现"></a>密码学基础  AES算法C语言实现</h2><p><em>作为密码学的第一篇blog，首先将字符和位的关系说明清楚：</em></p>
 <p>通常情况下一字节等于八位，通常在读取图片、声音、可执行文件需要用字节数组来保存文件，在下载文件也是用byte数组来做临时的缓冲器接收文件内容。</p>
 <p>字符(Character)计算机中使用的字母、数字、字和符号，比如’P’、’K’、’%’、’#’等。</p>
 <p>&#x3D;&#x3D;一般在英文状态下一个字母或字符占用一个字节，一个汉字用两个字节表示。&#x3D;&#x3D;</p>
@@ -291,50 +289,50 @@
 <li>UTF-16 编码中，一个英文字母字符或一个汉字字符存储都需要 2 个字节(Unicode 扩展区的一些汉字存储需要 4 个字节)。</li>
 <li>UTF-32 编码中，世界上任何字符的存储都需要 4 个字节。</li>
 </ul>
-<h2 id="AES简介"><a href="#AES简介" class="headerlink" title="AES简介"></a>AES简介</h2><p>是DES的替代算法，同样也是对称加密算法</p>
+<h3 id="AES简介"><a href="#AES简介" class="headerlink" title="AES简介"></a>AES简介</h3><p>是DES的替代算法，同样也是对称加密算法</p>
 <ul>
 <li>和DES一样，能有效抵御所有已知攻击；</li>
 <li>加密算法易于现有软硬件平台的实现，且加解密过程效率优于DES；</li>
 <li>具有典型的对称分组加密算法特性，以快速混淆和扩散为设计原则，本质是轮函数过程的循环。</li>
 </ul>
 <p><em><strong>AES的数据分组长度统一为128位，而密钥空间可根据需要采用128位、192位和256位三种不同长度。和大多数分组加密算法不一样AES的轮函数并没有采用Feistel结构设计，而是使用了3个不同的可逆均匀变换。</strong></em></p>
-<h3 id="AES算法主要步骤"><a href="#AES算法主要步骤" class="headerlink" title="AES算法主要步骤"></a>AES算法主要步骤</h3><ol>
+<h4 id="AES算法主要步骤"><a href="#AES算法主要步骤" class="headerlink" title="AES算法主要步骤"></a>AES算法主要步骤</h4><ol>
 <li>密钥扩展（Key Expansion），使用密钥扩展算法将128位用户主密钥扩展成R个轮密钥；</li>
 <li>初始轮（Init Round），即为轮密钥加；</li>
 <li>重复轮（Rounds），每一轮包括：字节替换（SubBytes），行移位（Shift Rows），列混合（Mix Columns），轮密钥加（Add Round Key）四个步骤；</li>
 <li>最终轮（Final Round），最终轮比重复轮少了列混合的步骤。</li>
 </ol>
 <p>&#x3D;&#x3D;最后一轮是不用列混合操作的&#x3D;&#x3D;</p>
-<h3 id="AES算法具体内容"><a href="#AES算法具体内容" class="headerlink" title="AES算法具体内容"></a>AES算法具体内容</h3><p><a target="_blank" rel="noopener" href="https://pic4.zhimg.com/80/v2-b22e3bdd7da5ddf5ea6ff71909dac4b7_720w.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-b22e3bdd7da5ddf5ea6ff71909dac4b7_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></a></p>
+<h4 id="AES算法具体内容"><a href="#AES算法具体内容" class="headerlink" title="AES算法具体内容"></a>AES算法具体内容</h4><p><a target="_blank" rel="noopener" href="https://pic4.zhimg.com/80/v2-b22e3bdd7da5ddf5ea6ff71909dac4b7_720w.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-b22e3bdd7da5ddf5ea6ff71909dac4b7_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></a></p>
 <p>在讲述密钥加法层之前，我们来看看密钥的扩展</p>
-<h4 id="密钥扩展"><a href="#密钥扩展" class="headerlink" title="密钥扩展"></a>密钥扩展</h4><p><a target="_blank" rel="noopener" href="https://pic4.zhimg.com/80/v2-3027156eb00bcddcdac69657c8aad1e7_720w.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-3027156eb00bcddcdac69657c8aad1e7_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></a></p>
+<h5 id="密钥扩展"><a href="#密钥扩展" class="headerlink" title="密钥扩展"></a>密钥扩展</h5><p><a target="_blank" rel="noopener" href="https://pic4.zhimg.com/80/v2-3027156eb00bcddcdac69657c8aad1e7_720w.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-3027156eb00bcddcdac69657c8aad1e7_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></a></p>
 <p><strong>子密钥的生成是以列为单位进行的，一列是32Bit，四列组成子密钥共128Bit。生成子密钥的数量比AES算法的轮数多一个，因为第一个密钥加法层进行密钥漂白时也需要子密钥。</strong></p>
 <p>&#x3D;&#x3D;也就是密钥的扩展比算法的轮数多一个&#x3D;&#x3D;</p>
 <p>如果i不是4的倍数，那么第i列如下：</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">w<span class="hljs-comment">[i]</span>=w<span class="hljs-comment">[i-4]</span>⊕w<span class="hljs-comment">[i-1]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">w[i]=w[i-4]⊕w[i-1]<br></code></pre></td></tr></table></figure>
 
 <p>如果i是4的倍数，那么第i列如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">w<span class="hljs-selector-attr">[i]</span>=w<span class="hljs-selector-attr">[i-4]</span>⊕<span class="hljs-built_in">T</span>(w<span class="hljs-selector-attr">[i-1]</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">w[i]=w[i-4]⊕T(w[i-1])<br></code></pre></td></tr></table></figure>
 
 <p>其中T是一个复杂的函数</p>
 <p><strong>函数T()首先将4个输入字节进行翻转，并执行一个按字节的S盒代换，最后用第一个字节与轮系数Rcon进行异或运算。轮系数是一个有10个元素的一维数组，一个元素1个字节。T()函数存在的目的有两个，一是增加密钥编排中的非线性；二是消除AES中的对称性（防止不同轮的产生的轮密钥的对称性或者相似性）。这两种属性都是抵抗某些分组密码攻击必要的。</strong></p>
 <p><a target="_blank" rel="noopener" href="https://pic3.zhimg.com/80/v2-718685429c353bdf13b0d1fa5646ca1a_720w.png"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-718685429c353bdf13b0d1fa5646ca1a_720w.png" srcset="/img/loading.gif" lazyload alt="img"></a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> Rcon[<span class="hljs-number">11</span>] = &#123;<span class="hljs-number">0x00</span>,<span class="hljs-number">0x01</span>,<span class="hljs-number">0x02</span>,<span class="hljs-number">0x04</span>,<span class="hljs-number">0x08</span>,<span class="hljs-number">0x10</span>,<span class="hljs-number">0x20</span>,<span class="hljs-number">0x40</span>,<span class="hljs-number">0x80</span>,<span class="hljs-number">0x1B</span>,<span class="hljs-number">0x36</span>&#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Key_S_Substitution</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>(*ExtendKeyArray)[<span class="hljs-number">44</span>], <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> nCol)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">int</span> ret = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>&#123;<br>ExtendKeyArray[i][nCol] = S_Table[(ExtendKeyArray[i][nCol]) &gt;&gt; <span class="hljs-number">4</span>][(ExtendKeyArray[i][nCol]) &amp; <span class="hljs-number">0x0F</span>];<br>&#125;<br><br><span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">T_Function</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>(*ExtendKeyArray)[<span class="hljs-number">44</span>], <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> nCol)</span>   </span><br><span class="hljs-function">    <span class="hljs-comment">//T函数</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">int</span> ret = <span class="hljs-number">0</span>;<br><span class="hljs-comment">//1、将扩展密钥矩阵的nCol-1列复制到nCol列上，并将nCol列第一行的元素移动到最后一行，其他行数上移一行</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>&#123;<br>ExtendKeyArray[i][nCol] = ExtendKeyArray[(i + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>][nCol - <span class="hljs-number">1</span>];<br>&#125;<br>    <br><span class="hljs-comment">//2、将nCol列进行S盒替换</span><br><span class="hljs-built_in">Key_S_Substitution</span>(ExtendKeyArray, nCol);<br>    <br><span class="hljs-comment">//3、将该列第一行元素与Rcon进行异或运算</span><br>ExtendKeyArray[<span class="hljs-number">0</span>][nCol] ^= Rcon[nCol / <span class="hljs-number">4</span>];<br><br><span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">CalculateExtendKeyArray</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>(*PasswordArray)[<span class="hljs-number">4</span>], <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>(*ExtendKeyArray)[<span class="hljs-number">44</span>])</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">int</span> ret = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">//1、将密钥数组放入前四列扩展密钥组</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">16</span>; i++)<br>&#123;<br>ExtendKeyArray[i &amp; <span class="hljs-number">0x03</span>][i &gt;&gt; <span class="hljs-number">2</span>] = PasswordArray[i &amp; <span class="hljs-number">0x03</span>][i &gt;&gt; <span class="hljs-number">2</span>];<br>&#125;<br><br><span class="hljs-comment">//2、计算扩展矩阵的后四十列</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">11</span>; i++) <span class="hljs-comment">//进行十轮循环</span><br>&#123;<br><span class="hljs-comment">//(1)如果列号是4的倍数，这执行G函数 否则将nCol-1列复制到nCol列上</span><br><span class="hljs-built_in">G_Function</span>(ExtendKeyArray, <span class="hljs-number">4</span>*i);<br><br><span class="hljs-comment">//(2)每一轮中，各列进行异或运算</span><br><span class="hljs-comment">// 列号是4的倍数</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++)<span class="hljs-comment">//行号</span><br>&#123;<br>ExtendKeyArray[k][<span class="hljs-number">4</span> * i] = ExtendKeyArray[k][<span class="hljs-number">4</span> * i] ^ ExtendKeyArray[k][<span class="hljs-number">4</span> * (i - <span class="hljs-number">1</span>)];<br>&#125;<br><br><span class="hljs-comment">// 其他三列</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; <span class="hljs-number">4</span>; j++)<span class="hljs-comment">//每一轮的列号</span><br>&#123;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; k++)<span class="hljs-comment">//行号</span><br>&#123;<br>ExtendKeyArray[k][<span class="hljs-number">4</span> * i + j] = ExtendKeyArray[k][<span class="hljs-number">4</span> * i + j - <span class="hljs-number">1</span>] ^ ExtendKeyArray[k][<span class="hljs-number">4</span> * (i - <span class="hljs-number">1</span>) + j];<br>&#125;<br>&#125;<br>&#125;<br><br><span class="hljs-keyword">return</span> ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">const unsigned int Rcon[11] = &#123;0x00,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x1B,0x36&#125;;<br>int Key_S_Substitution(unsigned char(*ExtendKeyArray)[44], unsigned int nCol)<br>&#123;<br>int ret = 0;<br><br>for (int i = 0; i &lt; 4; i++)<br>&#123;<br>ExtendKeyArray[i][nCol] = S_Table[(ExtendKeyArray[i][nCol]) &gt;&gt; 4][(ExtendKeyArray[i][nCol]) &amp; 0x0F];<br>&#125;<br><br>return ret;<br>&#125;<br>int T_Function(unsigned char(*ExtendKeyArray)[44], unsigned int nCol)   <br>    //T函数<br>&#123;<br>int ret = 0;<br>//1、将扩展密钥矩阵的nCol-1列复制到nCol列上，并将nCol列第一行的元素移动到最后一行，其他行数上移一行<br>for (int i = 0; i &lt; 4; i++)<br>&#123;<br>ExtendKeyArray[i][nCol] = ExtendKeyArray[(i + 1) % 4][nCol - 1];<br>&#125;<br>    <br>//2、将nCol列进行S盒替换<br>Key_S_Substitution(ExtendKeyArray, nCol);<br>    <br>//3、将该列第一行元素与Rcon进行异或运算<br>ExtendKeyArray[0][nCol] ^= Rcon[nCol / 4];<br><br>return ret;<br>&#125;<br>int CalculateExtendKeyArray(const unsigned char(*PasswordArray)[4], unsigned char(*ExtendKeyArray)[44])<br>&#123;<br>int ret = 0;<br><br>//1、将密钥数组放入前四列扩展密钥组<br>for (int i = 0; i &lt; 16; i++)<br>&#123;<br>ExtendKeyArray[i &amp; 0x03][i &gt;&gt; 2] = PasswordArray[i &amp; 0x03][i &gt;&gt; 2];<br>&#125;<br><br>//2、计算扩展矩阵的后四十列<br>for (int i = 1; i &lt; 11; i++) //进行十轮循环<br>&#123;<br>//(1)如果列号是4的倍数，这执行G函数 否则将nCol-1列复制到nCol列上<br>G_Function(ExtendKeyArray, 4*i);<br><br>//(2)每一轮中，各列进行异或运算<br>// 列号是4的倍数<br>for (int k = 0; k &lt; 4; k++)//行号<br>&#123;<br>ExtendKeyArray[k][4 * i] = ExtendKeyArray[k][4 * i] ^ ExtendKeyArray[k][4 * (i - 1)];<br>&#125;<br><br>// 其他三列<br>for (int j = 1; j &lt; 4; j++)//每一轮的列号<br>&#123;<br>for (int k = 0; k &lt; 4; k++)//行号<br>&#123;<br>ExtendKeyArray[k][4 * i + j] = ExtendKeyArray[k][4 * i + j - 1] ^ ExtendKeyArray[k][4 * (i - 1) + j];<br>&#125;<br>&#125;<br>&#125;<br><br>return ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
 
-<h4 id="密钥加法层"><a href="#密钥加法层" class="headerlink" title="密钥加法层"></a>密钥加法层</h4><p><strong>在密钥加法层中有两个输入的参数，分别是明文和子密钥k[0]，而且这两个输入都是128位的。</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">AddRoundKey</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>(*PlainArray)[<span class="hljs-number">4</span>], <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>(*ExtendKeyArray)[<span class="hljs-number">44</span>], <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> MinCol)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">int</span> ret = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>&#123;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">4</span>; j++)<br>&#123;<br>PlainArray[i][j] ^= ExtendKeyArray[i][MinCol + j];<br>&#125;<br>&#125;<br><br><span class="hljs-keyword">return</span> ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
+<h5 id="密钥加法层"><a href="#密钥加法层" class="headerlink" title="密钥加法层"></a>密钥加法层</h5><p><strong>在密钥加法层中有两个输入的参数，分别是明文和子密钥k[0]，而且这两个输入都是128位的。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">int AddRoundKey(unsigned char(*PlainArray)[4], unsigned char(*ExtendKeyArray)[44], unsigned int MinCol)<br>&#123;<br>int ret = 0;<br><br>for (int i = 0; i &lt; 4; i++)<br>&#123;<br>for (int j = 0; j &lt; 4; j++)<br>&#123;<br>PlainArray[i][j] ^= ExtendKeyArray[i][MinCol + j];<br>&#125;<br>&#125;<br><br>return ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
 
-<h4 id="字节代换层（S盒）"><a href="#字节代换层（S盒）" class="headerlink" title="字节代换层（S盒）"></a>字节代换层（S盒）</h4><p>就是把字节一个个放入s盒之中</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs x86asm">const unsigned char S_Table[<span class="hljs-number">16</span>][<span class="hljs-number">16</span>] =<br>&#123;<br><span class="hljs-number">0x63</span>, <span class="hljs-number">0x7C</span>, <span class="hljs-number">0x77</span>, <span class="hljs-number">0x7B</span>, <span class="hljs-number">0xF2</span>, <span class="hljs-number">0x6B</span>, <span class="hljs-number">0x6F</span>, <span class="hljs-number">0xC5</span>, <span class="hljs-number">0x30</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x67</span>, <span class="hljs-number">0x2B</span>, <span class="hljs-number">0xFE</span>, <span class="hljs-number">0xD7</span>, <span class="hljs-number">0xAB</span>, <span class="hljs-number">0x76</span>,<br><span class="hljs-number">0xCA</span>, <span class="hljs-number">0x82</span>, <span class="hljs-number">0xC9</span>, <span class="hljs-number">0x7D</span>, <span class="hljs-number">0xFA</span>, <span class="hljs-number">0x59</span>, <span class="hljs-number">0x47</span>, <span class="hljs-number">0xF0</span>, <span class="hljs-number">0xAD</span>, <span class="hljs-number">0xD4</span>, <span class="hljs-number">0xA2</span>, <span class="hljs-number">0xAF</span>, <span class="hljs-number">0x9C</span>, <span class="hljs-number">0xA4</span>, <span class="hljs-number">0x72</span>, <span class="hljs-number">0xC0</span>,<br><span class="hljs-number">0xB7</span>, <span class="hljs-number">0xFD</span>, <span class="hljs-number">0x93</span>, <span class="hljs-number">0x26</span>, <span class="hljs-number">0x36</span>, <span class="hljs-number">0x3F</span>, <span class="hljs-number">0xF7</span>, <span class="hljs-number">0xCC</span>, <span class="hljs-number">0x34</span>, <span class="hljs-number">0xA5</span>, <span class="hljs-number">0xE5</span>, <span class="hljs-number">0xF1</span>, <span class="hljs-number">0x71</span>, <span class="hljs-number">0xD8</span>, <span class="hljs-number">0x31</span>, <span class="hljs-number">0x15</span>,<br><span class="hljs-number">0x04</span>, <span class="hljs-number">0xC7</span>, <span class="hljs-number">0x23</span>, <span class="hljs-number">0xC3</span>, <span class="hljs-number">0x18</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x05</span>, <span class="hljs-number">0x9A</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0x80</span>, <span class="hljs-number">0xE2</span>, <span class="hljs-number">0xEB</span>, <span class="hljs-number">0x27</span>, <span class="hljs-number">0xB2</span>, <span class="hljs-number">0x75</span>,<br><span class="hljs-number">0x09</span>, <span class="hljs-number">0x83</span>, <span class="hljs-number">0x2C</span>, <span class="hljs-number">0x1A</span>, <span class="hljs-number">0x1B</span>, <span class="hljs-number">0x6E</span>, <span class="hljs-number">0x5A</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0x52</span>, <span class="hljs-number">0x3B</span>, <span class="hljs-number">0xD6</span>, <span class="hljs-number">0xB3</span>, <span class="hljs-number">0x29</span>, <span class="hljs-number">0xE3</span>, <span class="hljs-number">0x2F</span>, <span class="hljs-number">0x84</span>,<br><span class="hljs-number">0x53</span>, <span class="hljs-number">0xD1</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0xED</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0xFC</span>, <span class="hljs-number">0xB1</span>, <span class="hljs-number">0x5B</span>, <span class="hljs-number">0x6A</span>, <span class="hljs-number">0xCB</span>, <span class="hljs-number">0xBE</span>, <span class="hljs-number">0x39</span>, <span class="hljs-number">0x4A</span>, <span class="hljs-number">0x4C</span>, <span class="hljs-number">0x58</span>, <span class="hljs-number">0xCF</span>,<br><span class="hljs-number">0xD0</span>, <span class="hljs-number">0xEF</span>, <span class="hljs-number">0xAA</span>, <span class="hljs-number">0xFB</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x4D</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x85</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0xF9</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x50</span>, <span class="hljs-number">0x3C</span>, <span class="hljs-number">0x9F</span>, <span class="hljs-number">0xA8</span>,<br><span class="hljs-number">0x51</span>, <span class="hljs-number">0xA3</span>, <span class="hljs-number">0x40</span>, <span class="hljs-number">0x8F</span>, <span class="hljs-number">0x92</span>, <span class="hljs-number">0x9D</span>, <span class="hljs-number">0x38</span>, <span class="hljs-number">0xF5</span>, <span class="hljs-number">0xBC</span>, <span class="hljs-number">0xB6</span>, <span class="hljs-number">0xDA</span>, <span class="hljs-number">0x21</span>, <span class="hljs-number">0x10</span>, <span class="hljs-number">0xFF</span>, <span class="hljs-number">0xF3</span>, <span class="hljs-number">0xD2</span>,<br><span class="hljs-number">0xCD</span>, <span class="hljs-number">0x0C</span>, <span class="hljs-number">0x13</span>, <span class="hljs-number">0xEC</span>, <span class="hljs-number">0x5F</span>, <span class="hljs-number">0x97</span>, <span class="hljs-number">0x44</span>, <span class="hljs-number">0x17</span>, <span class="hljs-number">0xC4</span>, <span class="hljs-number">0xA7</span>, <span class="hljs-number">0x7E</span>, <span class="hljs-number">0x3D</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x5D</span>, <span class="hljs-number">0x19</span>, <span class="hljs-number">0x73</span>,<br><span class="hljs-number">0x60</span>, <span class="hljs-number">0x81</span>, <span class="hljs-number">0x4F</span>, <span class="hljs-number">0xDC</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0x2A</span>, <span class="hljs-number">0x90</span>, <span class="hljs-number">0x88</span>, <span class="hljs-number">0x46</span>, <span class="hljs-number">0xEE</span>, <span class="hljs-number">0xB8</span>, <span class="hljs-number">0x14</span>, <span class="hljs-number">0xDE</span>, <span class="hljs-number">0x5E</span>, <span class="hljs-number">0x0B</span>, <span class="hljs-number">0xDB</span>,<br><span class="hljs-number">0xE0</span>, <span class="hljs-number">0x32</span>, <span class="hljs-number">0x3A</span>, <span class="hljs-number">0x0A</span>, <span class="hljs-number">0x49</span>, <span class="hljs-number">0x06</span>, <span class="hljs-number">0x24</span>, <span class="hljs-number">0x5C</span>, <span class="hljs-number">0xC2</span>, <span class="hljs-number">0xD3</span>, <span class="hljs-number">0xAC</span>, <span class="hljs-number">0x62</span>, <span class="hljs-number">0x91</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0xE4</span>, <span class="hljs-number">0x79</span>,<br><span class="hljs-number">0xE7</span>, <span class="hljs-number">0xC8</span>, <span class="hljs-number">0x37</span>, <span class="hljs-number">0x6D</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0xD5</span>, <span class="hljs-number">0x4E</span>, <span class="hljs-number">0xA9</span>, <span class="hljs-number">0x6C</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0xF4</span>, <span class="hljs-number">0xEA</span>, <span class="hljs-number">0x65</span>, <span class="hljs-number">0x7A</span>, <span class="hljs-number">0xAE</span>, <span class="hljs-number">0x08</span>,<br><span class="hljs-number">0xBA</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0x25</span>, <span class="hljs-number">0x2E</span>, <span class="hljs-number">0x1C</span>, <span class="hljs-number">0xA6</span>, <span class="hljs-number">0xB4</span>, <span class="hljs-number">0xC6</span>, <span class="hljs-number">0xE8</span>, <span class="hljs-number">0xDD</span>, <span class="hljs-number">0x74</span>, <span class="hljs-number">0x1F</span>, <span class="hljs-number">0x4B</span>, <span class="hljs-number">0xBD</span>, <span class="hljs-number">0x8B</span>, <span class="hljs-number">0x8A</span>,<br><span class="hljs-number">0x70</span>, <span class="hljs-number">0x3E</span>, <span class="hljs-number">0xB5</span>, <span class="hljs-number">0x66</span>, <span class="hljs-number">0x48</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0xF6</span>, <span class="hljs-number">0x0E</span>, <span class="hljs-number">0x61</span>, <span class="hljs-number">0x35</span>, <span class="hljs-number">0x57</span>, <span class="hljs-number">0xB9</span>, <span class="hljs-number">0x86</span>, <span class="hljs-number">0xC1</span>, <span class="hljs-number">0x1D</span>, <span class="hljs-number">0x9E</span>,<br><span class="hljs-number">0xE1</span>, <span class="hljs-number">0xF8</span>, <span class="hljs-number">0x98</span>, <span class="hljs-number">0x11</span>, <span class="hljs-number">0x69</span>, <span class="hljs-number">0xD9</span>, <span class="hljs-number">0x8E</span>, <span class="hljs-number">0x94</span>, <span class="hljs-number">0x9B</span>, <span class="hljs-number">0x1E</span>, <span class="hljs-number">0x87</span>, <span class="hljs-number">0xE9</span>, <span class="hljs-number">0xCE</span>, <span class="hljs-number">0x55</span>, <span class="hljs-number">0x28</span>, <span class="hljs-number">0xDF</span>,<br><span class="hljs-number">0x8C</span>, <span class="hljs-number">0xA1</span>, <span class="hljs-number">0x89</span>, <span class="hljs-number">0x0D</span>, <span class="hljs-number">0xBF</span>, <span class="hljs-number">0xE6</span>, <span class="hljs-number">0x42</span>, <span class="hljs-number">0x68</span>, <span class="hljs-number">0x41</span>, <span class="hljs-number">0x99</span>, <span class="hljs-number">0x2D</span>, <span class="hljs-number">0x0F</span>, <span class="hljs-number">0xB0</span>, <span class="hljs-number">0x54</span>, <span class="hljs-number">0xBB</span>, <span class="hljs-number">0x16</span><br>&#125;<span class="hljs-comment">;</span><br><br>//字节代换<br><span class="hljs-keyword">int</span> Plain_S_Substitution(unsigned char *PlainArray)<br>&#123;<br><span class="hljs-keyword">int</span> <span class="hljs-keyword">ret</span> = <span class="hljs-number">0</span><span class="hljs-comment">;</span><br><br>for (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 16; i++)</span><br>&#123;<br>PlainArray[i] = S_Table[PlainArray[i] &gt;&gt; <span class="hljs-number">4</span>][PlainArray[i] &amp; <span class="hljs-number">0x0F</span>]<span class="hljs-comment">;</span><br>&#125;<br><br>return <span class="hljs-keyword">ret</span><span class="hljs-comment">;</span><br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
+<h5 id="字节代换层（S盒）"><a href="#字节代换层（S盒）" class="headerlink" title="字节代换层（S盒）"></a>字节代换层（S盒）</h5><p>就是把字节一个个放入s盒之中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">const unsigned char S_Table[16][16] =<br>&#123;<br>0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76,<br>0xCA, 0x82, 0xC9, 0x7D, 0xFA, 0x59, 0x47, 0xF0, 0xAD, 0xD4, 0xA2, 0xAF, 0x9C, 0xA4, 0x72, 0xC0,<br>0xB7, 0xFD, 0x93, 0x26, 0x36, 0x3F, 0xF7, 0xCC, 0x34, 0xA5, 0xE5, 0xF1, 0x71, 0xD8, 0x31, 0x15,<br>0x04, 0xC7, 0x23, 0xC3, 0x18, 0x96, 0x05, 0x9A, 0x07, 0x12, 0x80, 0xE2, 0xEB, 0x27, 0xB2, 0x75,<br>0x09, 0x83, 0x2C, 0x1A, 0x1B, 0x6E, 0x5A, 0xA0, 0x52, 0x3B, 0xD6, 0xB3, 0x29, 0xE3, 0x2F, 0x84,<br>0x53, 0xD1, 0x00, 0xED, 0x20, 0xFC, 0xB1, 0x5B, 0x6A, 0xCB, 0xBE, 0x39, 0x4A, 0x4C, 0x58, 0xCF,<br>0xD0, 0xEF, 0xAA, 0xFB, 0x43, 0x4D, 0x33, 0x85, 0x45, 0xF9, 0x02, 0x7F, 0x50, 0x3C, 0x9F, 0xA8,<br>0x51, 0xA3, 0x40, 0x8F, 0x92, 0x9D, 0x38, 0xF5, 0xBC, 0xB6, 0xDA, 0x21, 0x10, 0xFF, 0xF3, 0xD2,<br>0xCD, 0x0C, 0x13, 0xEC, 0x5F, 0x97, 0x44, 0x17, 0xC4, 0xA7, 0x7E, 0x3D, 0x64, 0x5D, 0x19, 0x73,<br>0x60, 0x81, 0x4F, 0xDC, 0x22, 0x2A, 0x90, 0x88, 0x46, 0xEE, 0xB8, 0x14, 0xDE, 0x5E, 0x0B, 0xDB,<br>0xE0, 0x32, 0x3A, 0x0A, 0x49, 0x06, 0x24, 0x5C, 0xC2, 0xD3, 0xAC, 0x62, 0x91, 0x95, 0xE4, 0x79,<br>0xE7, 0xC8, 0x37, 0x6D, 0x8D, 0xD5, 0x4E, 0xA9, 0x6C, 0x56, 0xF4, 0xEA, 0x65, 0x7A, 0xAE, 0x08,<br>0xBA, 0x78, 0x25, 0x2E, 0x1C, 0xA6, 0xB4, 0xC6, 0xE8, 0xDD, 0x74, 0x1F, 0x4B, 0xBD, 0x8B, 0x8A,<br>0x70, 0x3E, 0xB5, 0x66, 0x48, 0x03, 0xF6, 0x0E, 0x61, 0x35, 0x57, 0xB9, 0x86, 0xC1, 0x1D, 0x9E,<br>0xE1, 0xF8, 0x98, 0x11, 0x69, 0xD9, 0x8E, 0x94, 0x9B, 0x1E, 0x87, 0xE9, 0xCE, 0x55, 0x28, 0xDF,<br>0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16<br>&#125;;<br><br>//字节代换<br>int Plain_S_Substitution(unsigned char *PlainArray)<br>&#123;<br>int ret = 0;<br><br>for (int i = 0; i &lt; 16; i++)<br>&#123;<br>PlainArray[i] = S_Table[PlainArray[i] &gt;&gt; 4][PlainArray[i] &amp; 0x0F];<br>&#125;<br><br>return ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
 
-<h4 id="行移位"><a href="#行移位" class="headerlink" title="行移位"></a>行移位</h4><p><a target="_blank" rel="noopener" href="https://pic2.zhimg.com/v2-581b444c6583aff31afe66b0391d73c1_r.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-581b444c6583aff31afe66b0391d73c1_r.jpg" srcset="/img/loading.gif" lazyload alt="preview"></a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ShiftRows</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> *PlainArray)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">int</span> ret = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">//第一行 不移位</span><br><span class="hljs-comment">//PlainArray[0] = PlainArray[0];</span><br><br><span class="hljs-comment">//第二行 左移8Bit</span><br>PlainArray[<span class="hljs-number">1</span>] = (PlainArray[<span class="hljs-number">1</span>] &gt;&gt; <span class="hljs-number">8</span>) | (PlainArray[<span class="hljs-number">1</span>] &lt;&lt; <span class="hljs-number">24</span>);<br><br><span class="hljs-comment">//第三行 左移16Bit</span><br>PlainArray[<span class="hljs-number">2</span>] = (PlainArray[<span class="hljs-number">2</span>] &gt;&gt; <span class="hljs-number">16</span>) | (PlainArray[<span class="hljs-number">2</span>] &lt;&lt; <span class="hljs-number">16</span>);<br><br><span class="hljs-comment">//第四行 左移24Bit</span><br>PlainArray[<span class="hljs-number">3</span>] = (PlainArray[<span class="hljs-number">3</span>] &gt;&gt; <span class="hljs-number">24</span>) | (PlainArray[<span class="hljs-number">3</span>] &lt;&lt; <span class="hljs-number">8</span>);<br><br><span class="hljs-keyword">return</span> ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
+<h5 id="行移位"><a href="#行移位" class="headerlink" title="行移位"></a>行移位</h5><p><a target="_blank" rel="noopener" href="https://pic2.zhimg.com/v2-581b444c6583aff31afe66b0391d73c1_r.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-581b444c6583aff31afe66b0391d73c1_r.jpg" srcset="/img/loading.gif" lazyload alt="preview"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">int ShiftRows(unsigned int *PlainArray)<br>&#123;<br>int ret = 0;<br><br>//第一行 不移位<br>//PlainArray[0] = PlainArray[0];<br><br>//第二行 左移8Bit<br>PlainArray[1] = (PlainArray[1] &gt;&gt; 8) | (PlainArray[1] &lt;&lt; 24);<br><br>//第三行 左移16Bit<br>PlainArray[2] = (PlainArray[2] &gt;&gt; 16) | (PlainArray[2] &lt;&lt; 16);<br><br>//第四行 左移24Bit<br>PlainArray[3] = (PlainArray[3] &gt;&gt; 24) | (PlainArray[3] &lt;&lt; 8);<br><br>return ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
 
-<h4 id="列混淆"><a href="#列混淆" class="headerlink" title="列混淆"></a>列混淆</h4><p><a target="_blank" rel="noopener" href="https://pic2.zhimg.com/80/v2-8d1c58108b9d719a8674d7703ead7991_720w.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-8d1c58108b9d719a8674d7703ead7991_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></a></p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">const unsigned <span class="hljs-built_in">char</span> MixArray<span class="hljs-literal">[<span class="hljs-number">4</span>]</span><span class="hljs-literal">[<span class="hljs-number">4</span>]</span> =<br>&#123;<br><span class="hljs-number">0x02</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x01</span>,<br><span class="hljs-number">0x01</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0x01</span>,<br><span class="hljs-number">0x01</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x03</span>,<br><span class="hljs-number">0x03</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x02</span><br>&#125;;<br><br><span class="hljs-built_in">int</span> <span class="hljs-constructor">MixColum(<span class="hljs-params">unsigned</span> <span class="hljs-params">char</span>(<span class="hljs-operator">*</span>PlainArray)</span><span class="hljs-literal">[<span class="hljs-number">4</span>]</span>)<br>&#123;<br><span class="hljs-built_in">int</span> ret = <span class="hljs-number">0</span>;<br><span class="hljs-comment">//定义变量</span><br>unsigned <span class="hljs-built_in">char</span> ArrayTemp<span class="hljs-literal">[<span class="hljs-number">4</span>]</span><span class="hljs-literal">[<span class="hljs-number">4</span>]</span>;<br><br><span class="hljs-comment">//初始化变量</span><br>memcpy(ArrayTemp, PlainArray, <span class="hljs-number">16</span>);<br><br><span class="hljs-comment">//矩阵乘法 4*4</span><br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<br>&#123;<br><span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">4</span>; j++)<br>&#123;<br>PlainArray<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span><span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> =<br><span class="hljs-constructor">GaloisMultiplication(MixArray[<span class="hljs-params">i</span>][0], ArrayTemp[0][<span class="hljs-params">j</span>])</span> ^<br><span class="hljs-constructor">GaloisMultiplication(MixArray[<span class="hljs-params">i</span>][1], ArrayTemp[1][<span class="hljs-params">j</span>])</span> ^<br><span class="hljs-constructor">GaloisMultiplication(MixArray[<span class="hljs-params">i</span>][2], ArrayTemp[2][<span class="hljs-params">j</span>])</span> ^<br><span class="hljs-constructor">GaloisMultiplication(MixArray[<span class="hljs-params">i</span>][3], ArrayTemp[3][<span class="hljs-params">j</span>])</span>;<br>&#125;<br>&#125;<br>return ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
+<h5 id="列混淆"><a href="#列混淆" class="headerlink" title="列混淆"></a>列混淆</h5><p><a target="_blank" rel="noopener" href="https://pic2.zhimg.com/80/v2-8d1c58108b9d719a8674d7703ead7991_720w.jpg"><img src="/2022/07/05/AES%E5%AE%9E%E7%8E%B0/v2-8d1c58108b9d719a8674d7703ead7991_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">const unsigned char MixArray[4][4] =<br>&#123;<br>0x02, 0x03, 0x01, 0x01,<br>0x01, 0x02, 0x03, 0x01,<br>0x01, 0x01, 0x02, 0x03,<br>0x03, 0x01, 0x01, 0x02<br>&#125;;<br><br>int MixColum(unsigned char(*PlainArray)[4])<br>&#123;<br>int ret = 0;<br>//定义变量<br>unsigned char ArrayTemp[4][4];<br><br>//初始化变量<br>memcpy(ArrayTemp, PlainArray, 16);<br><br>//矩阵乘法 4*4<br>for (int i = 0; i &lt; 4; i++)<br>&#123;<br>for (int j = 0; j &lt; 4; j++)<br>&#123;<br>PlainArray[i][j] =<br>GaloisMultiplication(MixArray[i][0], ArrayTemp[0][j]) ^<br>GaloisMultiplication(MixArray[i][1], ArrayTemp[1][j]) ^<br>GaloisMultiplication(MixArray[i][2], ArrayTemp[2][j]) ^<br>GaloisMultiplication(MixArray[i][3], ArrayTemp[3][j]);<br>&#125;<br>&#125;<br>return ret;<br>&#125;<br>Copy<br></code></pre></td></tr></table></figure>
 
 <p><strong>接下来我们就只用处理伽罗瓦域乘法相关处理了，由于前面介绍过相关概念，所以代码就不在此进行讲解了，大家可以参考下方的代码注释进行理解：</strong></p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs perl">//<span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">//</span><span class="hljs-regexp">/</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/功能: 伽罗瓦域内的乘法运算 GF(128)</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/参数: Num_L 输入的左参数</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/ Num_R 输入的右参数</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/返回值:计算结果</span><br><span class="hljs-regexp">char GaloisMultiplication(unsigned char Num_L, unsigned char Num_R)</span><br><span class="hljs-regexp">&#123;</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/定义变量</span><br><span class="hljs-regexp">unsigned char Result = 0; /</span><span class="hljs-regexp">/伽罗瓦域内乘法计算的结果</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">while (Num_L)</span><br><span class="hljs-regexp">&#123;</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/如果Num_L最低位是1就异或Num_R，相当于加上Num_R * 1</span><br><span class="hljs-regexp">if (Num_L &amp; 0x01)</span><br><span class="hljs-regexp">&#123;</span><br><span class="hljs-regexp">Result ^= Num_R;</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/Num_L右移一位，相当于除以2</span><br><span class="hljs-regexp">Num_L = Num_L &gt;&gt; 1;</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/如果Num_R最高位为1</span><br><span class="hljs-regexp">if (Num_R &amp; 0x80)</span><br><span class="hljs-regexp">&#123;</span><br><span class="hljs-regexp">/</span><span class="hljs-regexp">/左移一位相当于乘二</span><br><span class="hljs-regexp">Num_R = Num_R &lt;&lt; 1; /</span><span class="hljs-regexp">/注：这里会丢失最高位，但是不用担心</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">Num_R ^= 0x1B; /</span><span class="hljs-regexp">/计算伽罗瓦域内除法Num_R = Num_R /</span> (<span class="hljs-keyword">x</span>^<span class="hljs-number">8</span>(刚好丢失最高位) + <span class="hljs-keyword">x</span>^<span class="hljs-number">4</span> + <span class="hljs-keyword">x</span>^<span class="hljs-number">3</span> + <span class="hljs-keyword">x</span>^<span class="hljs-number">1</span> + <span class="hljs-number">1</span>)<br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br><span class="hljs-regexp">//</span>左移一位相当于乘二<br>Num_R = Num_R &lt;&lt; <span class="hljs-number">1</span>;<br>&#125;<br>&#125;<br><span class="hljs-keyword">return</span> Result;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">///////////////////////////////////////////////////////////////<br>//功能: 伽罗瓦域内的乘法运算 GF(128)<br>//参数: Num_L 输入的左参数<br>// Num_R 输入的右参数<br>//返回值:计算结果<br>char GaloisMultiplication(unsigned char Num_L, unsigned char Num_R)<br>&#123;<br>//定义变量<br>unsigned char Result = 0; //伽罗瓦域内乘法计算的结果<br><br>while (Num_L)<br>&#123;<br>//如果Num_L最低位是1就异或Num_R，相当于加上Num_R * 1<br>if (Num_L &amp; 0x01)<br>&#123;<br>Result ^= Num_R;<br>&#125;<br><br>//Num_L右移一位，相当于除以2<br>Num_L = Num_L &gt;&gt; 1;<br><br>//如果Num_R最高位为1<br>if (Num_R &amp; 0x80)<br>&#123;<br>//左移一位相当于乘二<br>Num_R = Num_R &lt;&lt; 1; //注：这里会丢失最高位，但是不用担心<br><br>Num_R ^= 0x1B; //计算伽罗瓦域内除法Num_R = Num_R / (x^8(刚好丢失最高位) + x^4 + x^3 + x^1 + 1)<br>&#125;<br>else<br>&#123;<br>//左移一位相当于乘二<br>Num_R = Num_R &lt;&lt; 1;<br>&#125;<br>&#125;<br>return Result;<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -352,7 +350,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" class="category-chain-item">密码学</a>
+  <a href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%AE%89%E5%85%A8/" class="category-chain-item">网络与安全</a>
   
   
 
@@ -368,6 +366,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/AES/">#AES</a>
+      
+        <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">#密码学</a>
       
     </div>
   
@@ -497,7 +497,7 @@
     
 
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <a id="scroll-top-button" aria-label="返回顶部" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -533,7 +533,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
     </div>
   
   
@@ -562,21 +562,6 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
 
@@ -672,7 +657,4 @@
   </noscript>
 </body>
 </html>
-<!--动态线条背景-->
-<script type="text/javascript"
-color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
 

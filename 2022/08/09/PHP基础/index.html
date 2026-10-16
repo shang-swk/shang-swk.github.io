@@ -12,16 +12,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#203c46">
   <meta name="author" content="shang-swk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="PHP">
+    <meta name="description" content="记录 PHP 的基础语法与常用操作，作为学习和查阅时的参考。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP基础">
 <meta property="og:url" content="https://shang-swk.github.io/2022/08/09/PHP%E5%9F%BA%E7%A1%80/index.html">
-<meta property="og:site_name" content="One ball">
-<meta property="og:description" content="PHP">
+<meta property="og:site_name" content="寻影">
+<meta property="og:description" content="记录 PHP 的基础语法与常用操作，作为学习和查阅时的参考。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shang-swk.github.io/2022/08/09/PHP%E5%9F%BA%E7%A1%80/php%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E7%AC%A6">
 <meta property="og:image" content="https://shang-swk.github.io/2022/08/09/PHP%E5%9F%BA%E7%A1%80/php%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6">
@@ -36,13 +36,14 @@
 <meta property="article:published_time" content="2022-08-09T05:37:00.000Z">
 <meta property="article:modified_time" content="2023-03-14T22:08:47.316Z">
 <meta property="article:author" content="shang-swk">
+<meta property="article:tag" content="前端">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shang-swk.github.io/2022/08/09/PHP%E5%9F%BA%E7%A1%80/php%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E7%AC%A6">
   
   
   
-  <title>PHP基础 - One ball</title>
+  <title>PHP基础 - 寻影</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -76,11 +77,15 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/xunying.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h2,h3,h4","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -96,22 +101,23 @@
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
-<body>
+<body class="post-page">
+  <a class="skip-link" href="#board">跳到正文</a>
   
 
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 38vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Ditto</strong>
+      <strong>寻影</strong><span class="brand-note">学习 · 实践 · 记录</span>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="展开导航">
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
@@ -124,8 +130,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
+              
+              <a class="nav-link" href="/" >
+                
                 首页
               </a>
             </li>
@@ -136,9 +143,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
+              
+              <a class="nav-link" href="/archives/" >
+                
+                文章
               </a>
             </li>
           
@@ -148,9 +156,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
+              
+              <a class="nav-link" href="/categories/" >
+                
+                专题
               </a>
             </li>
           
@@ -160,20 +169,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
+              
+              <a class="nav-link" href="/about/" >
+                
                 关于
               </a>
             </li>
@@ -181,7 +179,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="搜索文章">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
@@ -189,7 +187,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="切换深色模式">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -200,16 +198,17 @@
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" false
      style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+      
+      <div class="banner-text text-center">
+        <h1 class="banner-title">
           
-            <span id="subtitle" data-typed-text="PHP基础"></span>
+            <span id="subtitle">PHP基础</span>
           
-        </div>
+        </h1>
 
         
           
@@ -219,7 +218,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-08-09 13:37" pubdate>
-          2022年8月9日 下午
+          2022年8月9日
         </time>
       </span>
     
@@ -241,7 +240,7 @@
         
         
         
-          3 分钟
+          1 分钟
         
       </span>
     
@@ -253,6 +252,7 @@
 
         
       </div>
+      
 
       
     </div>
@@ -278,13 +278,11 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">PHP基础</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="PHP基础"><a href="#PHP基础" class="headerlink" title="PHP基础"></a>PHP基础</h1><h2 id="1-PHP简述"><a href="#1-PHP简述" class="headerlink" title="1.  PHP简述"></a>1.  PHP简述</h2><p>PHP（全称：PHP：Hypertext Preprocessor，即”PHP：超文本预处理器”）是一种通用开源脚本语言。</p>
+                <h2 id="PHP基础"><a href="#PHP基础" class="headerlink" title="PHP基础"></a>PHP基础</h2><h3 id="1-PHP简述"><a href="#1-PHP简述" class="headerlink" title="1.  PHP简述"></a>1.  PHP简述</h3><p>PHP（全称：PHP：Hypertext Preprocessor，即”PHP：超文本预处理器”）是一种通用开源脚本语言。</p>
 <p>在一个php文件中可以包括以下内容：</p>
 <ul>
 <li><p>PHP 文件可包含文本、HTML、JavaScript代码和 PHP 代码</p>
@@ -311,7 +309,7 @@
 <li><p>PHP 可以加密数据</p>
 </li>
 </ol>
-<h2 id="2-基本语法格式"><a href="#2-基本语法格式" class="headerlink" title="2.  基本语法格式"></a>2.  基本语法格式</h2><p>PHP 脚本以 <?php 开始，以 ?> 结束</p>
+<h3 id="2-基本语法格式"><a href="#2-基本语法格式" class="headerlink" title="2.  基本语法格式"></a>2.  基本语法格式</h3><p>PHP 脚本以 <?php 开始，以 ?> 结束</p>
 <?php
 
 //php脚本的基本格式
@@ -483,7 +481,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 <p>字符的操作函数</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br></pre></td><td class="code"><pre><code class="hljs php">addcslashes — 以 C 语言风格使用反斜线转义字符串中的字符<br>addslashes — 使用反斜线引用字符串<br><br>bin2hex — 函数把包含数据的二进制字符串转换为十六进制值<br><br>chop — rtrim 的别名<br><br>chr — 返回指定的字符<br><br>chunk_split — 将字符串分割成小块<br><br>convert_cyr_string — 将字符由一种 Cyrillic 字符转换成另一种<br><br>convert_uudecode — 解码一个 uuencode 编码的字符串<br><br>convert_uuencode — 使用 uuencode 编码一个字符串<br><br>count_chars — 返回字符串所用字符的信息<br><br>crc32 — 计算一个字符串的 crc32 多项式<br><br>crypt — 单向字符串散列<br><br><span class="hljs-keyword">echo</span> — 输出一个或多个字符串<br><br>explode — 使用一个字符串分割另一个字符串<br><br>fprintf — 将格式化后的字符串写入到流<br><br>get_html_translation_table — 返回使用 htmlspecialchars 和 htmlentities 后的转换表<br><br>hebrev — 将逻辑顺序希伯来文（logical-Hebrew）转换为视觉顺序希伯来文（visual-Hebrew）<br><br>hebrevc — 将逻辑顺序希伯来文（logical-Hebrew）转换为视觉顺序希伯来文（visual-Hebrew），并且转换换行符<br><br>hex2bin — 转换十六进制字符串为二进制字符串<br><br>html_entity_decode — Convert HTML entities to their corresponding characters<br><br>htmlentities — 将字符转换为 HTML 转义字符<br><br>htmlspecialchars_decode — 将特殊的 HTML 实体转换回普通字符<br><br>htmlspecialchars — 将特殊字符转换为 HTML 实体<br><br>implode — 将一个一维数组的值转化为字符串<br><br>join — 别名 implode<br><br>lcfirst — 使一个字符串的第一个字符小写<br><br>levenshtein — 计算两个字符串之间的编辑距离<br><br>localeconv — Get numeric formatting information<br><br>ltrim — 删除字符串开头的空白字符（或其他字符）<br><br>md5_file — 计算指定文件的 MD5 散列值<br><br>md5 — 计算字符串的 MD5 散列值<br><br>metaphone — Calculate the metaphone key of a <span class="hljs-keyword">string</span><br><br>money_format — 将数字格式化成货币字符串<br><br>nl_langinfo — Query language <span class="hljs-keyword">and</span> locale information<br><br>nl2br — 在字符串所有新行之前插入 HTML 换行标记<br><br>number_format — 以千位分隔符方式格式化一个数字<br><br>ord — 转换字符串第一个字节为 <span class="hljs-number">0</span>-<span class="hljs-number">255</span> 之间的值<br><br>parse_str — 将字符串解析成多个变量<br><br><span class="hljs-keyword">print</span> — 输出字符串<br><br>printf — 输出格式化字符串<br><br>quoted_printable_decode — 将 quoted-printable 字符串转换为 <span class="hljs-number">8</span>-bit 字符串<br><br>quoted_printable_encode — 将 <span class="hljs-number">8</span>-bit 字符串转换成 quoted-printable 字符串<br><br>quotemeta — 转义元字符集<br><br>rtrim — 删除字符串末端的空白字符（或者其他字符）<br><br>setlocale — 设置地区信息<br><br>sha1_file — 计算文件的 sha1 散列值<br><br>sha1 — 计算字符串的 sha1 散列值<br><br>similar_text — 计算两个字符串的相似度<br><br>soundex — Calculate the soundex key of a <span class="hljs-keyword">string</span><br><br>sprintf — Return a formatted <span class="hljs-keyword">string</span><br><br>sscanf — 根据指定格式解析输入的字符<br><br>str_contains — Determine <span class="hljs-keyword">if</span> a <span class="hljs-keyword">string</span> contains a given substring<br><br>str_ends_with — Checks <span class="hljs-keyword">if</span> a <span class="hljs-keyword">string</span> ends with a given substring<br><br>str_getcsv — 解析 CSV 字符串为一个数组<br><br>str_ireplace — str_replace 的忽略大小写版本<br><br>str_pad — 使用另一个字符串填充字符串为指定长度<br><br>str_repeat — 重复一个字符串<br><br>str_replace — 子字符串替换<br><br>str_rot13 — 对字符串执行 ROT13 转换<br><br>str_shuffle — 随机打乱一个字符串<br><br>str_split — 将字符串转换为数组<br><br>str_starts_with — Checks <span class="hljs-keyword">if</span> a <span class="hljs-keyword">string</span> starts with a given substring<br><br>str_word_count — 返回字符串中单词的使用情况<br><br>strcasecmp — 二进制安全比较字符串（不区分大小写）<br><br>strchr — 别名 strstr<br><br>strcmp — 二进制安全字符串比较<br><br>strcoll — 基于区域设置的字符串比较<br><br>strcspn — 获取不匹配遮罩的起始子字符串的长度<br><br>strip_tags — 从字符串中去除 HTML 和 PHP 标记<br><br>stripcslashes — 反引用一个使用 addcslashes 转义的字符串<br><br>stripos — 查找字符串首次出现的位置（不区分大小写）<br><br>stripslashes — 反引用一个引用字符串<br><br>stristr — strstr 函数的忽略大小写版本<br><br>strlen — 获取字符串长度<br><br>strnatcasecmp — 使用“自然顺序”算法比较字符串（不区分大小写）<br><br>strnatcmp — 使用自然排序算法比较字符串<br><br>strncasecmp — 二进制安全比较字符串开头的若干个字符（不区分大小写）<br><br>strncmp — 二进制安全比较字符串开头的若干个字符<br><br>strpbrk — 在字符串中查找一组字符的任何一个字符<br><br>strpos — 查找字符串首次出现的位置<br><br>strrchr — 查找指定字符在字符串中的最后一次出现<br><br>strrev — 反转字符串<br><br>strripos — 计算指定字符串在目标字符串中最后一次出现的位置（不区分大小写）<br><br>strrpos — 计算指定字符串在目标字符串中最后一次出现的位置<br><br>strspn — 计算字符串中全部字符都存在于指定字符集合中的第一段子串的长度。<br><br>strstr — 查找字符串的首次出现<br><br>strtok — 标记分割字符串<br><br>strtolower — 将字符串转化为小写<br><br>strtoupper — 将字符串转化为大写<br><br>strtr — 转换指定字符<br><br>substr_compare — 二进制安全比较字符串（从偏移位置比较指定长度）<br><br>substr_count — 计算字串出现的次数<br><br>substr_replace — 替换字符串的子串<br><br>substr — 返回字符串的子串<br><br>trim — 去除字符串首尾处的空白字符（或者其他字符）<br><br>ucfirst — 将字符串的首字母转换为大写<br><br>ucwords — 将字符串中每个单词的首字母转换为大写<br><br>vfprintf — 将格式化字符串写入流<br><br>vprintf — 输出格式化字符串<br><br>vsprintf — 返回格式化字符串<br><br>wordwrap — 打断字符串为指定数量的字串<br><br> <br><br> <br><br><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-variable">$name</span>=<span class="hljs-string">&#x27;暗月&#x27;</span>;<br><br><span class="hljs-comment">//双引号 里面有变量 会 输出变量的值</span><br><br><span class="hljs-comment">//$str =&quot; 这是 $name 的全栈渗透测试培训，这是一个比较高质量的课程，一个很大的体系 欢迎来学习。 &quot;;</span><br><br><span class="hljs-comment">//单引号 如果里面有变量都作为一个字符串处理</span><br><br><span class="hljs-comment">//$str1 =&#x27;这是 $name 的全栈渗透测试培训，这是一个比较高质量的课程，一个很大的体系 欢迎来学习。&#x27;;</span><br><br> <br><br><span class="hljs-variable">$a</span>=<span class="hljs-string">&#x27;123456&#x27;</span>;<br><br><span class="hljs-comment">//echo $str.&quot; 一共有 &quot;.strlen($a).&quot;字符&quot;;</span><br><br><span class="hljs-comment">//去掉空格</span><br><br><span class="hljs-comment">//echo trim($str);</span><br><br> <br><br><span class="hljs-comment">//echo $str1;</span><br><br> <br><br><span class="hljs-comment">//查找字符串 返回位置</span><br><br><span class="hljs-comment">//echo strpos($str,&#x27;暗月&#x27;);</span><br><br><span class="hljs-comment">//截取字符串</span><br><br><span class="hljs-comment">//echo substr($str,strpos($str,&#x27;暗月&#x27;),strpos($str,&#x27;培训&#x27;));</span><br><br><span class="hljs-comment">//md5 加密</span><br><br><span class="hljs-comment">//echo md5($a);</span><br><br><span class="hljs-comment">//通过下标 取字符的值</span><br><br><span class="hljs-comment">//echo $a[0];</span><br><br><span class="hljs-comment">//字符串替换函数</span><br><br><span class="hljs-variable">$a1</span>=<span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-string">&#x27;0&#x27;</span>,<span class="hljs-variable">$a</span>);<br><br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$a1</span>;<br><br><span class="hljs-comment">//遍历字符串</span><br><br> <br><br><span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;=<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$a</span>);<span class="hljs-variable">$i</span>++)&#123;<br><br>  <span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span>[<span class="hljs-variable">$i</span>].<span class="hljs-string">&#x27;&lt;/br&gt;&#x27;</span>;<br><br>&#125;<br><br> <br><br> <br><br> <br><br> <br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mb_str_split</span>(<span class="hljs-params"> <span class="hljs-variable">$string</span> </span>) </span>&#123;<br><br>   <span class="hljs-comment">// /u表示把字符串当作utf-8处理，并把字符串开始和结束之前所有的字符串分割成数组</span><br><br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">preg_split</span>(<span class="hljs-string">&#x27;/(?&lt;!^)(?!$)/u&#x27;</span>, <span class="hljs-variable">$string</span> );<br><br>&#125;<br><br> <br><br> <br><br><span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$str</span>);<span class="hljs-variable">$i</span>++) &#123;<br><br>  <span class="hljs-variable">$k</span> = <span class="hljs-variable">$str</span>[<span class="hljs-variable">$i</span>]; <span class="hljs-comment">//输出乱码</span><br><br>&#125;<br><br> <br><br><span class="hljs-keyword">foreach</span> (<span class="hljs-title function_ invoke__">mb_str_split</span>(<span class="hljs-variable">$str</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$c</span>)<br><br>&#123;<br><br>  <span class="hljs-keyword">echo</span> <span class="hljs-variable">$c</span>; <span class="hljs-comment">//正常输出：中 文 测 试</span><br><br><br></code></pre></td></tr></table></figure>
 
-<h2 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4.  运算符"></a>4.  运算符</h2><p>基本运算符：</p>
+<h3 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4.  运算符"></a>4.  运算符</h3><p>基本运算符：</p>
 <p><img src="/2022/08/09/PHP%E5%9F%BA%E7%A1%80/php%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E7%AC%A6" srcset="/img/loading.gif" lazyload alt="php1"></p>
 <p>赋值运算符：</p>
 <p><img src="/2022/08/09/PHP%E5%9F%BA%E7%A1%80/php%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6" srcset="/img/loading.gif" lazyload alt="php2"></p>
@@ -496,18 +494,18 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 <p><img src="/2022/08/09/PHP%E5%9F%BA%E7%A1%80/php%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6" srcset="/img/loading.gif" lazyload alt="php5"></p>
 <p>三元运算符：</p>
 <p>(expr1) ? (expr2) : (expr3)</p>
-<h2 id="5-控制语句"><a href="#5-控制语句" class="headerlink" title="5.  控制语句"></a>5.  控制语句</h2><p>控制语法的语句结构和其他大多数语言结构相同，有以下两类：</p>
-<h3 id="5-1-条件控制语句"><a href="#5-1-条件控制语句" class="headerlink" title="5.1.  条件控制语句"></a>5.1.  条件控制语句</h3><p><strong>if</strong> <strong>语句</strong> - 在条件成立时执行代码</p>
+<h3 id="5-控制语句"><a href="#5-控制语句" class="headerlink" title="5.  控制语句"></a>5.  控制语句</h3><p>控制语法的语句结构和其他大多数语言结构相同，有以下两类：</p>
+<h4 id="5-1-条件控制语句"><a href="#5-1-条件控制语句" class="headerlink" title="5.1.  条件控制语句"></a>5.1.  条件控制语句</h4><p><strong>if</strong> <strong>语句</strong> - 在条件成立时执行代码</p>
 <p><strong>if…else</strong> 语句 - 在条件成立时执行一块代码，条件不成立时执行另一块代码</p>
 <p><strong>if…elseif….else</strong> 语句 - 在若干条件之一成立时执行一个代码块</p>
 <p><strong>switch</strong> 语句 - 在若干条件之一成立时执行一个代码块</p>
-<h3 id="5-2-循环控制语句"><a href="#5-2-循环控制语句" class="headerlink" title="5.2.  循环控制语句"></a>5.2.  循环控制语句</h3><p><strong>while</strong> - 只要指定的条件成立，则循环执行代码块</p>
+<h4 id="5-2-循环控制语句"><a href="#5-2-循环控制语句" class="headerlink" title="5.2.  循环控制语句"></a>5.2.  循环控制语句</h4><p><strong>while</strong> - 只要指定的条件成立，则循环执行代码块</p>
 <p><strong>do…while</strong> - 首先执行一次代码块，然后在指定的条件成立时重复这个循环</p>
 <p><strong>for</strong> - 循环执行代码块指定的次数</p>
 <p><strong>foreach</strong> - 根据数组中每个元素来循环代码块</p>
 <p><strong>break****语句</strong>用于终止本次循环</p>
 <p><strong>continue****语句</strong>的作用是跳出本次循环，接着执行下一次循环</p>
-<h2 id="6-php数组"><a href="#6-php数组" class="headerlink" title="6.  php数组"></a>6.  php数组</h2><p>数组是一个能在单个变量中存储多个值的特殊变量。</p>
+<h3 id="6-php数组"><a href="#6-php数组" class="headerlink" title="6.  php数组"></a>6.  php数组</h3><p>数组是一个能在单个变量中存储多个值的特殊变量。</p>
 <p>在 PHP 中，array() 函数用于创建数组：</p>
 <p>array();</p>
 <p>在 PHP 中，有三种类型的数组：</p>
@@ -551,7 +549,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 <p>array_shift() 将array 的第一个单元移出并作为结果返回，将 array 的长度减一并将所有其它单元向前移动一位。所有的数字键名将改为从零开始计数，文字键名将不变。</p>
 <p>array_unique() 接受 array 作为输入并返回没有重复值的新数组。注意键名保留不变。 array_unique() 先将值作为字符串排序，然后对每个值只保留第一个遇到的键名，接着忽略所有后面的键名。这并不意味着在未排序的 array 中同一个值的第一个出现的键名会被保留。</p>
 <p>in_array — 检查数组中是否存在某个值 如果找到指定的值则返回 TRUE，否则返回 FALSE 。in_array()是区分大小写的。</p>
-<h2 id="7-PHP-函数"><a href="#7-PHP-函数" class="headerlink" title="7.  PHP 函数"></a>7.  PHP 函数</h2><p>PHP 的真正力量来自它的函数：它拥有超过 1000 个内建的函数。</p>
+<h3 id="7-PHP-函数"><a href="#7-PHP-函数" class="headerlink" title="7.  PHP 函数"></a>7.  PHP 函数</h3><p>PHP 的真正力量来自它的函数：它拥有超过 1000 个内建的函数。</p>
 <p>PHP 用户定义函数</p>
 <p>除了内建的 PHP 函数，我们可以创建我们自己的函数。</p>
 <p>函数是可以在程序中重复使用的语句块。</p>
@@ -608,7 +606,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 
 
 
-<h2 id="8-PHP-变量作用域"><a href="#8-PHP-变量作用域" class="headerlink" title="8.  PHP 变量作用域"></a>8.  PHP 变量作用域</h2><p>在 PHP 中，可以在脚本的任意位置对变量进行声明。</p>
+<h3 id="8-PHP-变量作用域"><a href="#8-PHP-变量作用域" class="headerlink" title="8.  PHP 变量作用域"></a>8.  PHP 变量作用域</h3><p>在 PHP 中，可以在脚本的任意位置对变量进行声明。</p>
 <p>变量的作用域指的是变量能够被引用&#x2F;使用的那部分脚本。</p>
 <p>PHP 有三种不同的变量作用域：</p>
 <ul>
@@ -649,7 +647,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 
 <p>然后，每当函数被调用时，这个变量所存储的信息都是函数最后一次被调用时所包含的信息。&#x2F;&#x2F;&#x2F;</p>
 <p>注释：该变量仍然是函数的局部变量。</p>
-<h2 id="9-类与对象"><a href="#9-类与对象" class="headerlink" title="9.  类与对象"></a>9.  类与对象</h2><p>PHP 面向对象</p>
+<h3 id="9-类与对象"><a href="#9-类与对象" class="headerlink" title="9.  类与对象"></a>9.  类与对象</h3><p>PHP 面向对象</p>
 <p>在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。</p>
 <p>在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等。</p>
 <p>对象的主要三个特性：</p>
@@ -739,7 +737,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 <p>PHP 5 允行开发者在一个类中定义一个方法作为构造函数，语法格式如下：</p>
 <p><code>void __construct ([ mixed $args [, $... ]] )</code></p>
 <p><code>在上面的例子中我们就可以通过构造方法来初始化 $url 和 $title 变量：</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"> <span class="hljs-variable">$par1</span>, <span class="hljs-variable">$par2</span> </span>) </span>&#123;<br><br>  <span class="hljs-variable language_">$this</span>-&gt;url = <span class="hljs-variable">$par1</span>;<br><br>  <span class="hljs-variable language_">$this</span>-&gt;title = <span class="hljs-variable">$par2</span>;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">function __construct( $par1, $par2 ) &#123;<br><br>  $this-&gt;url = $par1;<br><br>  $this-&gt;title = $par2;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>现在我们就不需要再调用 setTitle 和 setUrl 方法了：</p>
 <p>$youj &#x3D; new Site(‘<a target="_blank" rel="noopener" href="http://www.w3cschool.cn&/#39;">www.w3cschool.cn&#39;</a>, ‘W3Cschool教程’);</p>
@@ -859,7 +857,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 <p>以下代码执行会报错：</p>
  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span> </span>&#123;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>&#123;<br><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;BaseClass::test() called&quot;</span> . PHP_EOL;<br><br>  &#125;<br><br>  <br><br>  <span class="hljs-keyword">final</span> <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">moreTesting</span>(<span class="hljs-params"></span>) </span>&#123;<br><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;BaseClass::moreTesting() called&quot;</span> . PHP_EOL;<br><br>  &#125;<br><br>&#125;<br><br> <br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChildClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseClass</span> </span>&#123;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">moreTesting</span>(<span class="hljs-params"></span>) </span>&#123;<br><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;ChildClass::moreTesting() called&quot;</span> . PHP_EOL;<br><br>  &#125;<br><br>&#125;<br><br><span class="hljs-comment">// 报错信息 Fatal error: Cannot override final method BaseClass::moreTesting()</span><br><br><span class="hljs-meta">?&gt;</span><br><br>调用父类构造方法<br><br>PHP 不会在子类的构造方法中自动的调用父类的构造方法。要执行父类的构造方法，需要在子类的构造方法中调用 <span class="hljs-built_in">parent</span>::<span class="hljs-title function_ invoke__">__construct</span>() 。<br><br> <br><br><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span> </span>&#123;<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>) </span>&#123;<br><br>    <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;BaseClass 类中构造方法&quot;</span> . PHP_EOL;<br><br>  &#125;<br><br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseClass</span> </span>&#123;<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>) </span>&#123;<br><br>    <span class="hljs-built_in">parent</span>::<span class="hljs-title function_ invoke__">__construct</span>(); <span class="hljs-comment">// 子类构造方法不能自动调用父类的构造方法</span><br><br>    <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;SubClass 类中构造方法&quot;</span> . PHP_EOL;<br><br>  &#125;<br><br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OtherSubClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseClass</span> </span>&#123;<br><br>  <span class="hljs-comment">// 继承 BaseClass 的构造方法</span><br><br>&#125;<br><br> <br><br><span class="hljs-comment">// 调用 BaseClass 构造方法</span><br><br><span class="hljs-variable">$obj</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BaseClass</span>();<br><br> <br><br><span class="hljs-comment">// 调用 BaseClass、SubClass 构造方法</span><br><br><span class="hljs-variable">$obj</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubClass</span>();<br><br> <br><br><span class="hljs-comment">// 调用 BaseClass 构造方法</span><br><br><span class="hljs-variable">$obj</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">OtherSubClass</span>();<br><br><span class="hljs-meta">?&gt;</span><br><br>执行以上程序，输出结果为：<br><br> <br><br>BaseClass 类中构造方法<br><br>BaseClass 类中构造方法<br><br>SubClass 类中构造方法<br><br>BaseClass 类中构造方法<br><br> <br></code></pre></td></tr></table></figure>
 
-<h2 id="10-PHP超级全局变量"><a href="#10-PHP超级全局变量" class="headerlink" title="10.     PHP超级全局变量"></a>10.     PHP超级全局变量</h2><p>PHP超级全局变量列表：</p>
+<h3 id="10-PHP超级全局变量"><a href="#10-PHP超级全局变量" class="headerlink" title="10.     PHP超级全局变量"></a>10.     PHP超级全局变量</h3><p>PHP超级全局变量列表：</p>
 <ul>
 <li><p>$GLOBALS　　一个包含了全部变量的全局组合数组。变量的名字就是数组的键。</p>
 </li>
@@ -890,7 +888,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 
 
 
-<h2 id="11-PHP-Include-文件"><a href="#11-PHP-Include-文件" class="headerlink" title="11.     PHP Include 文件"></a>11.     PHP Include 文件</h2><p>服务器端包含 (SSI) 用于创建可在多个页面重复使用的函数、页眉、页脚或元素。</p>
+<h3 id="11-PHP-Include-文件"><a href="#11-PHP-Include-文件" class="headerlink" title="11.     PHP Include 文件"></a>11.     PHP Include 文件</h3><p>服务器端包含 (SSI) 用于创建可在多个页面重复使用的函数、页眉、页脚或元素。</p>
 <p>include （或 require）语句会获取指定文件中存在的所有文本&#x2F;代码&#x2F;标记，并复制到使用 include 语句的文件中。</p>
 <p>包含文件很有用，如果您需要在网站的多张页面上引用相同的 PHP、HTML 或文本的话。</p>
 <p>PHP include 和 require 语句</p>
@@ -904,7 +902,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 <p>include ‘filename’;</p>
 <p>或</p>
 <p>require ‘filename’;</p>
-<h2 id="12-PHP-文件处理"><a href="#12-PHP-文件处理" class="headerlink" title="12.     PHP 文件处理"></a>12.     PHP 文件处理</h2><h3 id="12-1-PHP-操作文件"><a href="#12-1-PHP-操作文件" class="headerlink" title="12.1. PHP 操作文件"></a>12.1. PHP 操作文件</h3><p>PHP 拥有的多种函数可供创建、读取、上传以及编辑文件。</p>
+<h3 id="12-PHP-文件处理"><a href="#12-PHP-文件处理" class="headerlink" title="12.     PHP 文件处理"></a>12.     PHP 文件处理</h3><h4 id="12-1-PHP-操作文件"><a href="#12-1-PHP-操作文件" class="headerlink" title="12.1. PHP 操作文件"></a>12.1. PHP 操作文件</h4><p>PHP 拥有的多种函数可供创建、读取、上传以及编辑文件。</p>
 <p>注意：请谨慎操作文件！</p>
 <p>当您操作文件时必须非常小心。如果您操作失误，可能会造成非常严重的破坏。常见的错误是：</p>
 <p>编辑错误的文件</p>
@@ -924,7 +922,7 @@ echo "返回子串的第一次位置：", strpos($text1, "l");
 <p>实例</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">readfile</span>(<span class="hljs-string">&quot;webdictionary.txt&quot;</span>);<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="12-2-PHP-文件打开-x2F-读取-x2F-关闭"><a href="#12-2-PHP-文件打开-x2F-读取-x2F-关闭" class="headerlink" title="12.2. PHP 文件打开&#x2F;读取&#x2F;关闭"></a>12.2. PHP 文件打开&#x2F;读取&#x2F;关闭</h3><p>在本节中，我们向您讲解如何在服务器上打开、读取以及关闭文件。</p>
+<h4 id="12-2-PHP-文件打开-x2F-读取-x2F-关闭"><a href="#12-2-PHP-文件打开-x2F-读取-x2F-关闭" class="headerlink" title="12.2. PHP 文件打开&#x2F;读取&#x2F;关闭"></a>12.2. PHP 文件打开&#x2F;读取&#x2F;关闭</h4><p>在本节中，我们向您讲解如何在服务器上打开、读取以及关闭文件。</p>
 <p>PHP Open File - fopen()</p>
 <p>打开文件的更好的方法是通过 fopen() 函数。此函数为您提供比 readfile() 函数更多的选项。</p>
 <p>在课程中，我们将使用文本文件 “webdictionary.txt”：</p>
@@ -1019,16 +1017,16 @@ fclose($myfile);
 <p>如果现在我们打开这个 “newfile.txt” 文件，Bill 和 Steve 都已消失，只剩下我们刚写入的数据：</p>
 <p>Mickey Mouse</p>
 <p>Minnie Mouse</p>
-<h3 id="12-3-文件的-复制-删除-重名"><a href="#12-3-文件的-复制-删除-重名" class="headerlink" title="12.3. 文件的 复制 删除 重名"></a>12.3. 文件的 复制 删除 重名</h3><p>php文件重命名：函数rename()。</p>
+<h4 id="12-3-文件的-复制-删除-重名"><a href="#12-3-文件的-复制-删除-重名" class="headerlink" title="12.3. 文件的 复制 删除 重名"></a>12.3. 文件的 复制 删除 重名</h4><p>php文件重命名：函数rename()。</p>
 <p>php文件复制：函数copy();</p>
 <p>php文件删除：函数unlink();</p>
-<h3 id="12-4-文件的判断"><a href="#12-4-文件的判断" class="headerlink" title="12.4. 文件的判断"></a>12.4. 文件的判断</h3><p>file_exists() 判断文件是否存在</p>
+<h4 id="12-4-文件的判断"><a href="#12-4-文件的判断" class="headerlink" title="12.4. 文件的判断"></a>12.4. 文件的判断</h4><p>file_exists() 判断文件是否存在</p>
 <p>is_file() 是否为文件。</p>
-<h2 id="13-PHP获取文件属性"><a href="#13-PHP获取文件属性" class="headerlink" title="13.     PHP获取文件属性"></a>13.     PHP获取文件属性</h2><p>当我们在程序中操作文件时，可能会使用到文件的一些常见属性，比如文件的大小、类型、修改时间、访问时间以及权限等等。PHP 中提供了非常全面的用来获取这些属性的内置函数，如下表所示。</p>
+<h3 id="13-PHP获取文件属性"><a href="#13-PHP获取文件属性" class="headerlink" title="13.     PHP获取文件属性"></a>13.     PHP获取文件属性</h3><p>当我们在程序中操作文件时，可能会使用到文件的一些常见属性，比如文件的大小、类型、修改时间、访问时间以及权限等等。PHP 中提供了非常全面的用来获取这些属性的内置函数，如下表所示。</p>
 <p><img src="/2022/08/09/PHP%E5%9F%BA%E7%A1%80/php%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0" srcset="/img/loading.gif" lazyload alt="3"></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-variable">$file</span> = <span class="hljs-string">&#x27;test.txt&#x27;</span>;<br>    <span class="hljs-title function_ invoke__">file_exists</span>(<span class="hljs-variable">$file</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;文件不存在，程序退出！&#x27;</span>);<br> <br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27; 文件大小是：&#x27;</span>.<span class="hljs-title function_ invoke__">filesize</span>(<span class="hljs-variable">$file</span>).<span class="hljs-string">&#x27; 个字节&lt;br&gt;&#x27;</span>;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">is_readable</span>(<span class="hljs-variable">$file</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27; 文件是可读的。&lt;br&gt;&#x27;</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27; 文件是不可读的。&lt;br&gt;&#x27;</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">is_writable</span>(<span class="hljs-variable">$file</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27; 文件是可写的。&lt;br&gt;&#x27;</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27; 文件是不可写的。&lt;br&gt;&#x27;</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">is_executable</span>(<span class="hljs-variable">$file</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27; 文件是可执行的。&lt;br&gt;&#x27;</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27; 文件是不可执行的。&lt;br&gt;&#x27;</span>;<br>    &#125;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;文件的创建时间是：&#x27;</span>.<span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&#x27;Y-m-d H:i:s&#x27;</span>,<span class="hljs-title function_ invoke__">filectime</span>(<span class="hljs-variable">$file</span>)).<span class="hljs-string">&#x27;。&lt;br&gt;&#x27;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;文件的修改时间是：&#x27;</span>.<span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&#x27;Y-m-d H:i:s&#x27;</span>,<span class="hljs-title function_ invoke__">filemtime</span>(<span class="hljs-variable">$file</span>)).<span class="hljs-string">&#x27;。&lt;br&gt;&#x27;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;文件上次的访问时间是：&#x27;</span>.<span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&#x27;Y-m-d H:i:s&#x27;</span>,<span class="hljs-title function_ invoke__">fileatime</span>(<span class="hljs-variable">$file</span>)).<span class="hljs-string">&#x27;。&lt;br&gt;&#x27;</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="14-PHP目录操作"><a href="#14-PHP目录操作" class="headerlink" title="14.     PHP目录操作"></a>14.     PHP目录操作</h2><p>目录操作</p>
+<h3 id="14-PHP目录操作"><a href="#14-PHP目录操作" class="headerlink" title="14.     PHP目录操作"></a>14.     PHP目录操作</h3><p>目录操作</p>
 <p>新建目录：mkdir(路径，权限，递归创建)</p>
 <p>删除目录：rmdir()</p>
 <p>移动（改名）：rename()</p>
@@ -1044,7 +1042,7 @@ fclose($myfile);
 <p>递归读取目录内容：</p>
  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">//递归遍历目录</span><br><br><span class="hljs-variable">$dirfile</span>=<span class="hljs-string">&quot;c:/&quot;</span>;<br><br> <br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tree</span>(<span class="hljs-params"><span class="hljs-variable">$dirfile</span></span>)</span>&#123;<br><br>  <span class="hljs-variable">$dir</span> = <span class="hljs-title function_ invoke__">opendir</span>(<span class="hljs-variable">$dirfile</span>);<br><br>  <span class="hljs-keyword">while</span> ((<span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">readdir</span>(<span class="hljs-variable">$dir</span>)) !== <span class="hljs-literal">false</span>)<br><br>  &#123;<br><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">is_dir</span>(<span class="hljs-string">&quot;<span class="hljs-subst">$dirfile</span><span class="hljs-subst">&#123;$file&#125;</span>&quot;</span>) &amp;&amp; (<span class="hljs-variable">$file</span> !=<span class="hljs-string">&quot;.&quot;</span>) &amp;&amp; (<span class="hljs-variable">$file</span> !=<span class="hljs-string">&quot;..&quot;</span>))&#123;<br><br>      <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">is_readable</span>(<span class="hljs-string">&quot;<span class="hljs-subst">$dirfile</span><span class="hljs-subst">&#123;$file&#125;</span>&quot;</span>))&#123;<br><br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;目录 <span class="hljs-subst">$dirfile</span><span class="hljs-subst">&#123;$file&#125;</span> &lt;/br&gt;&quot;</span>;<br><br>        <span class="hljs-title function_ invoke__">tree</span>(<span class="hljs-string">&quot;<span class="hljs-subst">$dirfile</span><span class="hljs-subst">&#123;$file&#125;</span>&quot;</span>);<br><br>      &#125;<span class="hljs-keyword">else</span>&#123;<br><br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;目录 <span class="hljs-subst">$dirfile</span><span class="hljs-subst">&#123;$file&#125;</span> 不可访问&lt;/br&gt;&quot;</span>;<br><br>      &#125;<br><br> <br><br>    &#125;<br><br>    <span class="hljs-keyword">else</span>&#123;<br><br>      <span class="hljs-keyword">if</span>( (<span class="hljs-variable">$file</span> !=<span class="hljs-string">&quot;.&quot;</span>) &amp;&amp; (<span class="hljs-variable">$file</span> !=<span class="hljs-string">&quot;..&quot;</span>))&#123;<br><br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;文件 <span class="hljs-subst">$dirfile</span>/<span class="hljs-subst">&#123;$file&#125;</span> &lt;/br&gt;&quot;</span>;<br><br>      &#125;<br><br> <br><br>    &#125;<br><br>  &#125;<br><br>  <span class="hljs-title function_ invoke__">closedir</span>(<span class="hljs-variable">$dir</span>);<br><br>&#125;<br><br> <br><br><span class="hljs-title function_ invoke__">tree</span>(<span class="hljs-variable">$dirfile</span>);<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="15-命名空间"><a href="#15-命名空间" class="headerlink" title="15.     命名空间"></a>15.     命名空间</h2><p><strong>PHP</strong> <strong>命名空间可以解决以下两类问题：</strong></p>
+<h3 id="15-命名空间"><a href="#15-命名空间" class="headerlink" title="15.     命名空间"></a>15.     命名空间</h3><p><strong>PHP</strong> <strong>命名空间可以解决以下两类问题：</strong></p>
 <p>1.用户编写的代码与PHP内部的类&#x2F;函数&#x2F;常量或第三方类&#x2F;函数&#x2F;常量之间的名字冲突。</p>
 <p>2.为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，以提高源代码的可读性。</p>
 <p>命名空间（可以理解为创建文件夹）</p>
@@ -1083,7 +1081,7 @@ fclose($myfile);
 <p>​    }     </p>
 <p>\4. 引入空间</p>
 <p>  use 空间名 </p>
-<h2 id="16-正则表达式"><a href="#16-正则表达式" class="headerlink" title="16.     正则表达式"></a>16.     正则表达式</h2><p><strong>正则表达式简介</strong></p>
+<h3 id="16-正则表达式"><a href="#16-正则表达式" class="headerlink" title="16.     正则表达式"></a>16.     正则表达式</h3><p><strong>正则表达式简介</strong></p>
 <p>正则表达式是用于描述字符排列和匹配模式的一种语法规则。它主要用于字符串的模式分割、匹配、查找及替换操作。到目前为止，我们前面所用过的精确（文本）匹配也是一种正则表达式。</p>
 <p>在PHP中，正则表达式一般是由正规字符和一些特殊字符（类似于通配符）联合构成的一个文本模式的程序性描述。</p>
 <p>正则表达式较重要和较有用的角色是验证用户数据的有效性检查。PHP中，正则表达式有三个作用：</p>
@@ -1236,7 +1234,7 @@ fclose($myfile);
 <p>\un 匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。</p>
 <p>例子 匹配32位md5</p>
 <p>&#x2F;^[a-z0-9]{32}$&#x2F;</p>
-<h2 id="17-php与mysql"><a href="#17-php与mysql" class="headerlink" title="17.     php与mysql"></a>17.     php与mysql</h2><p><code>https://www.w3cschool.cn/php/php-mysql-select.html</code></p>
+<h3 id="17-php与mysql"><a href="#17-php与mysql" class="headerlink" title="17.     php与mysql"></a>17.     php与mysql</h3><p><code>https://www.w3cschool.cn/php/php-mysql-select.html</code></p>
 <p>PHP 连接 MySQL</p>
 <p>在 PHP 使用 MySQL 数据库前，你需要先将它们连接。</p>
 <p>PHP 5 及以上版本建议使用以下方式连接 MySQL :</p>
@@ -1511,7 +1509,7 @@ fclose($myfile);
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" class="category-chain-item">开发技术</a>
   
   
 
@@ -1525,6 +1523,8 @@ fclose($myfile);
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
       
         <a href="/tags/PHP/">#PHP</a>
       
@@ -1591,8 +1591,8 @@ fclose($myfile);
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/09/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0/" title="VMware Workstation虚拟机学习使用">
-                        <span class="hidden-mobile">VMware Workstation虚拟机学习使用</span>
+                      <a href="/2022/08/09/HTTP%E5%8D%8F%E8%AE%AE/" title="HTTP通讯协议">
+                        <span class="hidden-mobile">HTTP通讯协议</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -1656,7 +1656,7 @@ fclose($myfile);
     
 
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <a id="scroll-top-button" aria-label="返回顶部" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -1692,7 +1692,7 @@ fclose($myfile);
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
     </div>
   
   
@@ -1721,21 +1721,6 @@ fclose($myfile);
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
 
@@ -1831,7 +1816,4 @@ fclose($myfile);
   </noscript>
 </body>
 </html>
-<!--动态线条背景-->
-<script type="text/javascript"
-color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
 

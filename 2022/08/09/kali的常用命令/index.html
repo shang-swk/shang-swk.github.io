@@ -12,16 +12,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#203c46">
   <meta name="author" content="shang-swk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="kali命令">
+    <meta name="description" content="整理文件操作、系统信息、用户权限与网络配置等常用 Linux 命令。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kali常用命令">
 <meta property="og:url" content="https://shang-swk.github.io/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
-<meta property="og:site_name" content="One ball">
-<meta property="og:description" content="kali命令">
+<meta property="og:site_name" content="寻影">
+<meta property="og:description" content="整理文件操作、系统信息、用户权限与网络配置等常用 Linux 命令。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shang-swk.github.io/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/kali1">
 <meta property="og:image" content="https://shang-swk.github.io/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/kali2">
@@ -31,12 +31,13 @@
 <meta property="article:modified_time" content="2023-03-14T22:07:27.740Z">
 <meta property="article:author" content="shang-swk">
 <meta property="article:tag" content="kali">
+<meta property="article:tag" content="web安全">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shang-swk.github.io/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/kali1">
   
   
   
-  <title>Kali常用命令 - One ball</title>
+  <title>Kali常用命令 - 寻影</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -70,11 +71,15 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/xunying.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h2,h3,h4","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -90,22 +95,23 @@
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
-<body>
+<body class="post-page">
+  <a class="skip-link" href="#board">跳到正文</a>
   
 
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 38vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Ditto</strong>
+      <strong>寻影</strong><span class="brand-note">学习 · 实践 · 记录</span>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="展开导航">
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
@@ -118,8 +124,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
+              
+              <a class="nav-link" href="/" >
+                
                 首页
               </a>
             </li>
@@ -130,9 +137,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
+              
+              <a class="nav-link" href="/archives/" >
+                
+                文章
               </a>
             </li>
           
@@ -142,9 +150,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
+              
+              <a class="nav-link" href="/categories/" >
+                
+                专题
               </a>
             </li>
           
@@ -154,20 +163,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
+              
+              <a class="nav-link" href="/about/" >
+                
                 关于
               </a>
             </li>
@@ -175,7 +173,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="搜索文章">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
@@ -183,7 +181,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="切换深色模式">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -194,16 +192,17 @@
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" false
      style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+      
+      <div class="banner-text text-center">
+        <h1 class="banner-title">
           
-            <span id="subtitle" data-typed-text="Kali常用命令"></span>
+            <span id="subtitle">Kali常用命令</span>
           
-        </div>
+        </h1>
 
         
           
@@ -213,7 +212,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-08-09 13:37" pubdate>
-          2022年8月9日 下午
+          2022年8月9日
         </time>
       </span>
     
@@ -235,7 +234,7 @@
         
         
         
-          74 分钟
+          18 分钟
         
       </span>
     
@@ -247,6 +246,7 @@
 
         
       </div>
+      
 
       
     </div>
@@ -272,13 +272,11 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Kali常用命令</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="kali的常用命令"><a href="#kali的常用命令" class="headerlink" title="kali的常用命令"></a>kali的常用命令</h1><h2 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1.常用命令"></a>1.常用命令</h2><blockquote>
+                <h2 id="kali的常用命令"><a href="#kali的常用命令" class="headerlink" title="kali的常用命令"></a>kali的常用命令</h2><h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1.常用命令"></a>1.常用命令</h3><blockquote>
 <p>passwd 修改密码</p>
 <p>passwd root 修改root用户密码</p>
 </blockquote>
@@ -311,7 +309,7 @@
 <p>su -l 切换登陆用户</p>
 <p>logout 注销用户登陆</p>
 <p>&#x3D;&#x3D;pwd 当前路径&#x3D;&#x3D;</p>
-<h2 id="2-文件夹或文本操作"><a href="#2-文件夹或文本操作" class="headerlink" title="2.文件夹或文本操作"></a>2.文件夹或文本操作</h2><p>cd .. 返回上一级目录</p>
+<h3 id="2-文件夹或文本操作"><a href="#2-文件夹或文本操作" class="headerlink" title="2.文件夹或文本操作"></a>2.文件夹或文本操作</h3><p>cd .. 返回上一级目录</p>
 <p>cd ..&#x2F;.. 返回上级两级目录</p>
 <p>cd - 返回上次所在的目录</p>
 <p>cd 文件夹名  进去文件夹</p>
@@ -357,14 +355,14 @@
 <p>where 加软件名 可以查出软件目录在哪</p>
 <p>.&#x2F;+文件名或者apt-get +文件名 安装文件</p>
 <p>yum groupinstall “X Window System”</p>
-<h2 id="3-系统信息"><a href="#3-系统信息" class="headerlink" title="3.系统信息"></a>3.系统信息</h2><p>arch 显示机器的处理器架构(1)</p>
+<h3 id="3-系统信息"><a href="#3-系统信息" class="headerlink" title="3.系统信息"></a>3.系统信息</h3><p>arch 显示机器的处理器架构(1)</p>
 <p>uname -m 显示机器的处理器架构(2)</p>
 <p>uname -r 显示正在使用的内核版本</p>
 <p>cat  &#x2F;proc&#x2F;version 显示内核的版本                       <strong>cat 后面要加空格</strong></p>
 <p>cat  &#x2F;proc&#x2F;net&#x2F;dev 显示网络适配器及统计</p>
 <p>cat  &#x2F;proc&#x2F;cpuinfo 显示CPU info的信息</p>
 <p>cat  &#x2F;proc&#x2F;mounts 显示已加载的文件系统</p>
-<h2 id="4-vi-常用命令"><a href="#4-vi-常用命令" class="headerlink" title="4.vi 常用命令"></a>4.vi 常用命令</h2><h3 id="vi编辑器的概念"><a href="#vi编辑器的概念" class="headerlink" title="vi编辑器的概念"></a>vi编辑器的概念</h3><p>vi编辑器分为三种状态，分别是：<br>        1.命令模式（command mode）<br>        控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。</p>
+<h3 id="4-vi-常用命令"><a href="#4-vi-常用命令" class="headerlink" title="4.vi 常用命令"></a>4.vi 常用命令</h3><h4 id="vi编辑器的概念"><a href="#vi编辑器的概念" class="headerlink" title="vi编辑器的概念"></a>vi编辑器的概念</h4><p>vi编辑器分为三种状态，分别是：<br>        1.命令模式（command mode）<br>        控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。</p>
 <p>2.插入模式（Insert mode）</p>
 <p>只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。</p>
 <p>3.底行模式（last line mode）</p>
@@ -394,7 +392,7 @@
 <p>&#x3D;&#x3D;撤销操作   u&#x3D;&#x3D;</p>
 <p>vim与vi的区别</p>
 <p>&#x3D;&#x3D;vim是vi的延申 vim编辑源码会高亮 vim的命令对vi是完全兼容的&#x3D;&#x3D;</p>
-<h2 id="5-文件搜索"><a href="#5-文件搜索" class="headerlink" title="5.文件搜索"></a>5.文件搜索</h2><p>find &#x2F; -name file1 从 ‘&#x2F;’ 开始进入根文件系统搜索文件和目录</p>
+<h3 id="5-文件搜索"><a href="#5-文件搜索" class="headerlink" title="5.文件搜索"></a>5.文件搜索</h3><p>find &#x2F; -name file1 从 ‘&#x2F;’ 开始进入根文件系统搜索文件和目录</p>
 <p>find &#x2F; -user user1 搜索属于用户 ‘user1’ 的文件和目录<br>        find &#x2F;home&#x2F;user1 -name *.bin 在目录 ‘&#x2F; home&#x2F;user1’ 中搜索带有’.bin’ 结尾的文件<br>   &#x3D;&#x3D;find &#x2F;usr&#x2F;bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件<br>        find &#x2F;usr&#x2F;bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件&#x3D;&#x3D;</p>
 <p><code>find . -name &#39;*.php&#39; -mmin -30  查找最近30分钟修改的当前目录下的.php文件 find . -name &#39;*.php&#39; -mtime 0</code><br>查找最近24小时修改的当前目录下的.php文件</p>
 <p><code>find . -name &#39;*.inc&#39; -mtime 0 -ls</code><br>查找最近24小时修改的当前目录下的.php文件，并列出详细信息</p>
@@ -409,7 +407,7 @@
 <p>find &#x2F; -name *.rpm -exec chmod 755 ‘{}’ ; 搜索以 ‘.rpm’ 结尾的文件并定义其权限<br>find &#x2F; -xdev -name *.rpm 搜索以 ‘.rpm’ 结尾的文件，忽略光驱、捷盘等可移动设备<br>locate *.ps 寻找以 ‘.ps’ 结尾的文件 - 先运行 ‘updatedb’ 命令<br>whereis halt 显示一个二进制文件、源码或man的位置<br>which halt 显示一个二进制文件或可执行文件的完整路径</p>
 <p>grep kali &#x2F;etc&#x2F;passwd grep关键词搜索</p>
 <p>find &#x2F; -name moonsec 2&gt;&#x2F;dev&#x2F;null   搜索某个文件&#x2F;文件夹 屏蔽出错信息</p>
-<h2 id="6-用户和群组"><a href="#6-用户和群组" class="headerlink" title="6.用户和群组"></a>6.用户和群组</h2><p>groupadd group_name 创建一个新用户组<br>        groupdel group_name 删除一个用户组</p>
+<h3 id="6-用户和群组"><a href="#6-用户和群组" class="headerlink" title="6.用户和群组"></a>6.用户和群组</h3><p>groupadd group_name 创建一个新用户组<br>        groupdel group_name 删除一个用户组</p>
 <p>cat &#x2F;etc&#x2F;group | grep group_name    查找id值</p>
 <p>usermod -a -G moontea k1把用户k1附加其他用户组</p>
 <p>创建目录</p>
@@ -421,7 +419,7 @@
 <p>切换用户</p>
 <p>su - root 切换到root用户</p>
 <p>su 用户名 切换到普通用户</p>
-<h2 id="7-系统管理"><a href="#7-系统管理" class="headerlink" title="7.系统管理"></a>7.系统管理</h2><p>top</p>
+<h3 id="7-系统管理"><a href="#7-系统管理" class="headerlink" title="7.系统管理"></a>7.系统管理</h3><p>top</p>
 <p>查看正在指向的程序信息</p>
 <p>进程</p>
 <p>ps -ef 查看所有进程信息</p>
@@ -432,30 +430,30 @@
 <p>echo $PATH</p>
 <p>hostname 查看主机名</p>
 <p>history 查看历史命令</p>
-<h2 id="8-查看磁盘信息"><a href="#8-查看磁盘信息" class="headerlink" title="8.查看磁盘信息"></a>8.查看磁盘信息</h2><p>df   默认不带单位，挂载点、总容量、已用、可用</p>
+<h3 id="8-查看磁盘信息"><a href="#8-查看磁盘信息" class="headerlink" title="8.查看磁盘信息"></a>8.查看磁盘信息</h3><p>df   默认不带单位，挂载点、总容量、已用、可用</p>
 <p>df  -h   友好显示（带单位），很多命令的友好显示都是-h</p>
-<h2 id="9-查看内存信息"><a href="#9-查看内存信息" class="headerlink" title="9.查看内存信息"></a>9.查看内存信息</h2><p>free   默认以KB为单位，总容量、已用、可用、缓存大小</p>
+<h3 id="9-查看内存信息"><a href="#9-查看内存信息" class="headerlink" title="9.查看内存信息"></a>9.查看内存信息</h3><p>free   默认以KB为单位，总容量、已用、可用、缓存大小</p>
 <p>free  -m   默认以MB为单位</p>
 <p>free  -h   上面2种都不带单位、只显示数值，这种是友好显示的，会带单位G、M等</p>
-<h2 id="10-查看环境变量"><a href="#10-查看环境变量" class="headerlink" title="10.查看环境变量"></a>10.查看环境变量</h2><p><code>echo  $JAVA_HOME      echo $PATH | grep jdk</code></p>
-<h2 id="11-开机自启"><a href="#11-开机自启" class="headerlink" title="11.开机自启"></a>11.开机自启</h2><p>有很多程序往往都需要设置开机自启，比如tomcat、mysql、nginx等。</p>
+<h3 id="10-查看环境变量"><a href="#10-查看环境变量" class="headerlink" title="10.查看环境变量"></a>10.查看环境变量</h3><p><code>echo  $JAVA_HOME      echo $PATH | grep jdk</code></p>
+<h3 id="11-开机自启"><a href="#11-开机自启" class="headerlink" title="11.开机自启"></a>11.开机自启</h3><p>有很多程序往往都需要设置开机自启，比如tomcat、mysql、nginx等。</p>
 <p>在&#x2F;etc&#x2F;rc.d&#x2F;rc.local文件中加入开机要自动执行的程序</p>
 <p>vim &#x2F;etc&#x2F;rc.d&#x2F;rc.local</p>
 <p>挂载一个windows网络共享</p>
 <p>mount -t smbfs -o username&#x3D;user,password&#x3D;pass &#x2F;&#x2F;WinClient&#x2F;share &#x2F;mnt&#x2F;share </p>
-<h2 id="12网卡配置"><a href="#12网卡配置" class="headerlink" title="12网卡配置"></a>12网卡配置</h2><p>vi &#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<h3 id="12网卡配置"><a href="#12网卡配置" class="headerlink" title="12网卡配置"></a>12网卡配置</h3><p>vi &#x2F;etc&#x2F;network&#x2F;interfaces</p>
 <p>auto eth0  &#x2F;&#x2F;指定网卡（根据ifconfig结果修改）<br>        iface eth0 inet static  &#x2F;&#x2F;启动静态ip<br>        address 192.168.0.66  &#x2F;&#x2F; 设置静态ip<br>        netmask 255.255.255.0  &#x2F;&#x2F;子网掩码<br>        gateway 192.168.0.1  &#x2F;&#x2F;指定网关</p>
 <p>重启网络</p>
 <p>service networking restart<br>或者：<br>systemctl restart networking</p>
 <p>设置临时ip</p>
 <p>ifconfig eth0 192.168.0.33</p>
-<h2 id="13网卡DNS服务器"><a href="#13网卡DNS服务器" class="headerlink" title="13网卡DNS服务器"></a>13网卡DNS服务器</h2><p>vi &#x2F;etc&#x2F;resovl.conf</p>
+<h3 id="13网卡DNS服务器"><a href="#13网卡DNS服务器" class="headerlink" title="13网卡DNS服务器"></a>13网卡DNS服务器</h3><p>vi &#x2F;etc&#x2F;resovl.conf</p>
 <p>nameserver 114.114.114.114</p>
 <p>重启网卡</p>
 <p>service networking restart</p>
 <p>systemctl restart networking</p>
 <p>注意有时候重启才生效</p>
-<h2 id="14-服务相关"><a href="#14-服务相关" class="headerlink" title="14.服务相关"></a>14.服务相关</h2><p>启动apache2服务器</p>
+<h3 id="14-服务相关"><a href="#14-服务相关" class="headerlink" title="14.服务相关"></a>14.服务相关</h3><p>启动apache2服务器</p>
 <p> &#x2F;etc&#x2F;init.d&#x2F;apache2 start</p>
 <p>打开：&#x2F;etc&#x2F;init.d&#x2F;apache2 start<br>重启：&#x2F;etc&#x2F;init.d&#x2F;apache2 restart<br>关闭：&#x2F;etc&#x2F;init.d&#x2F;apache2 stop</p>
 <p>启动网卡</p>
@@ -463,7 +461,7 @@
 <p>网络相关</p>
 <p>开启路由转发</p>
 <p>echo 1 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward</p>
-<h2 id="15-linux常用网络命令"><a href="#15-linux常用网络命令" class="headerlink" title="15.linux常用网络命令"></a><strong>15.linux常用网络命令</strong></h2><p>网络和监控命令类似于这些： hostname, ping, ifconfig, iwconfig, netstat, nslookup, traceroute, finger, telnet, ethtool 用于查看 linux 服务器 ip 地址，管理服务器网络配置，通过 telnet 和 ethernet 建立与 linux 之间的网络链接，查看 linux 的服务器信息等。下面让我们看看在 Linux 下的网络和监控命令的使用。</p>
+<h3 id="15-linux常用网络命令"><a href="#15-linux常用网络命令" class="headerlink" title="15.linux常用网络命令"></a><strong>15.linux常用网络命令</strong></h3><p>网络和监控命令类似于这些： hostname, ping, ifconfig, iwconfig, netstat, nslookup, traceroute, finger, telnet, ethtool 用于查看 linux 服务器 ip 地址，管理服务器网络配置，通过 telnet 和 ethernet 建立与 linux 之间的网络链接，查看 linux 的服务器信息等。下面让我们看看在 Linux 下的网络和监控命令的使用。</p>
 <p>hostname 查看本机名</p>
 <p>ping  一般用于测试网络是否通 内网icmp</p>
 <p>ping <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> -c 3 执行3次</p>
@@ -495,7 +493,7 @@
 <p>Finger</p>
 <p>Finger是一种用户信息分享服务。它工作在TCP 79端口，可以用来公开用户的特定信息。Nmap的finger的脚本可以向Finger服务器发送请求，查询并获取用户的相关信息，如登录名、用户名、TTY类型、登录时间等。</p>
 <p>ethtool 是用于查询及设置网卡参数的命令</p>
-<h2 id="16-防火墙iptables"><a href="#16-防火墙iptables" class="headerlink" title="16.防火墙iptables"></a>16.防火墙iptables</h2><p>查看防火墙规则</p>
+<h3 id="16-防火墙iptables"><a href="#16-防火墙iptables" class="headerlink" title="16.防火墙iptables"></a>16.防火墙iptables</h3><p>查看防火墙规则</p>
 <p>iptalbes -L</p>
 <p>清除规则</p>
 <p>iptables -F</p>
@@ -505,15 +503,15 @@
 <p>安装：apt-get install ufw</p>
 <p>关闭：ufw disable # To disable the firewall</p>
 <p>开启：ufw enable # To enable the firewall</p>
-<h2 id="17-linux文件属性和权限设置"><a href="#17-linux文件属性和权限设置" class="headerlink" title="17.  linux文件属性和权限设置"></a>17.  linux文件属性和权限设置</h2><h3 id="文件解释"><a href="#文件解释" class="headerlink" title="文件解释"></a>文件解释</h3><p>使用 ls -al 命令后会列出如下图所示的文件详细信息：<img src="/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/kali1" srcset="/img/loading.gif" lazyload alt="27"></p>
+<h3 id="17-linux文件属性和权限设置"><a href="#17-linux文件属性和权限设置" class="headerlink" title="17.  linux文件属性和权限设置"></a>17.  linux文件属性和权限设置</h3><h4 id="文件解释"><a href="#文件解释" class="headerlink" title="文件解释"></a>文件解释</h4><p>使用 ls -al 命令后会列出如下图所示的文件详细信息：<img src="/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/kali1" srcset="/img/loading.gif" lazyload alt="27"></p>
 <p><img src="/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/kali2" srcset="/img/loading.gif" lazyload alt="28"></p>
 <p>d 是目录 directory</p>
 <p>- 普通文件  二进制文件 </p>
 <p>l  软连接</p>
-<h3 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h3><p>文件中r w x -的含义，r是只读权限，w是写的权限，x是可执行权限,-是没有任何权限。</p>
+<h4 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h4><p>文件中r w x -的含义，r是只读权限，w是写的权限，x是可执行权限,-是没有任何权限。</p>
 <p>目录中 r w x的含义，r具有ls权限，w是在目录上可以增加、删除、创建权限，x是具有ls –l权限。</p>
 <p><img src="/2022/08/09/kali%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/kali3" srcset="/img/loading.gif" lazyload alt="28"></p>
-<h3 id="权限设置"><a href="#权限设置" class="headerlink" title="权限设置"></a>权限设置</h3><p>chmod 777 +文件名 （给单独文件赋所有权限）</p>
+<h4 id="权限设置"><a href="#权限设置" class="headerlink" title="权限设置"></a>权限设置</h4><p>chmod 777 +文件名 （给单独文件赋所有权限）</p>
 <p>chmod -R 777 &#x2F;home&#x2F;user 注：表示将整个&#x2F;home&#x2F;user目录与其中的文件和子目录的权限都设置为rwxrwxrwx</p>
 <p>更改文件权限</p>
 <p>chmod 654 &#x2F;test</p>
@@ -555,7 +553,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/web%E5%AE%89%E5%85%A8/" class="category-chain-item">web安全</a>
+  <a href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%AE%89%E5%85%A8/" class="category-chain-item">网络与安全</a>
   
   
 
@@ -571,6 +569,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/kali/">#kali</a>
+      
+        <a href="/tags/web%E5%AE%89%E5%85%A8/">#web安全</a>
       
     </div>
   
@@ -625,9 +625,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/09/JavaScript%E5%9F%BA%E7%A1%80/" title="JavaScript基础">
+                      <a href="/2022/08/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88%E9%80%9F%E8%AE%B0%E7%89%88%EF%BC%89/" title="一些正则表达式语法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaScript基础</span>
+                        <span class="hidden-mobile">一些正则表达式语法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -635,8 +635,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/" title="mysql基础">
-                        <span class="hidden-mobile">mysql基础</span>
+                      <a href="/2022/08/09/web%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="web安全基础知识">
+                        <span class="hidden-mobile">web安全基础知识</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -700,7 +700,7 @@
     
 
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <a id="scroll-top-button" aria-label="返回顶部" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -736,7 +736,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
     </div>
   
   
@@ -765,21 +765,6 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
 
@@ -875,7 +860,4 @@
   </noscript>
 </body>
 </html>
-<!--动态线条背景-->
-<script type="text/javascript"
-color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
 

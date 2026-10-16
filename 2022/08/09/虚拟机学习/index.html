@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#203c46">
   <meta name="author" content="shang-swk">
   <meta name="keywords" content="">
   
@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="VMware Workstation虚拟机学习使用">
 <meta property="og:url" content="https://shang-swk.github.io/2022/08/09/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0/index.html">
-<meta property="og:site_name" content="One ball">
+<meta property="og:site_name" content="寻影">
 <meta property="og:description" content="虚拟机软件可让你在不重启电脑的情况下，在一个操作系统上同时运行多个不同的系统">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shang-swk.github.io/2022/08/09/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0/vm1">
@@ -34,12 +34,13 @@
 <meta property="article:modified_time" content="2022-08-08T19:44:37.896Z">
 <meta property="article:author" content="shang-swk">
 <meta property="article:tag" content="vmware">
+<meta property="article:tag" content="虚拟机">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shang-swk.github.io/2022/08/09/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0/vm1">
   
   
   
-  <title>VMware Workstation虚拟机学习使用 - One ball</title>
+  <title>VMware Workstation虚拟机学习使用 - 寻影</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -73,11 +74,15 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/xunying.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h2,h3,h4","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -93,22 +98,23 @@
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
-<body>
+<body class="post-page">
+  <a class="skip-link" href="#board">跳到正文</a>
   
 
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 38vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Ditto</strong>
+      <strong>寻影</strong><span class="brand-note">学习 · 实践 · 记录</span>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="展开导航">
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
@@ -121,8 +127,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
+              
+              <a class="nav-link" href="/" >
+                
                 首页
               </a>
             </li>
@@ -133,9 +140,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
+              
+              <a class="nav-link" href="/archives/" >
+                
+                文章
               </a>
             </li>
           
@@ -145,9 +153,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
+              
+              <a class="nav-link" href="/categories/" >
+                
+                专题
               </a>
             </li>
           
@@ -157,20 +166,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
+              
+              <a class="nav-link" href="/about/" >
+                
                 关于
               </a>
             </li>
@@ -178,7 +176,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="搜索文章">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
@@ -186,7 +184,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="切换深色模式">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -197,16 +195,17 @@
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" false
      style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+      
+      <div class="banner-text text-center">
+        <h1 class="banner-title">
           
-            <span id="subtitle" data-typed-text="VMware Workstation虚拟机学习使用"></span>
+            <span id="subtitle">VMware Workstation虚拟机学习使用</span>
           
-        </div>
+        </h1>
 
         
           
@@ -216,7 +215,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-08-09 13:37" pubdate>
-          2022年8月9日 下午
+          2022年8月9日
         </time>
       </span>
     
@@ -238,7 +237,7 @@
         
         
         
-          21 分钟
+          5 分钟
         
       </span>
     
@@ -250,6 +249,7 @@
 
         
       </div>
+      
 
       
     </div>
@@ -275,17 +275,15 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">VMware Workstation虚拟机学习使用</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="VMware-Workstation虚拟机学习使用"><a href="#VMware-Workstation虚拟机学习使用" class="headerlink" title="VMware Workstation虚拟机学习使用"></a>VMware Workstation虚拟机学习使用</h1><h2 id="1-虚拟机简单介绍"><a href="#1-虚拟机简单介绍" class="headerlink" title="1.  虚拟机简单介绍"></a>1.  虚拟机简单介绍</h2><p>虚拟机软件可让你在不重启电脑的情况下，在一个操作系统上同时运行多个不同的系统，譬如在 Win10 上同时运行 Ubuntu 与 Win7，用户可用于各种开发、测试或运行不同平台的软件。</p>
+                <h2 id="VMware-Workstation虚拟机学习使用"><a href="#VMware-Workstation虚拟机学习使用" class="headerlink" title="VMware Workstation虚拟机学习使用"></a>VMware Workstation虚拟机学习使用</h2><h3 id="1-虚拟机简单介绍"><a href="#1-虚拟机简单介绍" class="headerlink" title="1.  虚拟机简单介绍"></a>1.  虚拟机简单介绍</h3><p>虚拟机软件可让你在不重启电脑的情况下，在一个操作系统上同时运行多个不同的系统，譬如在 Win10 上同时运行 Ubuntu 与 Win7，用户可用于各种开发、测试或运行不同平台的软件。</p>
 <p>VMware Workstation Pro 16 中文专业版功能相对免费的 VMWare Player 要丰富强大得多！新版本支持 Windows 10，支持 USB 3.1、蓝牙、4K，支持容器、兼容 Hyper-V，支持 DirectX 11 和 OpenGL 4.1 加速，3D 游戏性能大幅提高！另外还可共享或远程控制虚拟机等……</p>
 <p>激活码</p>
 <p>YF390-0HF8P-M81RQ-2DXQE-M2UT6</p>
-<h2 id="2-网络模式"><a href="#2-网络模式" class="headerlink" title="2.  网络模式"></a>2.  网络模式</h2><p>我们知道VMware也分几种版本，普通用户最常用的就是Workstation，但是不管使用哪种版本，我们都能发现在安装过程中让我们选择 网络模式。在默认情况下会选中桥接模式，但有用户会问其他模式是干什么用的？有时候选择了其他模式之后就不能上网了。今天小编就和大家一起探讨一下 VMware 3种网络模式的功能和通信规则。</p>
+<h3 id="2-网络模式"><a href="#2-网络模式" class="headerlink" title="2.  网络模式"></a>2.  网络模式</h3><p>我们知道VMware也分几种版本，普通用户最常用的就是Workstation，但是不管使用哪种版本，我们都能发现在安装过程中让我们选择 网络模式。在默认情况下会选中桥接模式，但有用户会问其他模式是干什么用的？有时候选择了其他模式之后就不能上网了。今天小编就和大家一起探讨一下 VMware 3种网络模式的功能和通信规则。</p>
 <p><img src="/2022/08/09/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0/vm1" srcset="/img/loading.gif" lazyload alt="IMG_256"></p>
 <p>我们首先说一下VMware的几个虚拟设备</p>
 <p>VMnet0：用于虚拟桥接网络下的虚拟交换机</p>
@@ -321,7 +319,7 @@
 <p>Host-Only的宗旨就是建立一个与外界隔绝的内部网络，来提高内网的安全性。这个功能或许对普通用户来说没有多大意义，但大型服务商会常 常利用这个功能。如果你想为VMnet1网段提供路由功能，那就需要使用RRAS，而不能使用XP或2000的ICS，因为ICS会把内网的IP地址改为 192.168.0.1，但虚拟机是不会给VMnet1虚拟网卡分配这个地址的，那么主机和虚拟机之间就不能通信了。</p>
 <p><strong>综述</strong></p>
 <p>在VMware的3中网络模式中，NAT模式是最简单的，基本不需要手动配置IP地址等相关参数。至于桥接模式则需要额外的IP地址，如果是在内网环境中还很容易，如果是ADSL宽带就比较麻烦了，ISP一般是不会大方的多提供一个公网IP的。 </p>
-<h2 id="3-通俗理解"><a href="#3-通俗理解" class="headerlink" title="3.  通俗理解"></a>3.  通俗理解</h2><table>
+<h3 id="3-通俗理解"><a href="#3-通俗理解" class="headerlink" title="3.  通俗理解"></a>3.  通俗理解</h3><table>
 <thead>
 <tr>
 <th>模式</th>
@@ -359,7 +357,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="category-chain-item">虚拟机</a>
+  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" class="category-chain-item">开发技术</a>
   
   
 
@@ -375,6 +373,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/vmware/">#vmware</a>
+      
+        <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">#虚拟机</a>
       
     </div>
   
@@ -429,9 +429,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/09/PHP%E5%9F%BA%E7%A1%80/" title="PHP基础">
+                      <a href="/2022/08/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/" title="mysql基础">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">PHP基础</span>
+                        <span class="hidden-mobile">mysql基础</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -439,8 +439,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/09/HTTP%E5%8D%8F%E8%AE%AE/" title="HTTP通讯协议">
-                        <span class="hidden-mobile">HTTP通讯协议</span>
+                      <a href="/2022/08/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88%E9%80%9F%E8%AE%B0%E7%89%88%EF%BC%89/" title="一些正则表达式语法">
+                        <span class="hidden-mobile">一些正则表达式语法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -504,7 +504,7 @@
     
 
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <a id="scroll-top-button" aria-label="返回顶部" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -540,7 +540,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
     </div>
   
   
@@ -569,21 +569,6 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
 
@@ -679,7 +664,4 @@
   </noscript>
 </body>
 </html>
-<!--动态线条背景-->
-<script type="text/javascript"
-color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
 

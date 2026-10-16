@@ -12,16 +12,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#203c46">
   <meta name="author" content="shang-swk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="git and hexo">
+    <meta name="description" content="记录 GitHub 连接失败时的排查步骤，以及 Git 代理的设置与清除方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo部署及git后续问题与解决">
+<meta property="og:title" content="Hexo 部署与 Git 连接问题排查">
 <meta property="og:url" content="https://shang-swk.github.io/2025/02/19/hexo%E9%83%A8%E7%BD%B2%E5%8F%8Agit%E5%90%8E%E7%BB%AD%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3/index.html">
-<meta property="og:site_name" content="One ball">
-<meta property="og:description" content="git and hexo">
+<meta property="og:site_name" content="寻影">
+<meta property="og:description" content="记录 GitHub 连接失败时的排查步骤，以及 Git 代理的设置与清除方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-18T20:02:00.000Z">
 <meta property="article:modified_time" content="2025-02-19T08:53:02.955Z">
@@ -31,7 +31,7 @@
   
   
   
-  <title>hexo部署及git后续问题与解决 - One ball</title>
+  <title>Hexo 部署与 Git 连接问题排查 - 寻影</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -65,11 +65,15 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/xunying.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"shang-swk.github.io","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h2,h3,h4","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -85,22 +89,23 @@
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
-<body>
+<body class="post-page">
+  <a class="skip-link" href="#board">跳到正文</a>
   
 
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 38vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Ditto</strong>
+      <strong>寻影</strong><span class="brand-note">学习 · 实践 · 记录</span>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="展开导航">
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
@@ -113,8 +118,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
+              
+              <a class="nav-link" href="/" >
+                
                 首页
               </a>
             </li>
@@ -125,9 +131,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
+              
+              <a class="nav-link" href="/archives/" >
+                
+                文章
               </a>
             </li>
           
@@ -137,9 +144,10 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
+              
+              <a class="nav-link" href="/categories/" >
+                
+                专题
               </a>
             </li>
           
@@ -149,20 +157,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
+              
+              <a class="nav-link" href="/about/" >
+                
                 关于
               </a>
             </li>
@@ -170,7 +167,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="搜索文章">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
@@ -178,7 +175,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="切换深色模式">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -189,16 +186,17 @@
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" false
      style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+      
+      <div class="banner-text text-center">
+        <h1 class="banner-title">
           
-            <span id="subtitle" data-typed-text="hexo部署及git后续问题与解决"></span>
+            <span id="subtitle">Hexo 部署与 Git 连接问题排查</span>
           
-        </div>
+        </h1>
 
         
           
@@ -208,7 +206,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2025-02-19 04:02" pubdate>
-          2025年2月19日 凌晨
+          2025年2月19日
         </time>
       </span>
     
@@ -219,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          665 字
+          681 字
         
       </span>
     
@@ -230,7 +228,7 @@
         
         
         
-          6 分钟
+          2 分钟
         
       </span>
     
@@ -242,6 +240,7 @@
 
         
       </div>
+      
 
       
     </div>
@@ -267,15 +266,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">hexo部署及git后续问题与解决</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="连接不上github"><a href="#连接不上github" class="headerlink" title="连接不上github"></a>连接不上github</h3><h4 id="fatal-unable-to-access-‘https-github-com-shang-swk-shang-swk-github-io-git-39-Failed-to-connect-to-github-com-port-443-after-21093-ms-Could-not-connect-to-server-FATAL-err-Error-Spawn-failed-at-ChildProcess"><a href="#fatal-unable-to-access-‘https-github-com-shang-swk-shang-swk-github-io-git-39-Failed-to-connect-to-github-com-port-443-after-21093-ms-Could-not-connect-to-server-FATAL-err-Error-Spawn-failed-at-ChildProcess" class="headerlink" title="fatal: unable to access ‘https://github.com/shang-swk/shang-swk.github.io.git/&#39;: Failed to connect to github.com port 443 after 21093 ms: Could not connect to server FATAL {   err: Error: Spawn failed       at ChildProcess."></a>fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/shang-swk/shang-swk.github.io.git/&#39;">https://github.com/shang-swk/shang-swk.github.io.git/&#39;</a>: Failed to connect to github.com port 443 after 21093 ms: Could not connect to server FATAL {   err: Error: Spawn failed       at ChildProcess.</h4><p>这个问题通常是由网络连接问题或代理设置不正确导致的。</p>
+                <h2 id="GitHub-连接失败"><a href="#GitHub-连接失败" class="headerlink" title="GitHub 连接失败"></a>GitHub 连接失败</h2><h3 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">fatal: unable to access &#x27;https://github.com/shang-swk/shang-swk.github.io.git/&#x27;: Failed to connect to github.com port 443 after 21093 ms: Could not connect to server FATAL &#123;   err: Error: Spawn failed       at ChildProcess.<br></code></pre></td></tr></table></figure>
+
+
+
+<p>这个问题通常是由网络连接问题或代理设置不正确导致的。</p>
 <p>原因1：之前的http或者https代理服务器与目标地址连接出现问题，我们需要先断开 </p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> https<span class="hljs-selector-class">.proxy</span><br>git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> http.proxy<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global --<span class="hljs-built_in">unset</span> https.proxy<br>git config --global --<span class="hljs-built_in">unset</span> http.proxy<br></code></pre></td></tr></table></figure>
 
 <p>这样就可以清除 Git 的代理设置，让其直接连接网络进行操作。</p>
 <p>http和https的代理服务器可以用网上付费的一些服务器充当：<strong>Google Proxyton</strong>、<strong>Cloudflare Proxies</strong>，也可以用自己本地代替</p>
@@ -284,10 +285,10 @@
 <p>打开系统设置，搜索代理设置，并点击编辑按钮。</p>
 <p>在代理服务器中，将端口设置为7890（这个端口不会影响正常上网，可以放心设置），然后点击保存。</p>
 <p>在终端输入以下命令，设置 Git 使用本地代理：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> http<span class="hljs-selector-class">.proxy</span> http:<span class="hljs-comment">//127.0.0.1:7890</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global http.proxy http://127.0.0.1:7890<br></code></pre></td></tr></table></figure>
 
 <p>设置完成后，可以通过以下命令检验是否设置成功：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global -l</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global -l<br></code></pre></td></tr></table></figure>
 
 
 
@@ -309,7 +310,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/git/" class="category-chain-item">git</a>
+  <a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" class="category-chain-item">开发技术</a>
   
   
 
@@ -336,7 +337,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>hexo部署及git后续问题与解决</div>
+      <div>Hexo 部署与 Git 连接问题排查</div>
       <div>https://shang-swk.github.io/2025/02/19/hexo部署及git后续问题与解决/</div>
     </div>
     <div class="license-meta">
@@ -448,7 +449,7 @@
     
 
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <a id="scroll-top-button" aria-label="返回顶部" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -484,7 +485,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
     </div>
   
   
@@ -513,21 +514,6 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
 
@@ -623,7 +609,4 @@
   </noscript>
 </body>
 </html>
-<!--动态线条背景-->
-<script type="text/javascript"
-color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="/js/canvas-nest-nomobile.min.js"></script>
 

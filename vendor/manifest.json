@@ -1,0 +1,108 @@
+{
+  "packages": [
+    {
+      "package": "jquery",
+      "version": "3.6.0",
+      "url": "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz",
+      "archive_sha256": "81aba42cff61ab4f21ddf493eb1873dd9702a685eca9a8a182c9d4002846f0f8",
+      "files": [
+        "jquery.min.js"
+      ]
+    },
+    {
+      "package": "bootstrap",
+      "version": "4.6.1",
+      "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.6.1.tgz",
+      "archive_sha256": "9074e37cbcb9bc858889b087bd4af9d5b2cce54bbfeab975c0f2f64479af71f6",
+      "files": [
+        "css/bootstrap.min.css",
+        "js/bootstrap.min.js"
+      ]
+    },
+    {
+      "package": "nprogress",
+      "version": "0.2.0",
+      "url": "https://registry.npmjs.org/nprogress/-/nprogress-0.2.0.tgz",
+      "archive_sha256": "b65579e92b1ce917c925d27f44310fc7da02864e6d3faaf9e374e297c95d98ec",
+      "files": [
+        "nprogress.min.js",
+        "nprogress.min.css"
+      ]
+    },
+    {
+      "package": "clipboard",
+      "version": "2.0.10",
+      "url": "https://registry.npmjs.org/clipboard/-/clipboard-2.0.10.tgz",
+      "archive_sha256": "5f973632dc9814ce622888ffca481f9a5484b8b26a7c26c686e33ba0894a12c9",
+      "files": [
+        "clipboard.min.js"
+      ]
+    },
+    {
+      "package": "github-markdown-css",
+      "version": "4.0.0",
+      "url": "https://registry.npmjs.org/github-markdown-css/-/github-markdown-css-4.0.0.tgz",
+      "archive_sha256": "e7cd1b615d6df7c2a2464abb7fb5da057698facec4abc3937afa644dad866fab",
+      "files": [
+        "github-markdown.min.css"
+      ]
+    },
+    {
+      "package": "hint.css",
+      "version": "2.7.0",
+      "url": "https://registry.npmjs.org/hint.css/-/hint.css-2.7.0.tgz",
+      "archive_sha256": "2098791d5b2df2b53e135ed5d15b6054d4e59a750699f03f53e03d95b54feb81",
+      "files": [
+        "hint.min.css"
+      ]
+    },
+    {
+      "package": "@fancyapps/fancybox",
+      "version": "3.5.7",
+      "url": "https://registry.npmjs.org/@fancyapps/fancybox/-/fancybox-3.5.7.tgz",
+      "archive_sha256": "4ec5f1cbef46ddabcce0abd42406c4d0881a96e122b793c863156d74331a7be4",
+      "files": [
+        "jquery.fancybox.min.js",
+        "jquery.fancybox.min.css"
+      ]
+    },
+    {
+      "package": "tocbot",
+      "version": "4.18.2",
+      "url": "https://registry.npmjs.org/tocbot/-/tocbot-4.18.2.tgz",
+      "archive_sha256": "2e1e2a83d4bc1adea187aa40617a7047827f538f5366981b1cd67d53ceaf64db",
+      "files": [
+        "tocbot.min.js"
+      ]
+    },
+    {
+      "package": "anchor-js",
+      "version": "4.3.1",
+      "url": "https://registry.npmjs.org/anchor-js/-/anchor-js-4.3.1.tgz",
+      "archive_sha256": "0a5e6f98c48d77fc092f792a224eb76fbe924894d6ad2975b09f272496c3c2f4",
+      "files": [
+        "anchor.min.js"
+      ]
+    }
+  ],
+  "iconfonts": [
+    {
+      "css_source": "https://at.alicdn.com/t/font_1749284_hj8rtnfg7um.css",
+      "font_sources": [
+        "https://at.alicdn.com/t/font_1749284_hj8rtnfg7um.woff2?t=1643373093955",
+        "https://at.alicdn.com/t/font_1749284_hj8rtnfg7um.woff?t=1643373093955",
+        "https://at.alicdn.com/t/font_1749284_hj8rtnfg7um.ttf?t=1643373093955"
+      ],
+      "folder": "icons/fluid-icons"
+    },
+    {
+      "css_source": "https://at.alicdn.com/t/font_1736178_lbnruvf0jn.css",
+      "font_sources": [
+        "https://at.alicdn.com/t/font_1736178_lbnruvf0jn.woff2?t=1638112270225",
+        "https://at.alicdn.com/t/font_1736178_lbnruvf0jn.woff?t=1638112270225",
+        "https://at.alicdn.com/t/font_1736178_lbnruvf0jn.ttf?t=1638112270225"
+      ],
+      "folder": "icons/social-icons"
+    }
+  ]
+}

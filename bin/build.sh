@@ -11,6 +11,7 @@ if grep -Eq '^(ERROR|FATAL)([[:space:]]|$)' "$build_log"; then
   exit 1
 fi
 touch public/.nojekyll
+node bin/check-static-assets.cjs
 if [[ -f apps/nb-archive/package.json ]]; then
   if [[ ! -d apps/nb-archive/node_modules ]]; then
     npm --prefix apps/nb-archive ci

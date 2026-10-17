@@ -1,4 +1,16 @@
 # 寻影的主题覆盖配置；原主题保留在 themes/Fluid/。
+static_prefix:
+  jquery: /vendor/jquery/3.6.0/
+  bootstrap: /vendor/bootstrap/4.6.1/
+  nprogress: /vendor/nprogress/0.2.0/
+  github_markdown: /vendor/github-markdown/4.0.0/
+  hint: /vendor/hint/2.7.0/
+  fancybox: /vendor/fancybox/3.5.7/
+  clipboard: /vendor/clipboard/2.0.10/
+  tocbot: /vendor/tocbot/4.18.2/
+  anchor: /vendor/anchor/4.3.1/
+  fluid_icons: /vendor/icons/fluid-icons/icons.css
+  iconfont: /vendor/icons/social-icons/icons.css
 navbar:
   blog_title: 寻影
   menu:

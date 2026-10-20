@@ -1,6 +1,7 @@
 /* global CONFIG */
 
 (function() {
+  var pendingSearch = null;
   // Modified from [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)
   function localSearchFunc(path, searchSelector, resultSelector) {
     'use strict';
@@ -17,15 +18,18 @@
       throw Error('No element selected by the resultSelector');
     }
 
-    if ($result.attr('class').indexOf('list-group-item') === -1) {
-      $result.html('<div class="m-auto text-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div><br/>Loading...</div>');
-    }
+    if (pendingSearch) pendingSearch.abort();
+    $input.off('input.localSearch');
+    $result.attr('aria-busy', 'true').html('<div class="m-auto text-center" role="status"><div class="spinner-border" aria-hidden="true"></div><p class="mt-2">正在加载搜索…</p></div>');
 
-    jQuery.ajax({
+    pendingSearch = jQuery.ajax({
       // 0x01. load xml file
       url     : path,
       dataType: 'xml',
+      timeout : 10000,
       success : function(xmlResponse) {
+        pendingSearch = null;
+        $result.removeAttr('aria-busy');
         // 0x02. parse xml file
         var dataList = jQuery('entry', xmlResponse).map(function() {
           return {
@@ -39,7 +43,7 @@
           $result.html('');
         }
 
-        $input.on('input', function() {
+        $input.on('input.localSearch', function() {
           // 0x03. parse query to keywords list
           var content = $input.val();
           var resultHTML = '';
@@ -122,12 +126,22 @@
           $input.addClass('valid').removeClass('invalid');
           $result.html(resultHTML);
         });
+        $input.trigger('input');
+      },
+      error: function(_request, status) {
+        pendingSearch = null;
+        if (status === 'abort') return;
+        $result.removeAttr('aria-busy').html('<div class="m-auto text-center"><p role="alert">搜索暂时无法加载，请检查网络后重试。</p><button type="button" class="btn btn-outline-secondary" id="local-search-retry">重新加载搜索</button></div>');
+        $result.find('#local-search-retry').one('click', function() {
+          localSearchFunc(path, searchSelector, resultSelector);
+        });
       }
     });
   }
 
   function localSearchReset(searchSelector, resultSelector) {
     'use strict';
+    if (pendingSearch) pendingSearch.abort();
     var $input = jQuery(searchSelector);
     var $result = jQuery(resultSelector);
 
@@ -140,8 +154,8 @@
       throw Error('No element selected by the resultSelector');
     }
 
-    $input.val('').removeClass('invalid').removeClass('valid');
-    $result.html('');
+    $input.off('input.localSearch').val('').removeClass('invalid').removeClass('valid');
+    $result.removeAttr('aria-busy').html('');
   }
 
   var modal = jQuery('#modalSearch');

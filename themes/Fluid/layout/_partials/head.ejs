@@ -11,6 +11,7 @@ if (description) {
 }
 var ogImage = page.og_img || page.index_img
 var ogConfig = Object.assign({ image: ogImage && url_for(ogImage) }, theme.open_graph)
+var bannerImages = responsive_banner_images(page.banner_img || theme.index.banner_img)
 %>
 
 <head>
@@ -38,6 +39,10 @@ var ogConfig = Object.assign({ image: ogImage && url_for(ogImage) }, theme.open_
     <%- theme.custom_head %>
   <% } %>
   <title><%= title %></title>
+  <% if (bannerImages[0] !== bannerImages[1]) { %>
+    <link rel="preload" as="image" href="<%= url_for(bannerImages[0]) %>" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="<%= url_for(bannerImages[1]) %>" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+  <% } %>
 
   <%- partial('_partials/css.ejs') %>
   <%- export_config() %>

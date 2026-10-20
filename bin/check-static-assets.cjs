@@ -41,7 +41,7 @@ function visit(dir) {
       pages++;
       for (const match of content.matchAll(/<(script|link)\b[^>]*>/gi)) {
         const tag = match[0];
-        if (match[1].toLowerCase() === 'link' && !/\brel=["']stylesheet["']/i.test(tag)) continue;
+        if (match[1].toLowerCase() === 'link' && !/\brel=["']stylesheet["']/i.test(tag) && !(/\brel=["']preload["']/i.test(tag) && /\bas=["']image["']/i.test(tag))) continue;
         const url = tag.match(/\b(?:src|href)\s*=\s*(?:["']([^"']+)["']|([^\s>]+))/i);
         if (url) checkAsset(url[1] || url[2], file);
       }

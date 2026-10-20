@@ -81,4 +81,4 @@ color:
 custom_css:
   - /css/xunying.css
 footer:
-  content: '<a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>'
+  content: '<a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><a href="/rss.xml">RSS 订阅</a><span class="footer-separator">·</span><a href="/sitemap.xml">站点地图</a><br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>'

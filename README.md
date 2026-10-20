@@ -4,6 +4,8 @@
 
 这是恢复的 Hexo 6.2 + Fluid 1.9.2 写作项目，包含 29 篇 Markdown 文章和原主题配置。历史文章日期已从旧站页面补入 front matter，避免换电脑后链接和排序变化。
 
+当前构建环境要求 Node.js 20.19 或以上。
+
 ## 写文章
 
 在 VS Code 或 Cursor 中打开此文件夹，在终端执行：
@@ -127,3 +129,11 @@ git config --local http.https://github.com/.proxy ''
 博客的“项目”入口链接到 `/projects/`，档案站位于 `/nb-archive/`。发布副本源码在 `apps/nb-archive/`，原项目 `/Users/kevin/Documents/newbalance 网站` 保持不变。
 
 `npm run build` 和 `npm run publish` 会一并构建这个 Next.js 静态网站。它保留档案浏览、筛选、对比和当前浏览器的本地鞋柜；社区发帖、评论和在线纠错未开放。修改原项目不会自动改变发布副本，更新上线版请在 `apps/nb-archive/` 中修改。
+
+## 图片、加载反馈与订阅
+
+首页与文章页沿用原背景构图，使用 `themes/Fluid/source/img/optimized/` 中的 WebP。768px 及以上加载 1920px 版本，较窄屏幕加载 960px 版本；原 JPG 保留供旧链接使用。响应式背景映射在 `themes/Fluid/scripts/helpers/banner-images.js`，原图更新后需要重新生成这四个文件。
+
+搜索索引请求在 10 秒后超时，页面会显示重试按钮；关闭搜索会取消未完成的请求。顶部进度条在正文就绪或 10 秒超时后结束。运行 `npm run test:loading` 可检查进度条的完成、超时和离开页面行为。
+
+每次构建自动更新 `/rss.xml` 和 `/sitemap.xml`，RSS 提供文章标题、摘要与原文链接，页脚有订阅入口。`/robots.txt` 同时声明博客和 NB Archive 的 sitemap。修改站点域名时，请一并更新 `_config.yml` 的 `url` 与 `source/robots.txt`。

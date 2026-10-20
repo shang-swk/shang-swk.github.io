@@ -33,6 +33,10 @@
   
   
   <title>雅思词汇 9 - 寻影</title>
+  
+    <link rel="preload" as="image" href="/img/optimized/post-1920.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/img/optimized/post-960.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+  
 
   <link  rel="stylesheet" href="/vendor/bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -87,7 +91,8 @@
 
 
   
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/rss.xml" title="寻影" type="application/rss+xml">
+</head>
 
 
 <body class="post-page">
@@ -201,7 +206,7 @@
   
 
 <div id="banner" class="banner" false
-     style="background: url('/img/2.jpg') no-repeat center center; background-size: cover;">
+     style="--banner-image: url('/img/optimized/post-1920.webp'); --banner-image-mobile: url('/img/optimized/post-960.webp'); background-repeat: no-repeat; background-position: center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       
@@ -715,7 +720,7 @@
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
-        <div class="list-group" id="local-search-result"></div>
+        <div class="list-group" id="local-search-result" aria-live="polite"></div>
       </div>
     </div>
   </div>
@@ -730,7 +735,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
+      <a href="/">寻影</a><span class="footer-separator">·</span>把知识写下来，让理解留下来。<br><a href="/rss.xml">RSS 订阅</a><span class="footer-separator">·</span><a href="/sitemap.xml">站点地图</a><br><span class="footer-credit">Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">Fluid</a></span>
     </div>
   
   
@@ -745,13 +750,7 @@
   <script  src="/vendor/nprogress/0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="/vendor/nprogress/0.2.0/nprogress.min.css" />
 
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
+  <script  src="/js/loading-progress.js" ></script>
 
 
 <script  src="/vendor/jquery/3.6.0/jquery.min.js" ></script>

@@ -13,6 +13,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--xy-accent); out
 .navbar .nav-link.active { font-weight: 650; text-underline-offset: 8px; text-decoration: underline; text-decoration-thickness: 2px; }
 .top-nav-collapse, .navbar-col-show { box-shadow: 0 2px 12px #12283412; }
 .home-page .header-inner { min-height: 435px; max-height: 600px; }
+#banner { background-image: var(--banner-image); }
+@media (max-width: 767px) { #banner { background-image: var(--banner-image-mobile); } }
 .home-page #banner { background-position: center 55% !important; }
 .home-page .full-bg-img .mask { background: linear-gradient(90deg, #102832d9 0%, #142e35a6 40%, #142e3526 100%); }
 .hero-container { position: relative; display: flex; align-items: center; height: 100%; padding-top: 56px; padding-bottom: 32px; }

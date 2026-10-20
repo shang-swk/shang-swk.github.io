@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shang-swk.github.io/sitemap.xml
+Sitemap: https://shang-swk.github.io/nb-archive/sitemap.xml
